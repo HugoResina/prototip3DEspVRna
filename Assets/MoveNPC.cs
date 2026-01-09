@@ -1,9 +1,11 @@
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.InputSystem;
 
 public class MoveNPC : MonoBehaviour
 {
-    [SerializeField] Transform destination;
+    [SerializeField] Transform destination1;
+    [SerializeField] Transform destination2;
     
 
     NavMeshAgent navMeshAgent;
@@ -18,11 +20,27 @@ public class MoveNPC : MonoBehaviour
         }
         else
         {
-            SetDestination();
+            SetDestination(destination1);
+        }
+
+    }
+    private void Update()
+    {
+        if (Input.GetKeyDown("a"))
+        {
+            Debug.Log("A");
+
+            SetDestination(destination1);
+        }
+        else if (Input.GetKeyDown("s"))
+        {
+            Debug.Log("S");
+
+            SetDestination(destination2);
         }
     }
 
-    private void SetDestination()
+    private void SetDestination(Transform destination)
     {
         if (destination != null)
         {

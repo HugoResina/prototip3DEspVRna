@@ -6,6 +6,7 @@ public class PlayerInputs : MonoBehaviour, InputSystem_Actions.IPlayerActions
     public InputSystem_Actions InputActions { get; private set; }
     public Vector2 MoveInput { get; private set; }
     public Vector2 LookInput { get; private set; }
+    public bool InteractInput { get; private set; }
 
     private void OnEnable()
     {
@@ -18,7 +19,7 @@ public class PlayerInputs : MonoBehaviour, InputSystem_Actions.IPlayerActions
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        throw new System.NotImplementedException();
+        InteractInput = context.ReadValueAsButton();
     }
 
     public void OnLook(InputAction.CallbackContext context)

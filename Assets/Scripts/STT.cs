@@ -37,14 +37,11 @@ public class STT : MonoBehaviour
 
     private void OnEnable()
     {
-        MockNPC.interactingFlag += interactingFlag;
-        MockNPC.eraseText += EraseFunc;
+      
     }
     private void OnDisable()
     {
-        MockNPC.interactingFlag -= interactingFlag;
-        MockNPC.eraseText -= EraseFunc;
-
+       
     }
 
     [System.Serializable]

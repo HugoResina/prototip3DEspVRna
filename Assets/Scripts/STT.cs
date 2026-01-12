@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 using Vosk;
 
@@ -26,7 +27,7 @@ public class STT : MonoBehaviour
     public int clipLengthSec = 10;
   
 
-    public Text outputText;
+    public TMP_InputField outputText;
     public Text AiOuptutText;
 
     private AudioClip micClip;

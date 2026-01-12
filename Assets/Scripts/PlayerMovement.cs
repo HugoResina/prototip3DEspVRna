@@ -24,6 +24,7 @@ public class PlayerMovement : MonoBehaviour
     private void Awake()
     {
         _playerInputs = GetComponent<PlayerInputs>();
+        _characterController = GetComponent<CharacterController>();
     }
 
     private void Update()

@@ -24,7 +24,7 @@ public class STT : MonoBehaviour
 
     public string deviceName = null;
     public int clipLengthSec = 10;
-    public bool isInteracting;
+  
 
     public Text outputText;
     public Text AiOuptutText;
@@ -46,12 +46,7 @@ public class STT : MonoBehaviour
         public string response;
     }
 
-    public void interactingFlag(bool state)
-    {
-        isInteracting = state;
-        Debug.Log("isinteracting" + state);
-
-    }
+   
     private void Start()
     {
 
@@ -103,8 +98,7 @@ public class STT : MonoBehaviour
 
     private void Update()
     {
-        if (isInteracting)
-        {
+     
 
 
             if (micClip == null || rec == null)
@@ -164,7 +158,7 @@ public class STT : MonoBehaviour
                 lastSamplePos = (lastSamplePos + thisChunk) % micClip.samples;
                 samplesToRead -= thisChunk;
             }
-        }
+        
     }
 
     private void OnDestroy()

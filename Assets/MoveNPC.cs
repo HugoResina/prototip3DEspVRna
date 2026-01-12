@@ -21,11 +21,11 @@ public class MoveNPC : MonoBehaviour
         {
             Debug.LogError("nav mesh agent component not attached");
         }
-        //else
-        //{
-        //    SetDestination(destination1);
-        //}
-        
+        else
+        {
+            SetDestination(destination1);
+        }
+
     }
     private void OnEnable()
     {

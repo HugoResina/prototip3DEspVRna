@@ -22,27 +22,22 @@ public class STT : MonoBehaviour
     public string modelPath = "C:/vosk-model-small-ca-0.4";
     public int sampleRate = 16000;
 
-    public string deviceName = null;      
+    public string deviceName = null;
     public int clipLengthSec = 10;
     public bool isInteracting;
 
-    public Text outputText;               
+    public Text outputText;
     public Text AiOuptutText;
 
     private AudioClip micClip;
     private int lastSamplePos = 0;
 
-    [SerializeField]private Button Erase;
-    [SerializeField]private Button Send;
+    [SerializeField] private Button Erase;
+    [SerializeField] private Button Send;
 
-    private void OnEnable()
-    {
-      
-    }
-    private void OnDisable()
-    {
-       
-    }
+    public static event Action<int> OnSend;
+
+  
 
     [System.Serializable]
     public class responseObj
@@ -59,13 +54,13 @@ public class STT : MonoBehaviour
     }
     private void Start()
     {
-        
+
         Erase.onClick.AddListener(EraseFunc);
         Send.onClick.AddListener(SendFunc);
         model = new Model(modelPath);
         rec = new VoskRecognizer(model, sampleRate);
 
-        
+
         if (Microphone.devices.Length == 0)
         {
             Debug.LogError("No hay micrófonos disponibles.");
@@ -102,7 +97,8 @@ public class STT : MonoBehaviour
         //Debug.Log("Resposta de la IA local: " + response);
         AiOuptutText.text = responseobj.response;
         Debug.Log("index: ----------->" + responseobj.index);
-        //evento al npc, como se referencia?
+       
+        OnSend?.Invoke(responseobj.index);
     }
 
     private void Update()

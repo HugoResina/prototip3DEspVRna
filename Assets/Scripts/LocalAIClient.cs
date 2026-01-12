@@ -102,6 +102,8 @@ public class LocalAIClient : MonoBehaviour
             ChatResponse resp = JsonUtility.FromJson<ChatResponse>(www.downloadHandler.text);
             string resposta = resp?.message?.content ?? "Resposta buida";
 
+            //event a movenpc
+
             return resposta;
         }
     }

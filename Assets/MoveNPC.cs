@@ -1,6 +1,8 @@
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
+using UnityEngine.iOS;
+using UnityEngine.ProBuilder.MeshOperations;
 
 public class MoveNPC : MonoBehaviour
 {
@@ -18,25 +20,29 @@ public class MoveNPC : MonoBehaviour
         {
             Debug.LogError("nav mesh agent component not attached");
         }
-        //else
-        //{
-        //    SetDestination(destination1);
-        //}
+        else
+        {
+            SetDestination(destination1);
+        }
 
     }
     private void Update()
     {
-        if (Input.GetKeyDown("a"))
+       
+    }
+    public void GetOrder(int index)
+    {
+        switch (index)
         {
-            Debug.Log("A");
+            case 1:
+                SetDestination(destination1);
+                break;
+            case 2:
+                SetDestination(destination2);
+                break;
+            default:
+                break;
 
-            SetDestination(destination1);
-        }
-        else if (Input.GetKeyDown("s"))
-        {
-            Debug.Log("S");
-
-            SetDestination(destination2);
         }
     }
 

@@ -17,9 +17,15 @@ public class PlayerInputs : MonoBehaviour, InputSystem_Actions.IPlayerActions
         InputActions.Player.SetCallbacks(this);
     }
 
+    private void OnDisable()
+    {
+        InputActions.Player.Disable();
+        InputActions.Player.RemoveCallbacks(this);
+    }
+
     public void OnInteract(InputAction.CallbackContext context)
     {
-        InteractInput = context.ReadValueAsButton();
+        InteractInput = context.ReadValueAsButton() && !InteractInput;
     }
 
     public void OnLook(InputAction.CallbackContext context)

@@ -3,11 +3,14 @@ using System.Threading.Tasks;
 using UnityEditor.PackageManager.Requests;
 using UnityEngine;
 using UnityEngine.Networking;
+using System;
+using JetBrains.Annotations;
 
 public class LocalAIClient : MonoBehaviour
 {
     [SerializeField] private string apiUrl = "http://localhost:11434/api/chat";
     [SerializeField] private string modelName = "deepseek-r1:latest";
+   
 
     /*public async Task<string> CallLocalAIAsync(string userText)
     {
@@ -102,9 +105,11 @@ public class LocalAIClient : MonoBehaviour
             ChatResponse resp = JsonUtility.FromJson<ChatResponse>(www.downloadHandler.text);
             string resposta = resp?.message?.content ?? "Resposta buida";
 
-            //event a movenpc
+            
 
             return resposta;
         }
+        
     }
+   
 }

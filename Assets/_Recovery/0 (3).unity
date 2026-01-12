@@ -2310,7 +2310,6 @@ MonoBehaviour:
   sampleRate: 16000
   deviceName: 
   clipLengthSec: 10
-  isInteracting: 0
   outputText: {fileID: 1464946291}
   AiOuptutText: {fileID: 1181152565}
   Erase: {fileID: 521987247}

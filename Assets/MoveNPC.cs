@@ -9,6 +9,7 @@ public class MoveNPC : MonoBehaviour
     [SerializeField] Transform destination1;
     [SerializeField] Transform destination2;
     
+    
 
     NavMeshAgent navMeshAgent;
 
@@ -20,15 +21,19 @@ public class MoveNPC : MonoBehaviour
         {
             Debug.LogError("nav mesh agent component not attached");
         }
-        else
-        {
-            SetDestination(destination1);
-        }
-
+        //else
+        //{
+        //    SetDestination(destination1);
+        //}
+        
     }
-    private void Update()
+    private void OnEnable()
     {
-       
+        STT.OnSend += GetOrder;
+    }
+    private void OnDisable()
+    {
+        STT.OnSend -= GetOrder;
     }
     public void GetOrder(int index)
     {

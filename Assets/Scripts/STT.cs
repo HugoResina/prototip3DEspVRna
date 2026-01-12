@@ -24,6 +24,7 @@ public class STT : MonoBehaviour
 
     public string deviceName = null;
     public int clipLengthSec = 10;
+    public bool isInteracting;
 
     public Text outputText;
     public Text AiOuptutText;
@@ -34,6 +35,23 @@ public class STT : MonoBehaviour
     [SerializeField] private Button Erase;
     [SerializeField] private Button Send;
 
+    public static event Action<int> OnSend;
+
+  
+
+    [System.Serializable]
+    public class responseObj
+    {
+        public int index;
+        public string response;
+    }
+
+    public void interactingFlag(bool state)
+    {
+        isInteracting = state;
+        Debug.Log("isinteracting" + state);
+
+    }
     private void Start()
     {
 
@@ -68,73 +86,84 @@ public class STT : MonoBehaviour
     {
         outputText.text = "";
     }
+
     public async void SendFunc()
     {
         localIAClient = GetComponent<LocalAIClient>();
-        Debug.Log(localIAClient);
+        //Debug.Log(localIAClient);
         string response = await localIAClient.CallLocalAIAsync(outputText.text);
+
+        var responseobj = JsonUtility.FromJson<responseObj>(response);
         //Debug.Log("Resposta de la IA local: " + response);
-        AiOuptutText.text = response;
+        AiOuptutText.text = responseobj.response;
+        Debug.Log("index: ----------->" + responseobj.index);
+       
+        OnSend?.Invoke(responseobj.index);
     }
 
     private void Update()
     {
-        if (micClip == null || rec == null)
-            return;
-
-        int currentPos = Microphone.GetPosition(deviceName);
-        if (currentPos < 0 || currentPos == lastSamplePos)
-            return;
-
-        int samplesToRead = (currentPos > lastSamplePos)
-            ? currentPos - lastSamplePos
-            : (micClip.samples - lastSamplePos) + currentPos;
-
-        const int maxChunkSize = 4096;
-
-        while (samplesToRead > 0)
+        if (isInteracting)
         {
-            int thisChunk = Mathf.Min(samplesToRead, maxChunkSize);
 
-            float[] floatData = new float[thisChunk];
 
-            int startPos = lastSamplePos;
-            if (startPos + thisChunk > micClip.samples)
+            if (micClip == null || rec == null)
+                return;
+
+            int currentPos = Microphone.GetPosition(deviceName);
+            if (currentPos < 0 || currentPos == lastSamplePos)
+                return;
+
+            int samplesToRead = (currentPos > lastSamplePos)
+                ? currentPos - lastSamplePos
+                : (micClip.samples - lastSamplePos) + currentPos;
+
+            const int maxChunkSize = 4096;
+
+            while (samplesToRead > 0)
             {
+                int thisChunk = Mathf.Min(samplesToRead, maxChunkSize);
 
-                thisChunk = micClip.samples - startPos;
-            }
+                float[] floatData = new float[thisChunk];
 
-            micClip.GetData(floatData, startPos);
-
-
-            short[] shortData = new short[thisChunk];
-            for (int i = 0; i < thisChunk; i++)
-            {
-                float f = Mathf.Clamp(floatData[i], -1f, 1f);
-                shortData[i] = (short)(f * short.MaxValue);
-            }
-
-            byte[] bytes = new byte[thisChunk * 2];
-            Buffer.BlockCopy(shortData, 0, bytes, 0, bytes.Length);
-
-            if (rec.AcceptWaveform(bytes, bytes.Length))
-            {
-
-                string json = rec.Result();
-                OutputObj output = JsonUtility.FromJson<OutputObj>(json);
-
-                if (output != null && !string.IsNullOrEmpty(output.text))
+                int startPos = lastSamplePos;
+                if (startPos + thisChunk > micClip.samples)
                 {
-                    if (outputText != null)
-                        outputText.text += output.text + " ";
-                    Debug.Log("RESULT: " + output.text);
+
+                    thisChunk = micClip.samples - startPos;
                 }
+
+                micClip.GetData(floatData, startPos);
+
+
+                short[] shortData = new short[thisChunk];
+                for (int i = 0; i < thisChunk; i++)
+                {
+                    float f = Mathf.Clamp(floatData[i], -1f, 1f);
+                    shortData[i] = (short)(f * short.MaxValue);
+                }
+
+                byte[] bytes = new byte[thisChunk * 2];
+                Buffer.BlockCopy(shortData, 0, bytes, 0, bytes.Length);
+
+                if (rec.AcceptWaveform(bytes, bytes.Length))
+                {
+
+                    string json = rec.Result();
+                    OutputObj output = JsonUtility.FromJson<OutputObj>(json);
+
+                    if (output != null && !string.IsNullOrEmpty(output.text))
+                    {
+                        if (outputText != null)
+                            outputText.text += output.text + " ";
+                        Debug.Log("RESULT: " + output.text);
+                    }
+                }
+
+
+                lastSamplePos = (lastSamplePos + thisChunk) % micClip.samples;
+                samplesToRead -= thisChunk;
             }
-
-
-            lastSamplePos = (lastSamplePos + thisChunk) % micClip.samples;
-            samplesToRead -= thisChunk;
         }
     }
 

@@ -11,5 +11,10 @@ public class Interactable : MonoBehaviour
         //activate canvas to talk
         TalkCanvas.gameObject.SetActive(true);
     }
+    public void TurnOffCanvas()
+    {
+        TalkCanvas.gameObject.SetActive(false);
+
+    }
 
 }

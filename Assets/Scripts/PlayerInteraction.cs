@@ -9,10 +9,13 @@ public class PlayerInteraction : MonoBehaviour
     [Header("UI Elements")]
     [SerializeField] private TextMeshProUGUI _interactiontext;
 
+
     [Header("Settings")]
     public float interactDistance = 2f;
 
     private PlayerInputs _playerInputs;
+
+    private Interactable lastInteracted;
 
     private void Awake()
     {
@@ -40,6 +43,7 @@ public class PlayerInteraction : MonoBehaviour
             Debug.Log(interactable);
             if (interactable != null)
             {
+                lastInteracted = interactable;
                 _interactiontext.text = interactable.interactionPrompt;
 
                 if (_playerInputs.InteractInput)
@@ -50,11 +54,18 @@ public class PlayerInteraction : MonoBehaviour
             else
             {
                 _interactiontext.text = string.Empty;
+
             }
         }
         else
         {
             _interactiontext.text = string.Empty;
+            if(lastInteracted != null)
+            {
+                lastInteracted.TurnOffCanvas();
+                lastInteracted = null;
+            }
+            
         }
     }
 }

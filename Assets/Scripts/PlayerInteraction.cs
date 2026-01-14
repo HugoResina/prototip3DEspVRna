@@ -30,9 +30,14 @@ public class PlayerInteraction : MonoBehaviour
 
         Vector3 rayOrigin = _playerCamera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0f));
 
+        Debug.DrawRay(rayOrigin, _playerCamera.transform.forward, Color.red);
+
         if (Physics.Raycast(rayOrigin, _playerCamera.transform.forward, out hit, interactDistance))
         {
+            Debug.Log("contacte");
+            
             Interactable interactable = hit.collider.GetComponent<Interactable>();
+            Debug.Log(interactable);
             if (interactable != null)
             {
                 _interactiontext.text = interactable.interactionPrompt;

@@ -8,4 +8,5 @@ public class Interactable : MonoBehaviour
     {
         Debug.Log("Interacting with " + gameObject.name);
     }
+
 }

@@ -9,7 +9,7 @@ using JetBrains.Annotations;
 public class LocalAIClient : MonoBehaviour
 {
     [SerializeField] private string apiUrl = "http://localhost:11434/api/chat";
-    [SerializeField] private string modelName = "deepseek-r1:latest";
+    [SerializeField] private string modelName = "qwen2.5:7b";
    
 
     /*public async Task<string> CallLocalAIAsync(string userText)

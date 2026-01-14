@@ -359,7 +359,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!81 &330585544
 AudioListener:
   m_ObjectHideFlags: 0
@@ -1479,27 +1479,13 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 947737935}
-  - component: {fileID: 947737934}
   m_Layer: 0
   m_Name: GameObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!114 &947737934
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 947737933}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 403a0c452da540d4eb65785865407e87, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Interactable
-  interactionPrompt: Prem 'E' per interactuar
+  m_IsActive: 1
 --- !u!4 &947737935
 Transform:
   m_ObjectHideFlags: 0
@@ -1535,7 +1521,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!143 &1045984356
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1585,9 +1571,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c64ead7a54d5124caa42f35dc916cb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInteraction
-  _playerCamera: {fileID: 330585545}
+  _playerCamera: {fileID: 1710372146}
   _interactiontext: {fileID: 1324834287}
-  interactDistance: 2
+  interactDistance: 10
 --- !u!114 &1045984359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1826,6 +1812,7 @@ GameObject:
   - component: {fileID: 1239208974}
   - component: {fileID: 1239208973}
   - component: {fileID: 1239208972}
+  - component: {fileID: 1239208975}
   m_Layer: 0
   m_Name: Capsule
   m_TagString: Untagged
@@ -1927,6 +1914,20 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1239208970}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1239208975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1239208970}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 403a0c452da540d4eb65785865407e87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Interactable
+  interactionPrompt: Prem 'E' per interactuar
+  TalkCanvas: {fileID: 1984319072}
 --- !u!1 &1247510447
 GameObject:
   m_ObjectHideFlags: 0
@@ -2785,7 +2786,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1477108946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3736,7 +3737,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1984319069
 RectTransform:
   m_ObjectHideFlags: 0

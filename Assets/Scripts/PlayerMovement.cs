@@ -1,5 +1,6 @@
 using UnityEngine;
 
+[RequireComponent(typeof(CharacterController), typeof(PlayerInputs))]
 public class PlayerMovement : MonoBehaviour
 {
     [Header("References")]
@@ -25,6 +26,12 @@ public class PlayerMovement : MonoBehaviour
     {
         _playerInputs = GetComponent<PlayerInputs>();
         _characterController = GetComponent<CharacterController>();
+    }
+
+    private void Start()
+    {
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     }
 
     private void Update()
@@ -56,10 +63,11 @@ public class PlayerMovement : MonoBehaviour
     private void Look()
     {
         _cameraRotation.x = _playerInputs.LookInput.x * lookSensitivityH;
-        _cameraRotation.y = Mathf.Clamp(_cameraRotation.y - lookSensitivityV * _playerInputs.LookInput.y, -looklimitV, looklimitV);
+        _cameraRotation.y -= _playerInputs.LookInput.y * lookSensitivityV;
+        _cameraRotation.y = Mathf.Clamp(_cameraRotation.y, -looklimitV, looklimitV);
 
         transform.Rotate(0, _cameraRotation.x, 0);
-        _playerCamera.transform.localRotation = Quaternion.Euler(_cameraRotation.y, _cameraRotation.x, 0);
+        _playerCamera.transform.localRotation = Quaternion.Euler(_cameraRotation.y, 0, 0);
     }
 
     private void Fall()

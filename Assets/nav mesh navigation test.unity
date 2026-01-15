@@ -3408,7 +3408,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LocalAIClient
   apiUrl: http://localhost:11434/api/chat
-  modelName: deepseek-r1:latest
+  modelName: qwen2.5:7b
 --- !u!114 &1692765206
 MonoBehaviour:
   m_ObjectHideFlags: 0

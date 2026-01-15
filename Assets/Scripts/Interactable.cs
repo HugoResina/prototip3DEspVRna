@@ -7,6 +7,18 @@ public class Interactable : MonoBehaviour
     public Canvas TalkCanvas;
     public static event Action<bool> lockCam;
 
+    private void OnEnable()
+    {
+      
+        PlayerInputs.ExitFunc += TurnOffCanvas;
+    }
+    private void OnDisable()
+    {
+
+        PlayerInputs.ExitFunc -= TurnOffCanvas;
+    }
+    
+
     public virtual void Interact()
     {
         Debug.Log("Interacting with " + gameObject.name);

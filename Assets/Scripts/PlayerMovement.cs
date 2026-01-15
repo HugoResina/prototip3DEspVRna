@@ -38,12 +38,12 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         Interactable.lockCam += switchInteractingState;
-        PlayerInputs.ExitFunc += switchInteractingState;
+        
     }
     private void OnDisable()
     {
         Interactable.lockCam -= switchInteractingState;
-        PlayerInputs.ExitFunc -= switchInteractingState;
+       
     }
 
     public void switchInteractingState(bool state)

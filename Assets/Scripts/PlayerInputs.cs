@@ -9,7 +9,7 @@ public class PlayerInputs : MonoBehaviour, InputSystem_Actions.IPlayerActions
     public Vector2 LookInput { get; private set; }
     public bool InteractInput { get; private set; }
     public bool ExitInput { get; private set; }
-    public static Action<bool> ExitFunc;
+    public static Action ExitFunc;
 
     private void OnEnable()
     {
@@ -44,7 +44,8 @@ public class PlayerInputs : MonoBehaviour, InputSystem_Actions.IPlayerActions
     public void OnExit(InputAction.CallbackContext context)
     {
         //ExitInput = context.ReadValueAsButton() && !ExitInput;
-        ExitFunc?.Invoke(true);
+        Debug.Log("ESC");
+        ExitFunc?.Invoke();
     }
     
 }

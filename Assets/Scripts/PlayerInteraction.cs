@@ -25,8 +25,11 @@ public class PlayerInteraction : MonoBehaviour
     private void Update()
     {
         CheckInteraction();
+        //checkExit();
+       
     }
 
+    
     private void CheckInteraction()
     {
         RaycastHit hit;
@@ -40,7 +43,7 @@ public class PlayerInteraction : MonoBehaviour
             
             
             Interactable interactable = hit.collider.GetComponent<Interactable>();
-            Debug.Log(interactable);
+            //Debug.Log(interactable);
             if (interactable != null)
             {
                 lastInteracted = interactable;
@@ -68,4 +71,8 @@ public class PlayerInteraction : MonoBehaviour
             
         }
     }
+    //private void checkExit()
+    //{
+
+    //}
 }

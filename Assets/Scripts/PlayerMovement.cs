@@ -21,6 +21,8 @@ public class PlayerMovement : MonoBehaviour
     private PlayerInputs _playerInputs;
     private Vector3 _currentMovement = Vector3.zero;
     private Vector2 _cameraRotation = Vector2.zero;
+    private bool _isInteracting = false;
+
 
     private void Awake()
     {
@@ -33,7 +35,21 @@ public class PlayerMovement : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
+    private void OnEnable()
+    {
+        Interactable.lockCam += switchInteractingState;
+        PlayerInputs.ExitFunc += switchInteractingState;
+    }
+    private void OnDisable()
+    {
+        Interactable.lockCam -= switchInteractingState;
+        PlayerInputs.ExitFunc -= switchInteractingState;
+    }
 
+    public void switchInteractingState(bool state)
+    {
+        _isInteracting = state;
+    }
     private void Update()
     {
         Movement();
@@ -41,6 +57,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void LateUpdate()
     {
+        if(!_isInteracting)
         Look();
     }
 
@@ -81,4 +98,5 @@ public class PlayerMovement : MonoBehaviour
             _currentMovement.y -= gravity * Time.deltaTime;
         }
     }
+
 }

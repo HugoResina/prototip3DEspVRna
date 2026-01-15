@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -7,6 +8,8 @@ public class PlayerInputs : MonoBehaviour, InputSystem_Actions.IPlayerActions
     public Vector2 MoveInput { get; private set; }
     public Vector2 LookInput { get; private set; }
     public bool InteractInput { get; private set; }
+    public bool ExitInput { get; private set; }
+    public static Action<bool> ExitFunc;
 
     private void OnEnable()
     {
@@ -37,4 +40,11 @@ public class PlayerInputs : MonoBehaviour, InputSystem_Actions.IPlayerActions
     {
         MoveInput = context.ReadValue<Vector2>();
     }
+
+    public void OnExit(InputAction.CallbackContext context)
+    {
+        //ExitInput = context.ReadValueAsButton() && !ExitInput;
+        ExitFunc?.Invoke(true);
+    }
+    
 }

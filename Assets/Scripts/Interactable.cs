@@ -10,10 +10,14 @@ public class Interactable : MonoBehaviour
         Debug.Log("Interacting with " + gameObject.name);
         //activate canvas to talk
         TalkCanvas.gameObject.SetActive(true);
+        Cursor.lockState = CursorLockMode.None;
+        Cursor.visible = true;
     }
     public void TurnOffCanvas()
     {
         TalkCanvas.gameObject.SetActive(false);
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
 
     }
 

@@ -23,7 +23,7 @@ public class Interactable : MonoBehaviour
         TalkCanvas.gameObject.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-        //lanzar evento
+
         lockCam?.Invoke(true);
     }
     public void TurnOffCanvas()

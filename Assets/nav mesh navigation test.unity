@@ -676,7 +676,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: 3d66dacf8eae5b24f94027d392f10bab, type: 2}
     - target: {fileID: 6583836602597194270, guid: b6bf4e6441285bd44950005cb3d4d7f0, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.0405
+      value: 0.0076
       objectReference: {fileID: 0}
     - target: {fileID: 8258695426245150235, guid: b6bf4e6441285bd44950005cb3d4d7f0, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -686,6 +686,9 @@ PrefabInstance:
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: -1910308038293345813, guid: b6bf4e6441285bd44950005cb3d4d7f0, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1381384074}
     - targetCorrespondingSourceObject: {fileID: -1203702275761425669, guid: b6bf4e6441285bd44950005cb3d4d7f0, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1543171035}
@@ -1258,7 +1261,7 @@ NavMeshAgent:
   m_Enabled: 1
   m_AgentTypeID: 0
   m_Radius: 0.5
-  m_Speed: 3.5
+  m_Speed: 2
   m_Acceleration: 8
   avoidancePriority: 50
   m_AngularSpeed: 120
@@ -2719,6 +2722,27 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1342873011}
   m_CullTransparentMesh: 1
+--- !u!1 &1381384070 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: -1910308038293345813, guid: b6bf4e6441285bd44950005cb3d4d7f0, type: 3}
+  m_PrefabInstance: {fileID: 364061749}
+  m_PrefabAsset: {fileID: 0}
+--- !u!208 &1381384074
+NavMeshObstacle:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1381384070}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Shape: 1
+  m_Extents: {x: 0.025, y: 0.001, z: 0.012}
+  m_MoveThreshold: 0.1
+  m_Carve: 1
+  m_CarveOnlyStationary: 1
+  m_Center: {x: 0.001, y: 0, z: -0.0050000004}
+  m_TimeToStationary: 0.5
 --- !u!1 &1408776429
 GameObject:
   m_ObjectHideFlags: 0

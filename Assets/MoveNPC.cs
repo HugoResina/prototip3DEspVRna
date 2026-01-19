@@ -28,6 +28,15 @@ public class MoveNPC : MonoBehaviour
         }
 
     }
+
+    private void Update()
+    {
+        if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance && !navMeshAgent.pathPending)
+        {
+            animator.SetBool("IsWalking", false);
+        }
+    }
+
     private void OnEnable()
     {
         STT.OnSend += GetOrder;

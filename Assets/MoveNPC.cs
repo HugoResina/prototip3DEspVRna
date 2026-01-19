@@ -8,13 +8,14 @@ public class MoveNPC : MonoBehaviour
 {
     [SerializeField] Transform destination1;
     [SerializeField] Transform destination2;
-    
+    private Animator animator;
     
 
     NavMeshAgent navMeshAgent;
 
     void Start()
     {
+        animator = GetComponent<Animator>();
         navMeshAgent = this.GetComponent<NavMeshAgent>();
 
         if (navMeshAgent == null)
@@ -55,6 +56,7 @@ public class MoveNPC : MonoBehaviour
     {
         if (destination != null)
         {
+            animator.SetBool("IsWalking", true);
             Vector3 targetVector = destination.transform.position;
             navMeshAgent.SetDestination(targetVector);
         }

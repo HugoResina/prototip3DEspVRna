@@ -1991,6 +1991,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d5a0e79d65692844beb0f5c7de2f817, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInputs
+  IsInteracting: 0
 --- !u!114 &1045984358
 MonoBehaviour:
   m_ObjectHideFlags: 0

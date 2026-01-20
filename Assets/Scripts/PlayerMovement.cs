@@ -9,6 +9,7 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Movement Settings")]
     public float moveSpeed = 3.0f;
+    public float sprintSpeed = 6.0f;
 
     [Header("Look Settings")]
     public float lookSensitivityH = 0.1f;
@@ -66,8 +67,9 @@ public class PlayerMovement : MonoBehaviour
 
     private void Movement()
     {
-        float HorizontalSpeed = _playerInputs.MoveInput.x * moveSpeed;
-        float VerticalSpeed = _playerInputs.MoveInput.y * moveSpeed;
+        float speed = _playerInputs.SprintInput ? sprintSpeed : moveSpeed;
+        float HorizontalSpeed = _playerInputs.MoveInput.x * speed;
+        float VerticalSpeed = _playerInputs.MoveInput.y * speed;
 
         Vector3 HorizontalMovement = new Vector3(HorizontalSpeed, 0, VerticalSpeed);
         HorizontalMovement = transform.rotation * HorizontalMovement;

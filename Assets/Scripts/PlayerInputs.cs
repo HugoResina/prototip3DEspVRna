@@ -10,6 +10,7 @@ public class PlayerInputs : MonoBehaviour, InputSystem_Actions.IPlayerActions
     public bool InteractInput { get; private set; }
     public bool ExitInput { get; private set; }
     public static Action ExitFunc;
+    public bool IsInteracting = false;
 
     private void OnEnable()
     {
@@ -28,6 +29,7 @@ public class PlayerInputs : MonoBehaviour, InputSystem_Actions.IPlayerActions
 
     public void OnInteract(InputAction.CallbackContext context)
     {
+        
         InteractInput = context.ReadValueAsButton() && !InteractInput;
     }
 
@@ -38,11 +40,13 @@ public class PlayerInputs : MonoBehaviour, InputSystem_Actions.IPlayerActions
 
     public void OnMove(InputAction.CallbackContext context)
     {
+        if(!IsInteracting)
         MoveInput = context.ReadValue<Vector2>();
     }
 
     public void OnExit(InputAction.CallbackContext context)
     {
+        IsInteracting = false;
         //ExitInput = context.ReadValueAsButton() && !ExitInput;
         Debug.Log("ESC");
         ExitFunc?.Invoke();

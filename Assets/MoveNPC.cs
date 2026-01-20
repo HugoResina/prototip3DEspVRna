@@ -25,7 +25,7 @@ public class MoveNPC : MonoBehaviour
         else
         {
             SetDestination(destination1);
-        }
+        }  
 
     }
 

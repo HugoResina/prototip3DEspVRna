@@ -38,11 +38,13 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         Interactable.lockCam += switchInteractingState;
+        PlayerInteraction.Interacting += switchInteractingState;
         
     }
     private void OnDisable()
     {
         Interactable.lockCam -= switchInteractingState;
+        PlayerInteraction.Interacting -= switchInteractingState;
        
     }
 
@@ -52,6 +54,7 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
+       if(!_isInteracting)
         Movement();
     }
 

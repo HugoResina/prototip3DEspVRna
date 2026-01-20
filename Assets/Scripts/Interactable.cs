@@ -10,6 +10,7 @@ public class Interactable : MonoBehaviour
     private void OnEnable()
     {
         PlayerInputs.ExitFunc += TurnOffCanvas;
+
     }
     private void OnDisable()
     {

@@ -1,3 +1,4 @@
+using System;
 using TMPro;
 using UnityEngine;
 
@@ -16,6 +17,7 @@ public class PlayerInteraction : MonoBehaviour
     private PlayerInputs _playerInputs;
 
     private Interactable lastInteracted;
+    public static event Action<bool> Interacting;
 
     private void Awake()
     {
@@ -46,11 +48,14 @@ public class PlayerInteraction : MonoBehaviour
             //Debug.Log(interactable);
             if (interactable != null)
             {
+               
+                //evento
                 lastInteracted = interactable;
                 _interactiontext.text = interactable.interactionPrompt;
 
                 if (_playerInputs.InteractInput)
                 {
+                    Interacting?.Invoke(true);
                     interactable.Interact();
                 }
             }

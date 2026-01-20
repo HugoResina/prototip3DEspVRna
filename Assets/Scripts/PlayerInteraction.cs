@@ -48,13 +48,14 @@ public class PlayerInteraction : MonoBehaviour
             //Debug.Log(interactable);
             if (interactable != null)
             {
-                Interacting?.Invoke(true);
+               
                 //evento
                 lastInteracted = interactable;
                 _interactiontext.text = interactable.interactionPrompt;
 
                 if (_playerInputs.InteractInput)
                 {
+                    Interacting?.Invoke(true);
                     interactable.Interact();
                 }
             }

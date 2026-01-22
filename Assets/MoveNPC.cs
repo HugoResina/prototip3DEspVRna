@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
@@ -6,37 +7,15 @@ using UnityEngine.ProBuilder.MeshOperations;
 
 public class MoveNPC : MonoBehaviour
 {
-    [SerializeField] Transform destination1;
-    [SerializeField] Transform destination2;
-    private Animator animator;
+   
     
 
-    NavMeshAgent navMeshAgent;
+    public static event Action CutTrafficEvent;
+    
 
-    void Start()
-    {
-        animator = GetComponent<Animator>();
-        navMeshAgent = this.GetComponent<NavMeshAgent>();
+    
 
-        if (navMeshAgent == null)
-        {
-            Debug.LogError("nav mesh agent component not attached");
-        }
-        //else
-        //{
-        //    SetDestination(destination1);
-        //}
-
-    }
-
-    private void Update()
-    {
-       
-        if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance && !navMeshAgent.pathPending)
-        {
-            animator.SetBool("IsWalking", false);
-        }
-    }
+  
 
     private void OnEnable()
     {
@@ -51,10 +30,11 @@ public class MoveNPC : MonoBehaviour
         switch (index)
         {
             case 1:
-                SetDestination(destination1);
+                //SetDestination(destination1);
+                CutTrafficEvent?.Invoke();
                 break;
             case 2:
-                SetDestination(destination2);
+                //SetDestination(destination2);
                 break;
             default:
                 break;
@@ -62,13 +42,6 @@ public class MoveNPC : MonoBehaviour
         }
     }
 
-    private void SetDestination(Transform destination)
-    {
-        if (destination != null)
-        {
-            animator.SetBool("IsWalking", true);
-            Vector3 targetVector = destination.transform.position;
-            navMeshAgent.SetDestination(targetVector);
-        }
-    }
+    
+    
 }

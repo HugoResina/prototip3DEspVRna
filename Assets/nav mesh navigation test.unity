@@ -4831,6 +4831,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8426154846617306000, guid: 2eb7a247312a94f42813ec8f21ca65c5, type: 3}
+      propertyPath: interactDistance
+      value: 3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects:
     - {fileID: 2250341545924547266, guid: 2eb7a247312a94f42813ec8f21ca65c5, type: 3}
@@ -5080,10 +5084,10 @@ CapsuleCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Radius: 0.5
-  m_Height: 1.9692708
+  m_Radius: 0.4262471
+  m_Height: 1.9692707
   m_Direction: 1
-  m_Center: {x: 0, y: 0.8690607, z: -0}
+  m_Center: {x: -0.03734827, y: 0.86906075, z: 0}
 --- !u!1 &1727553914
 GameObject:
   m_ObjectHideFlags: 0

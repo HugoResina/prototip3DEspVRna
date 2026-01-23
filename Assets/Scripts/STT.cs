@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+using Newtonsoft.Json;
 using Vosk;
 
 public class STT : MonoBehaviour
@@ -86,22 +86,41 @@ public class STT : MonoBehaviour
     public async void SendFunc()
     {
         localIAClient = GetComponent<LocalAIClient>();
-        //Debug.Log(localIAClient);
-        string response = await localIAClient.CallLocalAIAsync(outputText.text);
 
-        var responseobj = JsonUtility.FromJson<responseObj>(response);
-        //Debug.Log("Resposta de la IA local: " + response);
-        AiOuptutText.text = responseobj.response;
-        Debug.Log("index: ----------->" + responseobj.index);
+        string rawResponse = await localIAClient.CallLocalAIAsync(outputText.text);
+
        
+        int start = rawResponse.IndexOf('{');
+        int end = rawResponse.LastIndexOf('}');
+
+        if (start == -1 || end == -1 || end <= start)
+        {
+            Debug.LogError("No s'ha trobat JSON vàlid:\n" + rawResponse);
+            return;
+        }
+
+        string cleanJson = rawResponse.Substring(start, end - start + 1);
+
+        responseObj responseobj;
+        try
+        {
+            responseobj = JsonConvert.DeserializeObject<responseObj>(cleanJson);
+        }
+        catch (System.Exception ex)
+        {
+            Debug.LogError("Error parsejant JSON:\n" + cleanJson + "\n" + ex.Message);
+            return;
+        }
+
+        AiOuptutText.text = responseobj.response;
+        Debug.Log("index: -----------> " + responseobj.index);
+
         OnSend?.Invoke(responseobj.index);
     }
 
     private void Update()
     {
      
-
-
             if (micClip == null || rec == null)
                 return;
 

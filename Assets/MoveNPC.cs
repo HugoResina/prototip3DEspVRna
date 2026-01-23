@@ -31,12 +31,12 @@ public class MoveNPC : MonoBehaviour
         switch (index)
         {
             case 1:
-                //SetDestination(destination1);
-                Debug.Log("entro a 1");
+             
+            
                 CutTrafficEvent?.Invoke();
                 break;
             case 2:
-                //SetDestination(destination2);
+              
                 HelpMedicsEvent?.Invoke();
                 break;
             default:

@@ -33,10 +33,10 @@ public class CutTrafficPoliceSO : MonoBehaviour
         if (called)
         {
 
-            Debug.Log("called");
+        
             if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance && !navMeshAgent.pathPending)
             {
-                Debug.Log("in");
+          
                 animator.SetBool("IsWalking", false);
                 called = false;
             }
@@ -56,7 +56,7 @@ public class CutTrafficPoliceSO : MonoBehaviour
         called = true;
         if (destination != null)
         {
-            Debug.Log("incoming");
+            
             animator.SetBool("IsWalking", true);
             Vector3 targetVector = destination.transform.position;
             navMeshAgent.SetDestination(targetVector);

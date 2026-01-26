@@ -48,7 +48,7 @@ public class PlayerInputs : MonoBehaviour, InputSystem_Actions.IPlayerActions
     {
         IsInteracting = false;
         //ExitInput = context.ReadValueAsButton() && !ExitInput;
-        Debug.Log("ESC");
+       
         ExitFunc?.Invoke();
     }
 

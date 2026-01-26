@@ -31,7 +31,6 @@ public class MoveNPC : MonoBehaviour
         switch (index)
         {
             case 1:
-             
             
                 CutTrafficEvent?.Invoke();
                 break;

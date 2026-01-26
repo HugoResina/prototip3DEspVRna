@@ -81,6 +81,7 @@ public class STT : MonoBehaviour
     public void EraseFunc()
     {
         outputText.text = "";
+
     }
 
     public async void SendFunc()
@@ -91,7 +92,8 @@ public class STT : MonoBehaviour
 
         var responseobj = JsonUtility.FromJson<responseObj>(response);
         //Debug.Log("Resposta de la IA local: " + response);
-        AiOuptutText.text = responseobj.response;
+        //AiOuptutText.text = responseobj.response;
+        AiOuptutText.text = "així es farà";
         Debug.Log("index: ----------->" + responseobj.index);
 
         OnSend?.Invoke(responseobj.index);

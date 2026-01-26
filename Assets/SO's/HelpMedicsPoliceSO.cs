@@ -33,6 +33,7 @@ public class HelpMedicsPoliceSO : MonoBehaviour
         if(called)
         if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance && !navMeshAgent.pathPending)
         {
+                //stop trafic animation
             animator.SetBool("IsWalking", false);
                 called = false;
         }

@@ -36,7 +36,7 @@ public class CutTrafficPoliceSO : MonoBehaviour
         
             if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance && !navMeshAgent.pathPending)
             {
-          
+                //stop trafic animation
                 animator.SetBool("IsWalking", false);
                 called = false;
             }

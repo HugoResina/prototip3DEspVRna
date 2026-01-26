@@ -20,7 +20,7 @@ public class Interactable : MonoBehaviour
 
     public virtual void Interact()
     {
-        Debug.Log("Interacting with " + gameObject.name);
+      
         TalkCanvas.gameObject.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;

@@ -55,9 +55,12 @@ public class STT : MonoBehaviour
         Send.onClick.AddListener(SendFunc);
         model = new Model(modelPath);
         rec = new VoskRecognizer(model, sampleRate);
+        foreach (var device in Microphone.devices)
+        {
+            Debug.Log("Name: " + device);
+        }
 
-
-        if (Microphone.devices.Length >= 0)
+        if (Microphone.devices.Length == 0)
         {
             Debug.LogError("No hay micrófonos disponibles.");
             return;
@@ -87,11 +90,11 @@ public class STT : MonoBehaviour
     public async void SendFunc()
     {
         localIAClient = GetComponent<LocalAIClient>();
-        //Debug.Log(localIAClient);
+
         string response = await localIAClient.CallLocalAIAsync(outputText.text);
 
         var responseobj = JsonUtility.FromJson<responseObj>(response);
-        //Debug.Log("Resposta de la IA local: " + response);
+        
         //AiOuptutText.text = responseobj.response;
         AiOuptutText.text = "així es farà";
         Debug.Log("index: ----------->" + responseobj.index);

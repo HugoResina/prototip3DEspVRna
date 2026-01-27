@@ -55,10 +55,7 @@ public class STT : MonoBehaviour
         Send.onClick.AddListener(SendFunc);
         model = new Model(modelPath);
         rec = new VoskRecognizer(model, sampleRate);
-        foreach (var device in Microphone.devices)
-        {
-            Debug.Log("Name: " + device);
-        }
+       
 
         if (Microphone.devices.Length == 0)
         {

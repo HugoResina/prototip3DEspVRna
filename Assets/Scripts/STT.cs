@@ -50,6 +50,7 @@ public class STT : MonoBehaviour
    
     private void Start()
     {
+        modelPath = System.IO.Path.GetFullPath("./Assets/VoskModels/vosk-model-small-ca-0.4");
 
         Erase.onClick.AddListener(EraseFunc);
         Send.onClick.AddListener(SendFunc);

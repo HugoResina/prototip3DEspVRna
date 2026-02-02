@@ -2,7 +2,6 @@ using System;
 using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.InputSystem;
-using UnityEngine.iOS;
 using UnityEngine.ProBuilder.MeshOperations;
 
 public class MoveNPC : MonoBehaviour

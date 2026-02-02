@@ -18,6 +18,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private Interactable lastInteracted;
     public static event Action<bool> Interacting;
+    public static event Action<string> GetPrompt;
 
     private void Awake()
     {
@@ -45,9 +46,10 @@ public class PlayerInteraction : MonoBehaviour
             
             
             Interactable interactable = hit.collider.GetComponent<Interactable>();
-            //Debug.Log(interactable);
+            
             if (interactable != null)
             {
+                
                
                 //evento
                 lastInteracted = interactable;
@@ -55,6 +57,7 @@ public class PlayerInteraction : MonoBehaviour
 
                 if (_playerInputs.InteractInput)
                 {
+                    GetPrompt?.Invoke(lastInteracted.prompt.Prompt);
                     Interacting?.Invoke(true);
                     interactable.Interact();
                 }

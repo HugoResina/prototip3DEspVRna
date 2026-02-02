@@ -6,7 +6,12 @@ public class Interactable : MonoBehaviour
     public string interactionPrompt = "Prem 'E' per interactuar";
     public Canvas TalkCanvas;
     public static event Action<bool> lockCam;
+    public PromptBaseSO prompt;
 
+    private void Start()
+    {
+        prompt = GetComponent<PromptBaseSO>();
+    }
     private void OnEnable()
     {
         PlayerInputs.ExitFunc += TurnOffCanvas;
@@ -20,11 +25,11 @@ public class Interactable : MonoBehaviour
 
     public virtual void Interact()
     {
-      
+        
         TalkCanvas.gameObject.SetActive(true);
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-
+    
         lockCam?.Invoke(true);
     }
     public void TurnOffCanvas()

@@ -90,6 +90,7 @@ public class STT : MonoBehaviour
 
         string response = await localIAClient.CallLocalAIAsync(outputText.text);
 
+        //response.Replace('`', ' ');
         var responseobj = JsonUtility.FromJson<responseObj>(response);
         
         //AiOuptutText.text = responseobj.response;

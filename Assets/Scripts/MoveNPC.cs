@@ -12,6 +12,7 @@ public class MoveNPC : MonoBehaviour
 
     public static event Action CutTrafficEvent;
     public static event Action HelpMedicsEvent;
+    public static event Action ActivateABDEvent;
     
 
     
@@ -37,6 +38,10 @@ public class MoveNPC : MonoBehaviour
             case 2:
               
                 HelpMedicsEvent?.Invoke();
+                break;
+
+            case 5:
+                ActivateABDEvent?.Invoke();
                 break;
             default:
                 break;

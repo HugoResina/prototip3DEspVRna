@@ -4,7 +4,7 @@ using UnityEngine.AI;
 using UnityEngine.InputSystem;
 using UnityEngine.ProBuilder.MeshOperations;
 
-public class MoveNPC : MonoBehaviour
+public class PoliceBehaviourManager : MonoBehaviour
 {
    
     
@@ -39,7 +39,7 @@ public class MoveNPC : MonoBehaviour
                 HelpMedicsEvent?.Invoke();
                 break;
 
-            
+            default:
                 break;
 
         }

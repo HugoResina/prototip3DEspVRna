@@ -44,11 +44,11 @@ public class CutTrafficPoliceSO : MonoBehaviour
     }
     private void OnEnable()
     {
-        MoveNPC.CutTrafficEvent += CutTraffic;
+        PoliceBehaviourManager.CutTrafficEvent += CutTraffic;
     }
     private void OnDisable()
     {
-       MoveNPC.CutTrafficEvent -= CutTraffic;   
+        PoliceBehaviourManager.CutTrafficEvent -= CutTraffic;   
     }
 
     public void CutTraffic()

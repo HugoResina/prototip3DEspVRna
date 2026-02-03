@@ -40,11 +40,11 @@ public class HelpMedicsPoliceSO : MonoBehaviour
     }
     private void OnEnable()
     {
-        MoveNPC.HelpMedicsEvent += HelpMedics;
+        PoliceBehaviourManager.HelpMedicsEvent += HelpMedics;
     }
     private void OnDisable()
     {
-        MoveNPC.HelpMedicsEvent -= HelpMedics;
+        PoliceBehaviourManager.HelpMedicsEvent -= HelpMedics;
     }
 
     public void HelpMedics()

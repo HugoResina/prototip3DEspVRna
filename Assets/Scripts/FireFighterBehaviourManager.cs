@@ -14,9 +14,9 @@ public class FireFighterBehaviourManager : MonoBehaviour
     public static event Action ActivateABDEvent;
 
 
+    private bool HasActivatedABD = false;
 
-
-
+    
 
     private void OnEnable()
     {
@@ -35,11 +35,15 @@ public class FireFighterBehaviourManager : MonoBehaviour
             //    TurnOffFire?.Invoke();
             //    break;
             case 7:
+                if(HasActivatedABD)
                 ControlLeakEvent?.Invoke();
                 break;
             case 9:
-
-                ActivateABDEvent?.Invoke();
+                if (!HasActivatedABD)
+                { 
+                    HasActivatedABD = true;
+                    ActivateABDEvent?.Invoke();
+                }
                 break;
 
             default:

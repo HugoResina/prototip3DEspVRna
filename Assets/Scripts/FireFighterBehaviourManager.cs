@@ -44,7 +44,11 @@ public class FireFighterBehaviourManager : MonoBehaviour
                     HasActivatedABD = true;
                     ActivateABDEvent?.Invoke();
                 }
-                break;
+                else
+                {
+                    //respondre que ja esta activa?
+                }
+                    break;
 
             default:
                 break;

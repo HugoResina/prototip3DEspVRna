@@ -617,6 +617,23 @@ Transform:
   m_Children: []
   m_Father: {fileID: 282099638}
   m_LocalEulerAnglesHint: {x: 0, y: -92.477, z: 0}
+--- !u!1 &206676962 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6222276297428301087, guid: 919320b2e7059fe4bbe9a2632fbf3a33, type: 3}
+  m_PrefabInstance: {fileID: 1232210289}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &206676968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206676962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 284e9752da6d5374095e91edaee08b1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FireFighterBehaviourManager
 --- !u!4 &260404443 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 16dc960c1163fa3469d47698ba5e8ecf, type: 3}
@@ -1037,7 +1054,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8350084499809229436, guid: 581b137ef2daf7c40a000a0c63c1dfe9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8694943657195700422, guid: 581b137ef2daf7c40a000a0c63c1dfe9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2196,13 +2213,21 @@ PrefabInstance:
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 655aa0890d7bed647a323426cb37602e, type: 2}
+    - target: {fileID: 5342900533087437749, guid: 919320b2e7059fe4bbe9a2632fbf3a33, type: 3}
+      propertyPath: prompt
+      value: 
+      objectReference: {fileID: 11400000, guid: 4ac15233d1e22a74bae94ac0f6f4e568, type: 2}
+    - target: {fileID: 5342900533087437749, guid: 919320b2e7059fe4bbe9a2632fbf3a33, type: 3}
+      propertyPath: TalkCanvas
+      value: 
+      objectReference: {fileID: 1984319072}
     - target: {fileID: 6222276297428301087, guid: 919320b2e7059fe4bbe9a2632fbf3a33, type: 3}
       propertyPath: m_Name
       value: InteractuableObjectg
       objectReference: {fileID: 0}
     - target: {fileID: 6222276297428301087, guid: 919320b2e7059fe4bbe9a2632fbf3a33, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6706466774637588389, guid: 919320b2e7059fe4bbe9a2632fbf3a33, type: 3}
       propertyPath: m_LocalPosition.x
@@ -2244,10 +2269,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 177252518454426216, guid: 919320b2e7059fe4bbe9a2632fbf3a33, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6222276297428301087, guid: 919320b2e7059fe4bbe9a2632fbf3a33, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 206676968}
   m_SourcePrefab: {fileID: 100100000, guid: 919320b2e7059fe4bbe9a2632fbf3a33, type: 3}
 --- !u!1001 &1234107666
 PrefabInstance:
@@ -3707,7 +3736,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LocalAIClient
   apiUrl: http://localhost:11434/api/chat
-  modelName: qwen2.5:7b
+  modelName: gemma3:12b
 --- !u!114 &1692765206
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4486,6 +4515,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1240996957}
     m_Modifications:
+    - target: {fileID: 5342900533087437749, guid: 919320b2e7059fe4bbe9a2632fbf3a33, type: 3}
+      propertyPath: prompt
+      value: 
+      objectReference: {fileID: 11400000, guid: 941175a4e3353a644b74c355692a16d3, type: 2}
     - target: {fileID: 5342900533087437749, guid: 919320b2e7059fe4bbe9a2632fbf3a33, type: 3}
       propertyPath: TalkCanvas
       value: 

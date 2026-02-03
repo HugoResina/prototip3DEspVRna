@@ -8,9 +8,9 @@ using JetBrains.Annotations;
 public class LocalAIClient : MonoBehaviour
 {
     [SerializeField] private string apiUrl = "http://localhost:11434/api/chat";
-    //[SerializeField] private string modelName = "qwen2.5:7b";
+    [SerializeField] private string modelName = "qwen2.5:7b";
     //[SerializeField] private string modelName = "gemma3:latest";
-    [SerializeField] private string modelName = "gemma3:12b";
+    //[SerializeField] private string modelName = "gemma3:12b";
 
     private string interactedPropmt = "";
     private void OnEnable()

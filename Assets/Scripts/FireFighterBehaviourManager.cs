@@ -9,7 +9,8 @@ public class FireFighterBehaviourManager : MonoBehaviour
 
 
 
-    public static event Action TurnOfFire;
+    //public static event Action TurnOffFire;
+    public static event Action ControlLeakEvent;
     public static event Action ActivateABDEvent;
 
 
@@ -29,11 +30,14 @@ public class FireFighterBehaviourManager : MonoBehaviour
     {
         switch (index)
         {
-            case 1:
+            //case 6:
 
-                TurnOfFire?.Invoke();
+            //    TurnOffFire?.Invoke();
+            //    break;
+            case 7:
+                ControlLeakEvent?.Invoke();
                 break;
-            case 2:
+            case 9:
 
                 ActivateABDEvent?.Invoke();
                 break;

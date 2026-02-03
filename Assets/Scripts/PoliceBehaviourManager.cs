@@ -39,10 +39,7 @@ public class MoveNPC : MonoBehaviour
                 HelpMedicsEvent?.Invoke();
                 break;
 
-            //case 5:
-            //    ActivateABDEvent?.Invoke();
-            //    break;
-            default:
+            
                 break;
 
         }

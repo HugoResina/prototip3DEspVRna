@@ -7,6 +7,8 @@ public class ControlLeak : MonoBehaviour
     private Animator animator;
     [SerializeField] Transform destination;
     bool called = false;
+    [SerializeField]
+    private GameObject Smoke;
 
 
     void Start()
@@ -36,6 +38,8 @@ public class ControlLeak : MonoBehaviour
                 //animacio acortinador?
                 animator.SetBool("IsWalking", false);
                 called = false;
+                Debug.Log("arribo al punt de gas");
+                Smoke.SetActive(false);
             }
         }
     }
@@ -57,6 +61,7 @@ public class ControlLeak : MonoBehaviour
             animator.SetBool("IsWalking", true);
             Vector3 targetVector = destination.transform.position;
             navMeshAgent.SetDestination(targetVector);
+           
         }
 
     }

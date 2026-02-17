@@ -24,7 +24,6 @@ public class InteractablePerson : MonoBehaviour, IIteractable
     {
         PlayerInputs.ExitFunc -= TurnOffCanvas;
     }
-    
 
     public void Interact()
     {

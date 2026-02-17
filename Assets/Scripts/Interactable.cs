@@ -21,7 +21,6 @@ public class Interactable : MonoBehaviour
     {
         PlayerInputs.ExitFunc -= TurnOffCanvas;
     }
-    
 
     public virtual void Interact()
     {

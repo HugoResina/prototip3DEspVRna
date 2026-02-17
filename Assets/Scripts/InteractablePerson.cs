@@ -7,7 +7,6 @@ public class InteractablePerson : MonoBehaviour, IIteractable
 
     [SerializeField] private string _interactionPrompt = "Prem 'E' per interactuar";
 
-    public Canvas TalkCanvas;
     public static event Action<bool> lockCam;
     public PromptBaseSO prompt;
 
@@ -27,18 +26,16 @@ public class InteractablePerson : MonoBehaviour, IIteractable
 
     public void Interact()
     {
-        
-        TalkCanvas.gameObject.SetActive(true);
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+        UIManager.Instance.InteractablePersonCanvasState = true;
+        UIManager.Instance.SetCursorState(false, true);
     
         lockCam?.Invoke(true);
     }
     public void TurnOffCanvas()
     {
-        TalkCanvas.gameObject.SetActive(false);
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        UIManager.Instance.InteractablePersonCanvasState = false;
+        UIManager.Instance.SetCursorState(true, false);
+
         lockCam?.Invoke(false);
 
     }

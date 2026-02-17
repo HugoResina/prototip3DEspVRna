@@ -45,19 +45,22 @@ public class PlayerInteraction : MonoBehaviour
         {
             
             
-            InteractablePerson interactable = hit.collider.GetComponent<InteractablePerson>();
+            IIteractable interactable = hit.collider.GetComponent<IIteractable>();
             
             if (interactable != null)
             {
-                
+                if (interactable is InteractablePerson person)
+                {
+                    lastInteracted = person;
+                }
                
                 //evento
-                lastInteracted = interactable;
+                //lastInteracted = interactable;
                 _interactiontext.text = interactable.InteractionPrompt;
 
                 if (_playerInputs.InteractInput)
                 {
-                    GetPrompt?.Invoke(lastInteracted.prompt.Prompt);
+                    if (interactable is InteractablePerson) GetPrompt?.Invoke(lastInteracted.prompt.Prompt);
                     Interacting?.Invoke(true);
                     interactable.Interact();
                 }

@@ -16,7 +16,7 @@ public class PlayerInteraction : MonoBehaviour
 
     private PlayerInputs _playerInputs;
 
-    private Interactable lastInteracted;
+    private InteractablePerson lastInteracted;
     public static event Action<bool> Interacting;
     public static event Action<string> GetPrompt;
 
@@ -45,7 +45,7 @@ public class PlayerInteraction : MonoBehaviour
         {
             
             
-            Interactable interactable = hit.collider.GetComponent<Interactable>();
+            InteractablePerson interactable = hit.collider.GetComponent<InteractablePerson>();
             
             if (interactable != null)
             {
@@ -53,7 +53,7 @@ public class PlayerInteraction : MonoBehaviour
                
                 //evento
                 lastInteracted = interactable;
-                _interactiontext.text = interactable.interactionPrompt;
+                _interactiontext.text = interactable.InteractionPrompt;
 
                 if (_playerInputs.InteractInput)
                 {

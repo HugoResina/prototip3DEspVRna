@@ -38,7 +38,6 @@ public class ControlLeak : MonoBehaviour
                 //animacio acortinador?
                 animator.SetBool("IsWalking", false);
                 called = false;
-                Debug.Log("arribo al punt de gas");
                 Smoke.SetActive(false);
             }
         }

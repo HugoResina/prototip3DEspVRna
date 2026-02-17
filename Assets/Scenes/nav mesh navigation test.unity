@@ -438,7 +438,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ControlLeak
   destination: {fileID: 1822783062}
+<<<<<<< HEAD
   Smoke: {fileID: 785192045}
+=======
+  Smoke: {fileID: 0}
+>>>>>>> origin/main
 --- !u!1 &100369858
 GameObject:
   m_ObjectHideFlags: 0
@@ -653,6 +657,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 284e9752da6d5374095e91edaee08b1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::FireFighterBehaviourManager
+--- !u!114 &206676973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206676962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc581ecda137d6f47814c8efc9c094e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractablePerson
+  _interactionPrompt: Prem 'E' per interactuar
+  TalkCanvas: {fileID: 1984319072}
+  prompt: {fileID: 11400000, guid: 4ac15233d1e22a74bae94ac0f6f4e568, type: 2}
 --- !u!4 &260404443 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 16dc960c1163fa3469d47698ba5e8ecf, type: 3}
@@ -2377,9 +2396,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 177252518454426216, guid: 919320b2e7059fe4bbe9a2632fbf3a33, type: 3}
+    - {fileID: 5342900533087437749, guid: 919320b2e7059fe4bbe9a2632fbf3a33, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6222276297428301087, guid: 919320b2e7059fe4bbe9a2632fbf3a33, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 206676973}
     - targetCorrespondingSourceObject: {fileID: 6222276297428301087, guid: 919320b2e7059fe4bbe9a2632fbf3a33, type: 3}
       insertIndex: -1
       addedObject: {fileID: 206676968}
@@ -4279,6 +4302,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.UI.RectMask2D
   m_Padding: {x: -8, y: -5, z: -8, w: -5}
   m_Softness: {x: 0, y: 0}
+<<<<<<< HEAD
 --- !u!1 &1905749055 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -8277046430583199631, guid: b6bf4e6441285bd44950005cb3d4d7f0, type: 3}
@@ -4286,10 +4310,20 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
 --- !u!65 &1905749059
 BoxCollider:
+=======
+--- !u!1 &1905488103 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6222276297428301087, guid: 919320b2e7059fe4bbe9a2632fbf3a33, type: 3}
+  m_PrefabInstance: {fileID: 8186979866951388945}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1905488108
+MonoBehaviour:
+>>>>>>> origin/main
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD
   m_GameObject: {fileID: 1905749055}
   m_Material: {fileID: 0}
   m_IncludeLayers:
@@ -4305,6 +4339,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 0.001999998, y: 1.8499995, z: 0.009999998}
   m_Center: {x: -0.000999999, y: 0.9249997, z: 0.004999999}
+=======
+  m_GameObject: {fileID: 1905488103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc581ecda137d6f47814c8efc9c094e3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::InteractablePerson
+  _interactionPrompt: Prem 'E' per interactuar
+  TalkCanvas: {fileID: 1984319072}
+  prompt: {fileID: 11400000, guid: 941175a4e3353a644b74c355692a16d3, type: 2}
+>>>>>>> origin/main
 --- !u!1 &1917002508
 GameObject:
   m_ObjectHideFlags: 0
@@ -4966,10 +5011,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5342900533087437749, guid: 919320b2e7059fe4bbe9a2632fbf3a33, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 6222276297428301087, guid: 919320b2e7059fe4bbe9a2632fbf3a33, type: 3}
+      insertIndex: 3
+      addedObject: {fileID: 1905488108}
   m_SourcePrefab: {fileID: 100100000, guid: 919320b2e7059fe4bbe9a2632fbf3a33, type: 3}
 --- !u!1001 &8712261909218255559
 PrefabInstance:

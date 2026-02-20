@@ -1,8 +1,9 @@
 using System;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
 using Vosk;
+using static STT;
 
 public class STT : MonoBehaviour
 {
@@ -15,6 +16,7 @@ public class STT : MonoBehaviour
     private Model model;
     private VoskRecognizer rec;
     public LocalAIClient localIAClient;
+    public GroqChat groqChat;
 
 
     //public string modelPath = "C:/vosk-model-small-es-0.42";
@@ -84,7 +86,7 @@ public class STT : MonoBehaviour
 
     }
 
-    public async void SendFunc()
+    public async void SendFuncLocal()
     {
         localIAClient = GetComponent<LocalAIClient>();
 
@@ -98,6 +100,18 @@ public class STT : MonoBehaviour
         Debug.Log("index: ----------->" + responseobj.index);
 
         OnSend?.Invoke(responseobj.index);
+    }
+
+    public void SendFunc()
+    {
+        groqChat.SendMessage(outputText.text, (response) =>
+        {
+            var responseObj = JsonUtility.FromJson<responseObj>(response);
+
+            Debug.Log("index: ----------->" + responseObj.index);
+
+            OnSend?.Invoke(responseObj.index);
+        });
     }
 
     private void Update()

@@ -78,6 +78,7 @@ public class GroqChat : MonoBehaviour
         // JSON manual (Unity JsonUtility no suporta arrays complexes)
         //string json = $"{{\"model\":\"llama-3.1-8b-instant\",\"messages\":[{{\"role\":\"user\",\"content\":\"{prompt}\"}}],\"max_tokens\":500,\"temperature\":0.7}}";
         string json = JsonUtility.ToJson(request);
+        Debug.Log("Enviant a IA: " + json);
 
         byte[] body = Encoding.UTF8.GetBytes(json);
 
@@ -92,6 +93,8 @@ public class GroqChat : MonoBehaviour
 
             if (req.result == UnityWebRequest.Result.Success)
             {
+                Debug.Log("Resposta crua: " + req.downloadHandler.text);
+
                 GroqResponse response = JsonUtility.FromJson<GroqResponse>(req.downloadHandler.text);
                 onResponse?.Invoke(response.choices[0].message.content);
             }

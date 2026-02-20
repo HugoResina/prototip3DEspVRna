@@ -4,6 +4,7 @@ public class GenerateRequest
     public string model;
     public string prompt;
     public bool stream;
+
 }
 
 [System.Serializable]

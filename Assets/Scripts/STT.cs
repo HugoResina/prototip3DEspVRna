@@ -109,6 +109,8 @@ public class STT : MonoBehaviour
             var responseObj = JsonUtility.FromJson<responseObj>(response);
 
             Debug.Log("index: ----------->" + responseObj.index);
+            //Debug.Log("text: ----------->" + responseObj.response);
+            UIManager.Instance.SetAiOutputText(responseObj.response);
 
             OnSend?.Invoke(responseObj.index);
         });

@@ -96,6 +96,9 @@ public class GroqChat : MonoBehaviour
                 Debug.Log("Resposta crua: " + req.downloadHandler.text);
 
                 GroqResponse response = JsonUtility.FromJson<GroqResponse>(req.downloadHandler.text);
+
+                //UIManager.Instance.SetAiOutputText(response.choices[0].message.content);
+                Debug.Log("resposta textual : " + response.choices[0].message.content);
                 onResponse?.Invoke(response.choices[0].message.content);
             }
             else

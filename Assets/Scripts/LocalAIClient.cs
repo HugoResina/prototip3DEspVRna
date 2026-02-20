@@ -7,8 +7,9 @@ using JetBrains.Annotations;
 
 public class LocalAIClient : MonoBehaviour
 {
-    [SerializeField] private string apiUrl = "http://localhost:11434/api/chat";
-    [SerializeField] private string modelName = "qwen2.5:7b";
+    [SerializeField] private string apiUrl = "http://localhost:11434/api/generate";
+    [SerializeField] private string modelName = "qwen2.5:3b";
+    //[SerializeField] private string modelName = "qwen2.5:7b";
     //[SerializeField] private string modelName = "gemma3:latest";
     //[SerializeField] private string modelName = "gemma3:12b";
 
@@ -44,7 +45,8 @@ public class LocalAIClient : MonoBehaviour
                 new ChatMessage { role = "system", content = interactedPropmt},
                 new ChatMessage { role = "user", content = userText }
             },
-            think = false
+            think = false,
+            format = "json"
         };
 
         string json = JsonUtility.ToJson(req);

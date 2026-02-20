@@ -12,6 +12,8 @@ public class ChatRequest
     public ChatMessage[] messages;
     public bool stream;
     public bool think;
+    public string format;
+
 }
 
 [System.Serializable]

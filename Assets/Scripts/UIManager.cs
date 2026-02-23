@@ -23,6 +23,8 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Button _ipMicrophoneToggleButton;
     [SerializeField] private Color _ipMicrophoneRecordingColor = Color.green;
     [SerializeField] private Color _ipMicrophoneStoppedColor = Color.red;
+    [SerializeField] private GameObject _interactablePersonCanvas;
+    [SerializeField] private Text _aiOutput;
 
     public static event Action InterPerToggleMicrophone = delegate { };
     #endregion
@@ -79,4 +81,8 @@ public class UIManager : MonoBehaviour
         InterPerToggleMicrophone.Invoke();
     }
     #endregion
+    public void SetAiOutputText(string output)
+    {
+        _aiOutput.text = output;
+    }
 }

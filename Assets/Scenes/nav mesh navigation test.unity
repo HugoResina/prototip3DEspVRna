@@ -438,7 +438,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ControlLeak
   destination: {fileID: 1822783062}
-  Smoke: {fileID: 0}
+  Smoke: {fileID: 541302048}
 --- !u!1 &100369858
 GameObject:
   m_ObjectHideFlags: 0
@@ -1747,6 +1747,11 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!1 &541302048 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3676802308317120286, guid: 9c7c24b1fd4b18047b9bbcb9418bf3aa, type: 3}
+  m_PrefabInstance: {fileID: 1995580672}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &576654158
 GameObject:
   m_ObjectHideFlags: 0

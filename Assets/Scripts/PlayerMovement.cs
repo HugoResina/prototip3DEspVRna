@@ -39,13 +39,11 @@ public class PlayerMovement : MonoBehaviour
     {
         InteractablePerson.lockCam += switchInteractingState;
         PlayerInteraction.Interacting += switchInteractingState;
-        
     }
     private void OnDisable()
     {
         InteractablePerson.lockCam -= switchInteractingState;
         PlayerInteraction.Interacting -= switchInteractingState;
-       
     }
 
     public void switchInteractingState(bool state)
@@ -102,5 +100,4 @@ public class PlayerMovement : MonoBehaviour
             _currentMovement.y -= gravity * Time.deltaTime;
         }
     }
-
 }

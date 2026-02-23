@@ -12,6 +12,7 @@ public class FireFighterBehaviourManager : MonoBehaviour
     public static event Action ControlLeakEvent;
     public static event Action ActivateABDEvent;
     public static event Action DisipateGasEvent;
+    public static event Action SaveVictimsEvent;
 
 
 
@@ -33,15 +34,13 @@ public class FireFighterBehaviourManager : MonoBehaviour
                 DisipateGasEvent?.Invoke();
                 break;
             case 7:
-                
                 ControlLeakEvent?.Invoke();
                 break;
             case 8:
+                SaveVictimsEvent?.Invoke();
                 break;
             case 9:
-                
                 ActivateABDEvent?.Invoke();
-               
                 break;
             case 10:
                 break;

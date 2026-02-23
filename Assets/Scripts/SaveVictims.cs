@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class ControlLeak : MonoBehaviour
+public class SaveVictims : MonoBehaviour
 {
    
     private NavMeshAgent navMeshAgent;
@@ -9,7 +9,7 @@ public class ControlLeak : MonoBehaviour
     [SerializeField] Transform destination;
     bool called = false;
     [SerializeField]
-    private GameObject Smoke;
+  
 
 
     void Start()
@@ -40,21 +40,20 @@ public class ControlLeak : MonoBehaviour
                 animator.SetBool("IsWalking", false);
                 called = false;
                 //Smoke.SetActive(false);
-                SmokeParticlesScript sps = Smoke.GetComponent<SmokeParticlesScript>();
-                sps.StartToDisipate();
+              
             }
         }
     }
     private void OnEnable()
     {
-        FireFighterBehaviourManager.ControlLeakEvent += ControlLeaK;
+        FireFighterBehaviourManager.SaveVictimsEvent += SaveVictim;
     }
     private void OnDisable()
     {
-        FireFighterBehaviourManager.ControlLeakEvent -= ControlLeaK;
+        FireFighterBehaviourManager.SaveVictimsEvent -= SaveVictim;
     }
 
-    public void ControlLeaK()
+    public void SaveVictim()
     {
         called = true;
         if (destination != null)

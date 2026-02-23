@@ -26,18 +26,19 @@ public class InteractablePerson : MonoBehaviour, IIteractable
 
     public void Interact()
     {
-        UIManager.Instance.InteractablePersonCanvasState = true;
+        UIManager.Instance.InterPerResponseText = string.Empty;
+        UIManager.Instance.InteractablePersonMenuState = true;
         UIManager.Instance.SetCursorState(false, true);
-    
+        GameManager.Instance.SttEnabled = true;
+
         lockCam?.Invoke(true);
     }
     public void TurnOffCanvas()
     {
-        UIManager.Instance.InteractablePersonCanvasState = false;
+        UIManager.Instance.InteractablePersonMenuState = false;
         UIManager.Instance.SetCursorState(true, false);
+        GameManager.Instance.SttEnabled = false;
 
         lockCam?.Invoke(false);
-
     }
-
 }

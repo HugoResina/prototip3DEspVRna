@@ -11,20 +11,20 @@ public class PoliceBehaviourManager : MonoBehaviour
 
     public static event Action CutTrafficEvent;
     public static event Action HelpMedicsEvent;
-   
-    
 
-    
 
-  
+
+
+
+
 
     private void OnEnable()
     {
-        STT.OnSend += GetOrder;
+        GameManager.OnAISend += GetOrder;
     }
     private void OnDisable()
     {
-        STT.OnSend -= GetOrder;
+        GameManager.OnAISend -= GetOrder;
     }
     public void GetOrder(int index)
     {

@@ -9,10 +9,9 @@ public class FireFighterBehaviourManager : MonoBehaviour
 
 
 
-    //public static event Action TurnOffFire;
     public static event Action ControlLeakEvent;
     public static event Action ActivateABDEvent;
-
+    public static event Action DisipateGasEvent;
 
 
 
@@ -20,29 +19,32 @@ public class FireFighterBehaviourManager : MonoBehaviour
 
     private void OnEnable()
     {
-        STT.OnSend += GetOrder;
+        GameManager.OnAISend += GetOrder;
     }
     private void OnDisable()
     {
-        STT.OnSend -= GetOrder;
+        GameManager.OnAISend -= GetOrder;
     }
     public void GetOrder(int index)
     {
         switch (index)
         {
-            //case 6:
-
-            //    TurnOffFire?.Invoke();
-            //    break;
+            case 6:
+                DisipateGasEvent?.Invoke();
+                break;
             case 7:
                 
                 ControlLeakEvent?.Invoke();
                 break;
+            case 8:
+                break;
             case 9:
                 
-                   ActivateABDEvent?.Invoke();
+                ActivateABDEvent?.Invoke();
                
-                    break;
+                break;
+            case 10:
+                break;
 
             default:
                 break;

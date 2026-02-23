@@ -4,6 +4,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+    
 
     public bool SttEnabled { get => _sttObject.enabled; set => _sttObject.enabled = value; }
 
@@ -33,6 +34,7 @@ public class GameManager : MonoBehaviour
         }
 
         _groqChat = GetComponent<GroqChat>();
+        _sttObject = GetComponent<NewSTT>();
     }
 
     public void SendFunc()

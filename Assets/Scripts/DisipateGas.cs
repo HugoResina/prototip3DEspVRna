@@ -1,8 +1,9 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class ControlLeak : MonoBehaviour
+public class DisipateGas : MonoBehaviour
 {
+   
     private NavMeshAgent navMeshAgent;
     private Animator animator;
     [SerializeField] Transform destination;
@@ -46,14 +47,14 @@ public class ControlLeak : MonoBehaviour
     }
     private void OnEnable()
     {
-        FireFighterBehaviourManager.ControlLeakEvent += ControlLeaK;
+        FireFighterBehaviourManager.DisipateGasEvent += DisipateGasCloud;
     }
     private void OnDisable()
     {
-        FireFighterBehaviourManager.ControlLeakEvent -= ControlLeaK;
+        FireFighterBehaviourManager.DisipateGasEvent -= DisipateGasCloud;
     }
 
-    public void ControlLeaK()
+    public void DisipateGasCloud()
     {
         called = true;
         if (destination != null)
@@ -62,8 +63,10 @@ public class ControlLeak : MonoBehaviour
             animator.SetBool("IsWalking", true);
             Vector3 targetVector = destination.transform.position;
             navMeshAgent.SetDestination(targetVector);
-           
+
         }
 
     }
 }
+
+

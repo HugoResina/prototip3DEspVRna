@@ -23,8 +23,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Button _ipMicrophoneToggleButton;
     [SerializeField] private Color _ipMicrophoneRecordingColor = Color.green;
     [SerializeField] private Color _ipMicrophoneStoppedColor = Color.red;
-    [SerializeField] private GameObject _interactablePersonCanvas;
-    [SerializeField] private Text _aiOutput;
 
     public static event Action InterPerToggleMicrophone = delegate { };
     #endregion
@@ -53,10 +51,12 @@ public class UIManager : MonoBehaviour
 
     private void Update()
     {
+        #region Ineractable Person Microphone Button Record Color
         if (InteractablePersonMenuState)
         {
             _ipMicrophoneToggleButton.gameObject.GetComponent<Image>().color = NewSTT.Recording ? _ipMicrophoneRecordingColor : _ipMicrophoneStoppedColor;
         }
+        #endregion
     }
 
     public void SetCursorState(bool looked, bool visible)
@@ -81,8 +81,4 @@ public class UIManager : MonoBehaviour
         InterPerToggleMicrophone.Invoke();
     }
     #endregion
-    public void SetAiOutputText(string output)
-    {
-        _aiOutput.text = output;
-    }
 }

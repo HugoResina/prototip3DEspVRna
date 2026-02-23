@@ -110,7 +110,7 @@ public class STT : MonoBehaviour
 
             Debug.Log("index: ----------->" + responseObj.index);
             //Debug.Log("text: ----------->" + responseObj.response);
-            UIManager.Instance.SetAiOutputText(responseObj.response);
+            UIManager.Instance.InterPerResponseText = responseObj.response;
 
             OnSend?.Invoke(responseObj.index);
         });

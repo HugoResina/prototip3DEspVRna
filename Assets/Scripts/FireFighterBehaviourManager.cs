@@ -13,6 +13,7 @@ public class FireFighterBehaviourManager : MonoBehaviour
     public static event Action ActivateABDEvent;
     public static event Action DisipateGasEvent;
     public static event Action SaveVictimsEvent;
+    
 
 
 

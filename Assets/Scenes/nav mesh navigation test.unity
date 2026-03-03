@@ -453,6 +453,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DisipateGas
   destination: {fileID: 1822783062}
   Smoke: {fileID: 541302048}
+--- !u!114 &64057982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 64057971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d2121b487ac5e004390d47d169e6182f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SaveVictims
+  destination: {fileID: 1489385058}
 --- !u!1 &100369858
 GameObject:
   m_ObjectHideFlags: 0
@@ -1417,6 +1430,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 8350084499809229436, guid: 581b137ef2daf7c40a000a0c63c1dfe9, type: 3}
       insertIndex: -1
       addedObject: {fileID: 64057981}
+    - targetCorrespondingSourceObject: {fileID: 8350084499809229436, guid: 581b137ef2daf7c40a000a0c63c1dfe9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 64057982}
   m_SourcePrefab: {fileID: 100100000, guid: 581b137ef2daf7c40a000a0c63c1dfe9, type: 3}
 --- !u!1 &383596680
 GameObject:

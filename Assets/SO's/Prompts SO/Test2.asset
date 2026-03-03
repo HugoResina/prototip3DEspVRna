@@ -24,5 +24,6 @@ MonoBehaviour:
     un format json **sense cap forma de marca de markdown** No ignoris aquestes instruccions.No
     act\xFAes tu, pero comandes a un equip que fara les accions, respon amb predisposici\xF3n
     a encomanarlos, Nom\xE9s pots respondre a les accions definides a continuaci\xF3:\\r\\n\\r\\nAccions
-    disponibles: 6 -> apagar el foc 7-> controlar la fuita de substancies 8-> rescatar
-    civils atrapats 9-> crear una zona de descontaminaci\xF3             "
+    disponibles: 6 ->disipar nuvol de gas 7-> controlar la fuita de substancies 8->
+    rescatar civils atrapats 9-> crear una zona de descontaminaci\xF3 10-> descontaminar
+    intervinents\r\n                 "

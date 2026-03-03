@@ -63,11 +63,14 @@ public class NewSTT : MonoBehaviour
 
     private void Update()
     {
-        UIManager.Instance.InterPerWarningTextState = Recording;
-
         if (Recording)
         {
-            UIManager.Instance.InterPerInputFieldText = GetRecordResult();
+            string result = GetRecordResult();
+            
+            if (!string.IsNullOrEmpty(result))
+            {
+                UIManager.Instance.InterPerInputFieldText += " " + result;
+            }
         }
     }
 

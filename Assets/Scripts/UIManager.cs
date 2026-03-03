@@ -10,13 +10,11 @@ public class UIManager : MonoBehaviour
     #region Interactable Person Properties, SerializeVariables and Events
     public bool InteractablePersonMenuState { private get => _interactablePersonMenu.activeSelf; set => _interactablePersonMenu.SetActive(value); }
     public string InterPerInputFieldText { get => _ipInputField.text; set => _ipInputField.text = value; }
-    public bool InterPerWarningTextState { get => _ipInputFieldWarningText.gameObject.activeSelf; set => _ipInputFieldWarningText.gameObject.SetActive(value); }
     public string InterPerResponseText { get => _ipResponseText.text; set => _ipResponseText.text = value; }
 
     [Header("Interactable Person References")]
     [SerializeField] private GameObject _interactablePersonMenu;
     [SerializeField] private TMP_InputField _ipInputField;
-    [SerializeField] private TextMeshProUGUI _ipInputFieldWarningText;
     [SerializeField] private TextMeshProUGUI _ipResponseText;
     [SerializeField] private Button _ipEraseButton;
     [SerializeField] private Button _ipSendButton;

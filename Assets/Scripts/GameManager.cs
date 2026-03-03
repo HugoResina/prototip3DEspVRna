@@ -4,9 +4,8 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
-    
 
-    public bool SttEnabled { get => _sttObject.enabled; set => _sttObject.enabled = value; }
+    public bool SttEnabled { get => _stt.enabled; set => _stt.enabled = value; }
 
     [Serializable]
     public class ResponseObj
@@ -16,7 +15,8 @@ public class GameManager : MonoBehaviour
     }
 
     private GroqChat _groqChat;
-    private NewSTT _sttObject;
+    private NewSTT _stt;
+    private TTS _tts;
 
     public static event Action<int> OnAISend = delegate { };
 
@@ -34,7 +34,8 @@ public class GameManager : MonoBehaviour
         }
 
         _groqChat = GetComponent<GroqChat>();
-        _sttObject = GetComponent<NewSTT>();
+        _stt = GetComponent<NewSTT>();
+        _tts = GetComponent<TTS>();
     }
 
     public void SendFunc()
@@ -48,7 +49,9 @@ public class GameManager : MonoBehaviour
                 Debug.Log("index: ----------->" + responseObj.index);
 
                 OnAISend.Invoke(responseObj.index);
+
                 UIManager.Instance.InterPerResponseText = responseObj.response;
+                _tts.SpeakText(responseObj.response);
             });
         }
         else

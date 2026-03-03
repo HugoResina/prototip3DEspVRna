@@ -37,7 +37,7 @@ public class NewSTT : MonoBehaviour
 
     private void OnEnable()
     {
-        SetMicrophone();
+        //SetMicrophone();
         UIManager.InterPerToggleMicrophone += ToggleMicrophone;
     }
 
@@ -64,19 +64,36 @@ public class NewSTT : MonoBehaviour
     private void Update()
     {
         UIManager.Instance.InterPerWarningTextState = Recording;
-
+        
+        //Debug.Log(Recording);
         if (Recording)
         {
-            UIManager.Instance.InterPerInputFieldText = GetRecordResult();
+            //UIManager.Instance.InterPerInputFieldText = GetRecordResult();
+
+            string result = GetRecordResult();
+            if (!string.IsNullOrEmpty(result))
+            {
+                UIManager.Instance.InterPerInputFieldText = result;
+            }
         }
     }
 
     private void SetMicrophone()
     {
-        if (Microphone.devices.Length == 0) { Debug.LogError("No s'han trobat micròfons disponibles."); return; }
-        if (string.IsNullOrEmpty(_micDeviceName)) _micDeviceName = Microphone.devices[0];
+        //try
+        //{
 
-        StartMicrophone();
+
+
+            if (Microphone.devices.Length == 0) { Debug.LogError("No s'han trobat micròfons disponibles."); return; }
+            if (string.IsNullOrEmpty(_micDeviceName)) _micDeviceName = Microphone.devices[0];
+
+            StartMicrophone();
+        //}
+        //catch(Exception e)
+        //{
+            Debug.Log("asdf");
+        //}
     }
 
     private void UnsetMicrophone()

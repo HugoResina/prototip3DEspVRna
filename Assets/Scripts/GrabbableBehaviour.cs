@@ -23,7 +23,7 @@ public class GrabbableBehaviour : MonoBehaviour, IIteractable, IGrabbable
         if (!interactor.TryGetComponent(out PlayerInteraction pinteractor)) return;
         if (_isMoving) return;
 
-        if (!pinteractor.isViewing)
+        if (!pinteractor.isInteracting)
         {
             Grab(pinteractor);
         }
@@ -38,14 +38,14 @@ public class GrabbableBehaviour : MonoBehaviour, IIteractable, IGrabbable
         _initialPosition = transform.position;
         _initialRotation = transform.rotation;
 
-        pinteractor.isViewing = true;
+        pinteractor.isInteracting = true;
         StartCoroutine(MoveItem(pinteractor.ItemViewerPosition, () => { }));
     }
 
     public void Relese(PlayerInteraction pinteractor)
     {
         transform.rotation = _initialRotation;
-        StartCoroutine(MoveItem(_initialPosition, () => pinteractor.isViewing = false));
+        StartCoroutine(MoveItem(_initialPosition, () => pinteractor.isInteracting = false));
     }
 
     public IEnumerator MoveItem(Vector3 position, Action onFinish)

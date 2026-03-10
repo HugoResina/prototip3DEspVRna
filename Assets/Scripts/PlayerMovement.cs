@@ -37,7 +37,8 @@ public class PlayerMovement : MonoBehaviour
     {
         UIManager.Instance.SetCursorState(true, false);
     }
-    private void OnEnable()
+
+    /*private void OnEnable()
     {
         InteractablePerson.lockCam += switchInteractingState;
         PlayerInteraction.Interacting += switchInteractingState;
@@ -46,7 +47,7 @@ public class PlayerMovement : MonoBehaviour
     {
         InteractablePerson.lockCam -= switchInteractingState;
         PlayerInteraction.Interacting -= switchInteractingState;
-    }
+    }*/
 
     public void switchInteractingState(bool state)
     {
@@ -54,13 +55,13 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
-       if(!_isInteracting && !_playerInteraction.isViewing)
+       if(!_playerInteraction.isInteracting)
             Movement();
     }
 
     private void LateUpdate()
     {
-        if(!_isInteracting && !_playerInteraction.isViewing)
+        if(!_playerInteraction.isInteracting)
             Look();
     }
 

@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class InteractablePerson : MonoBehaviour, IIteractable
 {
-    public string InteractionPrompt { get => _interactionPrompt; set => _interactionPrompt = value; }
+    public string InteractionPrompt { get => _interactionPrompt; }
 
     [SerializeField] private string _interactionPrompt = "Prem 'E' per interactuar";
 
@@ -24,7 +24,7 @@ public class InteractablePerson : MonoBehaviour, IIteractable
         PlayerInputs.ExitFunc -= TurnOffCanvas;
     }
 
-    public void Interact()
+    public void Interact(GameObject interactor)
     {
         UIManager.Instance.InterPerResponseText = string.Empty;
         UIManager.Instance.InteractablePersonMenuState = true;

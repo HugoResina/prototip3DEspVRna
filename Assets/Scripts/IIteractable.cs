@@ -2,7 +2,7 @@ using UnityEngine;
 
 public interface IIteractable
 {
-    public string InteractionPrompt { get; set; }
+    public string InteractionPrompt { get; }
 
-    public void Interact();
+    public void Interact(GameObject interactor);
 }

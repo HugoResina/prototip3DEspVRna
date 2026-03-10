@@ -9,6 +9,7 @@ public class PlayerInputs : MonoBehaviour, InputSystem_Actions.IPlayerActions
     public Vector2 LookInput { get; private set; }
     public bool InteractInput { get; private set; }
     public bool SprintInput { get; private set; }
+    public bool AttackInput { get; private set; }
     public bool ExitInput { get; private set; }
     public static Action ExitFunc;
     public bool IsInteracting = false;
@@ -55,5 +56,10 @@ public class PlayerInputs : MonoBehaviour, InputSystem_Actions.IPlayerActions
     public void OnSprint(InputAction.CallbackContext context)
     {
         SprintInput = context.ReadValueAsButton();
+    }
+
+    public void OnAttack(InputAction.CallbackContext context)
+    {
+        AttackInput = context.ReadValueAsButton();
     }
 }

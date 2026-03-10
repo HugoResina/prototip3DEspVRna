@@ -20,14 +20,16 @@ public class PlayerMovement : MonoBehaviour
     public float gravity = 9.81f;
 
     private PlayerInputs _playerInputs;
+    private PlayerInteraction _playerInteraction;
+
     private Vector3 _currentMovement = Vector3.zero;
     private Vector2 _cameraRotation = Vector2.zero;
     private bool _isInteracting = false;
 
-
     private void Awake()
     {
         _playerInputs = GetComponent<PlayerInputs>();
+        _playerInteraction = GetComponent<PlayerInteraction>();
         _characterController = GetComponent<CharacterController>();
     }
 
@@ -52,14 +54,14 @@ public class PlayerMovement : MonoBehaviour
     }
     private void Update()
     {
-       if(!_isInteracting)
-        Movement();
+       if(!_isInteracting && !_playerInteraction.isViewing)
+            Movement();
     }
 
     private void LateUpdate()
     {
-        if(!_isInteracting)
-        Look();
+        if(!_isInteracting && !_playerInteraction.isViewing)
+            Look();
     }
 
     private void Movement()

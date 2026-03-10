@@ -10,15 +10,21 @@ public class PlayerInteraction : MonoBehaviour
     [Header("UI Elements")]
     [SerializeField] private TextMeshProUGUI _interactiontext;
 
-
     [Header("Settings")]
-    public float interactDistance = 2f;
+    [SerializeField] private float _interactDistance = 2f;
+    [SerializeField] private Transform _itemViewer;
+
+    public Vector3 ItemViewerPosition => _itemViewer.position;
+
+    [HideInInspector] public bool isViewing = false;
+
+    public static event Action<bool> Interacting;
+    public static event Action<string> GetPrompt;
 
     private PlayerInputs _playerInputs;
 
-    private InteractablePerson lastInteracted;
-    public static event Action<bool> Interacting;
-    public static event Action<string> GetPrompt;
+    private IGrabbable _currentGrabbable;
+    private InteractablePerson _currentInterPerson;
 
     private void Awake()
     {
@@ -28,41 +34,46 @@ public class PlayerInteraction : MonoBehaviour
     private void Update()
     {
         CheckInteraction();
-        //checkExit();
-       
     }
-
     
     private void CheckInteraction()
     {
-        RaycastHit hit;
+        if (isViewing && _currentGrabbable != null)
+        {
+            if (_playerInputs.AttackInput)
+            {
+                _currentGrabbable.RotateItem(_playerCamera, _playerInputs.LookInput.x, _playerInputs.LookInput.y);
+            }
+        }
 
         Vector3 rayOrigin = _playerCamera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, 0f));
 
-       
-
-        if (Physics.Raycast(rayOrigin, _playerCamera.transform.forward, out hit, interactDistance))
+        if (Physics.Raycast(rayOrigin, _playerCamera.transform.forward, out RaycastHit hit, _interactDistance))
         {
-            
-            
             IIteractable interactable = hit.collider.GetComponent<IIteractable>();
-            
+            _currentGrabbable = hit.collider.GetComponent<IGrabbable>();
+
             if (interactable != null)
             {
                 if (interactable is InteractablePerson person)
                 {
-                    lastInteracted = person;
+                    _currentInterPerson = person;
                 }
-               
-                //evento
-                //lastInteracted = interactable;
-                _interactiontext.text = interactable.InteractionPrompt;
+
+                if (!isViewing)
+                {
+                    _interactiontext.text = interactable.InteractionPrompt;
+                }
+                else
+                {
+                    _interactiontext.text = _currentGrabbable.RelesePrompt;
+                }
 
                 if (_playerInputs.InteractInput)
                 {
-                    if (interactable is InteractablePerson) GetPrompt?.Invoke(lastInteracted.prompt.Prompt);
+                    if (interactable is InteractablePerson) GetPrompt?.Invoke(_currentInterPerson.prompt.Prompt);
                     Interacting?.Invoke(true);
-                    interactable.Interact();
+                    interactable.Interact(gameObject);
                 }
             }
             else
@@ -74,16 +85,12 @@ public class PlayerInteraction : MonoBehaviour
         else
         {
             _interactiontext.text = string.Empty;
-            if(lastInteracted != null)
+            if(_currentInterPerson != null)
             {
-                lastInteracted.TurnOffCanvas();
-                lastInteracted = null;
+                _currentInterPerson.TurnOffCanvas();
+                _currentInterPerson = null;
             }
             
         }
     }
-    //private void checkExit()
-    //{
-
-    //}
 }

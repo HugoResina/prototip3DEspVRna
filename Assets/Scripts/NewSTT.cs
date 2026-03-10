@@ -63,17 +63,15 @@ public class NewSTT : MonoBehaviour
 
     private void Update()
     {
-        UIManager.Instance.InterPerWarningTextState = Recording;
-        
         //Debug.Log(Recording);
+        UIManager.Instance.InterPerWarningTextState = Recording;
         if (Recording)
         {
-            //UIManager.Instance.InterPerInputFieldText = GetRecordResult();
-
             string result = GetRecordResult();
+            
             if (!string.IsNullOrEmpty(result))
             {
-                UIManager.Instance.InterPerInputFieldText = result;
+                UIManager.Instance.InterPerInputFieldText += " " + result;
             }
         }
     }
@@ -85,7 +83,7 @@ public class NewSTT : MonoBehaviour
 
 
 
-            if (Microphone.devices.Length == 0) { Debug.LogError("No s'han trobat micròfons disponibles."); return; }
+            if (Microphone.devices.Length == 0) { Debug.LogError("No s'han trobat micrï¿½fons disponibles."); return; }
             if (string.IsNullOrEmpty(_micDeviceName)) _micDeviceName = Microphone.devices[0];
 
             StartMicrophone();
@@ -122,7 +120,7 @@ public class NewSTT : MonoBehaviour
 
         if (_micClip == null)
         {
-            Debug.LogError("No s'ha pogut iniciar el micròfon.");
+            Debug.LogError("No s'ha pogut iniciar el micrï¿½fon.");
             return;
         }
         Recording = true;
@@ -135,7 +133,7 @@ public class NewSTT : MonoBehaviour
         if (!string.IsNullOrEmpty(_micDeviceName) && Microphone.IsRecording(_micDeviceName))
         {
             Microphone.End(_micDeviceName);
-            Debug.Log("Fi de la gravació");
+            Debug.Log("Fi de la gravaciï¿½");
             Recording = false;
         }
     }

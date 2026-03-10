@@ -38,7 +38,7 @@ public class NewSTT : MonoBehaviour
 
     private void OnEnable()
     {
-        SetMicrophone();
+        //SetMicrophone();
         UIManager.InterPerToggleMicrophone += ToggleMicrophone;
     }
 
@@ -64,6 +64,8 @@ public class NewSTT : MonoBehaviour
 
     private void Update()
     {
+        //Debug.Log(Recording);
+       
         if (Recording)
         {
             string result = GetRecordResult();
@@ -78,10 +80,18 @@ public class NewSTT : MonoBehaviour
     private void SetMicrophone()
     {
         _isProcessing = true;
-        if (Microphone.devices.Length == 0) { Debug.LogError("No s'han trobat micròfons disponibles."); return; }
+        if (Microphone.devices.Length == 0) { Debug.LogError("No s'han trobat micrï¿½fons disponibles."); return; }
         if (string.IsNullOrEmpty(_micDeviceName)) _micDeviceName = Microphone.devices[0];
 
-        StartMicrophone();
+
+
+
+            if (Microphone.devices.Length == 0) { Debug.LogError("No s'han trobat micrï¿½fons disponibles."); return; }
+            if (string.IsNullOrEmpty(_micDeviceName)) _micDeviceName = Microphone.devices[0];
+
+            StartMicrophone();
+       
+          
     }
 
     private void UnsetMicrophone()
@@ -111,7 +121,7 @@ public class NewSTT : MonoBehaviour
 
         if (_micClip == null)
         {
-            Debug.LogError("No s'ha pogut iniciar el micròfon.");
+            Debug.LogError("No s'ha pogut iniciar el micrï¿½fon.");
             return;
         }
         Recording = true;
@@ -124,7 +134,7 @@ public class NewSTT : MonoBehaviour
         if (!string.IsNullOrEmpty(_micDeviceName) && Microphone.IsRecording(_micDeviceName))
         {
             Microphone.End(_micDeviceName);
-            Debug.Log("Fi de la gravació");
+            Debug.Log("Fi de la gravaciï¿½");
             Recording = false;
         }
     }

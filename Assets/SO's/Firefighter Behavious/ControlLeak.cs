@@ -32,8 +32,6 @@ public class ControlLeak : MonoBehaviour
     {
         if (called)
         {
-
-
             if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance && !navMeshAgent.pathPending)
             {
                 //animacio acortinador?

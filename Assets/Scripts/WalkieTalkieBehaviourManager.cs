@@ -4,12 +4,13 @@ using System;
 public class WalkieTalkieBehaviourManager : MonoBehaviour
 {
     public static event Action TurnOffLightsEvent;
-    public static event Action OpenDoorsEvent;
-    public static event Action AlarmEvent;
+    public static event Action<int> GoToMission;
+    //public static event Action AskInformation;
+    //public static event Action OpenDoorsEvent;
+    //public static event Action AlarmEvent;
 
-
-
-
+    //demanar ajuda(info)
+    //
 
 
 
@@ -26,21 +27,19 @@ public class WalkieTalkieBehaviourManager : MonoBehaviour
         switch (index)
         {
             case 1:
-
                 TurnOffLightsEvent?.Invoke();
                 break;
             case 2:
-
-                Debug.Log("asdf");
+                //Debug.Log("asdf");
                 break;
             case 3:
-                
-                AlarmEvent?.Invoke();
+                //AlarmEvent?.Invoke();
                 break;
-
+            case 4:
+                GoToMission?.Invoke(0);
+                break;
             default:
                 break;
-
         }
     }
 

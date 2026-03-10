@@ -3,10 +3,7 @@ using UnityEngine.AI;
 
 public class TurnOffLightsScript : MonoBehaviour
 {
-    //private NavMeshAgent navMeshAgent;
-    //private Animator animator;
-    //[SerializeField] Transform destination;
-    //bool called = false;
+    
     [SerializeField]
     private GameObject[] Lights;
 

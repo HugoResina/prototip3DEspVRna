@@ -64,7 +64,7 @@ public class NewSTT : MonoBehaviour
     private void Update()
     {
         //Debug.Log(Recording);
-        UIManager.Instance.InterPerWarningTextState = Recording;
+       
         if (Recording)
         {
             string result = GetRecordResult();
@@ -78,8 +78,8 @@ public class NewSTT : MonoBehaviour
 
     private void SetMicrophone()
     {
-        //try
-        //{
+      
+
 
 
 
@@ -87,11 +87,8 @@ public class NewSTT : MonoBehaviour
             if (string.IsNullOrEmpty(_micDeviceName)) _micDeviceName = Microphone.devices[0];
 
             StartMicrophone();
-        //}
-        //catch(Exception e)
-        //{
-            Debug.Log("asdf");
-        //}
+       
+          
     }
 
     private void UnsetMicrophone()

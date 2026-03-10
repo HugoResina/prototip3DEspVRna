@@ -15,9 +15,6 @@ public class PoliceBehaviourManager : MonoBehaviour
 
 
 
-
-
-
     private void OnEnable()
     {
         GameManager.OnAISend += GetOrder;

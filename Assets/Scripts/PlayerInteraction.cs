@@ -1,5 +1,6 @@
 using System;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerInteraction : MonoBehaviour
@@ -16,15 +17,19 @@ public class PlayerInteraction : MonoBehaviour
 
     public Vector3 ItemViewerPosition => _itemViewer.position;
 
-    [HideInInspector] public bool isViewing = false;
+    [HideInInspector] public bool isInteracting = false;
 
-    public static event Action<bool> Interacting;
+    //public static event Action<bool> Interacting;
     public static event Action<string> GetPrompt;
 
     private PlayerInputs _playerInputs;
 
     private IGrabbable _currentGrabbable;
     private InteractablePerson _currentInterPerson;
+
+    private void OnEnable() => PlayerInputs.ExitFunc += OnExit;
+    private void OnDisable() => PlayerInputs.ExitFunc -= OnExit;
+    private void OnExit() => isInteracting = false;
 
     private void Awake()
     {
@@ -38,7 +43,7 @@ public class PlayerInteraction : MonoBehaviour
     
     private void CheckInteraction()
     {
-        if (isViewing && _currentGrabbable != null)
+        if (isInteracting && _currentGrabbable != null)
         {
             if (_playerInputs.AttackInput)
             {
@@ -60,11 +65,11 @@ public class PlayerInteraction : MonoBehaviour
                     _currentInterPerson = person;
                 }
 
-                if (!isViewing)
+                if (!isInteracting)
                 {
                     _interactiontext.text = interactable.InteractionPrompt;
                 }
-                else
+                else if (_currentGrabbable != null)
                 {
                     _interactiontext.text = _currentGrabbable.RelesePrompt;
                 }
@@ -72,14 +77,12 @@ public class PlayerInteraction : MonoBehaviour
                 if (_playerInputs.InteractInput)
                 {
                     if (interactable is InteractablePerson) GetPrompt?.Invoke(_currentInterPerson.prompt.Prompt);
-                    Interacting?.Invoke(true);
                     interactable.Interact(gameObject);
                 }
             }
             else
             {
                 _interactiontext.text = string.Empty;
-
             }
         }
         else

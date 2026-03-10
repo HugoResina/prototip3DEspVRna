@@ -11,13 +11,12 @@ public class PlayerInputs : MonoBehaviour, InputSystem_Actions.IPlayerActions
     public bool SprintInput { get; private set; }
     public bool AttackInput { get; private set; }
     public bool ExitInput { get; private set; }
-    public static Action ExitFunc;
-    public bool IsInteracting = false;
+    public static event Action ExitFunc;
+    //public bool IsInteracting = false;
 
     private void OnEnable()
     {
         InputActions = new InputSystem_Actions();
-        InputActions.Enable();
 
         InputActions.Player.Enable();
         InputActions.Player.SetCallbacks(this);
@@ -41,13 +40,13 @@ public class PlayerInputs : MonoBehaviour, InputSystem_Actions.IPlayerActions
 
     public void OnMove(InputAction.CallbackContext context)
     {
-        if(!IsInteracting)
+        //if(!IsInteracting)
         MoveInput = context.ReadValue<Vector2>();
     }
 
     public void OnExit(InputAction.CallbackContext context)
     {
-        IsInteracting = false;
+        //IsInteracting = false;
         //ExitInput = context.ReadValueAsButton() && !ExitInput;
        
         ExitFunc?.Invoke();

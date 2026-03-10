@@ -33,6 +33,7 @@ public class NewSTT : MonoBehaviour
     private string _micDeviceName = string.Empty;
     private AudioClip _micClip;
     private int _micLastSamplePos = 0;
+    private bool _isProcessing = false;
     #endregion
 
     private void OnEnable()
@@ -76,6 +77,7 @@ public class NewSTT : MonoBehaviour
 
     private void SetMicrophone()
     {
+        _isProcessing = true;
         if (Microphone.devices.Length == 0) { Debug.LogError("No s'han trobat micròfons disponibles."); return; }
         if (string.IsNullOrEmpty(_micDeviceName)) _micDeviceName = Microphone.devices[0];
 
@@ -84,6 +86,7 @@ public class NewSTT : MonoBehaviour
 
     private void UnsetMicrophone()
     {
+        _isProcessing = false;
         EndMicrophone();
 
         _voskRecognizer?.Dispose();
@@ -128,6 +131,7 @@ public class NewSTT : MonoBehaviour
 
     private string GetRecordResult()
     {
+        if (_isProcessing) return "";
         if (_micClip == null || _voskRecognizer == null) return "";
 
         int micCurrentPos = Microphone.GetPosition(_micDeviceName);

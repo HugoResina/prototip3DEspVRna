@@ -246,37 +246,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &251893858
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 251893859}
-  m_Layer: 0
-  m_Name: ItemViewer
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &251893859
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 251893858}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0.75}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1610042731}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &400702712
 GameObject:
   m_ObjectHideFlags: 0
@@ -595,11 +564,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!4 &1610042731 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 68892047983000960, guid: 2eb7a247312a94f42813ec8f21ca65c5, type: 3}
-  m_PrefabInstance: {fileID: 8682046252757459269}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1756896883
 GameObject:
   m_ObjectHideFlags: 0
@@ -3966,16 +3930,9 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8426154846617306000, guid: 2eb7a247312a94f42813ec8f21ca65c5, type: 3}
-      propertyPath: _itemViewer
-      value: 
-      objectReference: {fileID: 251893859}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
-    m_AddedGameObjects:
-    - targetCorrespondingSourceObject: {fileID: 68892047983000960, guid: 2eb7a247312a94f42813ec8f21ca65c5, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 251893859}
+    m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2eb7a247312a94f42813ec8f21ca65c5, type: 3}
 --- !u!1 &8742096602431889070

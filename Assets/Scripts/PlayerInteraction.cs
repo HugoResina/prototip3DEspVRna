@@ -8,9 +8,6 @@ public class PlayerInteraction : MonoBehaviour
     [Header("References")]
     [SerializeField] private Camera _playerCamera;
 
-    [Header("UI Elements")]
-    [SerializeField] private TextMeshProUGUI _interactiontext;
-
     [Header("Settings")]
     [SerializeField] private float _interactDistance = 2f;
     [SerializeField] private Transform _itemViewer;
@@ -19,8 +16,8 @@ public class PlayerInteraction : MonoBehaviour
 
     [HideInInspector] public bool isInteracting = false;
 
-    //public static event Action<bool> Interacting;
     public static event Action<string> GetPrompt;
+    public static event Action<string> OnInteractUpdate;
 
     private PlayerInputs _playerInputs;
 
@@ -67,11 +64,11 @@ public class PlayerInteraction : MonoBehaviour
 
                 if (!isInteracting)
                 {
-                    _interactiontext.text = interactable.InteractionPrompt;
+                    OnInteractUpdate?.Invoke(interactable.InteractionPrompt);
                 }
                 else if (_currentGrabbable != null)
                 {
-                    _interactiontext.text = _currentGrabbable.RelesePrompt;
+                    OnInteractUpdate?.Invoke(_currentGrabbable.RelesePrompt);
                 }
 
                 if (_playerInputs.InteractInput)
@@ -82,13 +79,13 @@ public class PlayerInteraction : MonoBehaviour
             }
             else
             {
-                _interactiontext.text = string.Empty;
+                OnInteractUpdate?.Invoke(string.Empty);
             }
         }
         else
         {
-            _interactiontext.text = string.Empty;
-            if(_currentInterPerson != null)
+            OnInteractUpdate?.Invoke(string.Empty);
+            if (_currentInterPerson != null)
             {
                 _currentInterPerson.TurnOffCanvas();
                 _currentInterPerson = null;

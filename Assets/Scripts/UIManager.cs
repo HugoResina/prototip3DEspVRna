@@ -7,6 +7,9 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance { get; private set; }
 
+    [Header("Player HUD")]
+    [SerializeField] private TextMeshProUGUI _pInteractionText;
+
     #region Interactable Person Properties, SerializeVariables and Events
     public bool InteractablePersonMenuState { private get => _interactablePersonMenu.activeSelf; set => _interactablePersonMenu.SetActive(value); }
     public string InterPerInputFieldText { get => _ipInputField.text; set => _ipInputField.text = value; }
@@ -22,8 +25,18 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Color _ipMicrophoneRecordingColor = Color.green;
     [SerializeField] private Color _ipMicrophoneStoppedColor = Color.red;
 
-    public static event Action InterPerToggleMicrophone = delegate { };
+    public static event Action InterPerToggleMicrophone;
     #endregion
+
+    private void OnEnable()
+    {
+        PlayerInteraction.OnInteractUpdate += UpdateInteractionText;
+    }
+
+    private void OnDisable()
+    {
+        PlayerInteraction.OnInteractUpdate -= UpdateInteractionText;
+    }
 
     private void Awake()
     {
@@ -57,6 +70,8 @@ public class UIManager : MonoBehaviour
         #endregion
     }
 
+    private void UpdateInteractionText(string text) => _pInteractionText.text = text;
+
     public void SetCursorState(bool looked, bool visible)
     {
         Cursor.lockState = looked ? CursorLockMode.Locked : CursorLockMode.None;
@@ -76,7 +91,7 @@ public class UIManager : MonoBehaviour
 
     private void ToggleMicrophone()
     {
-        InterPerToggleMicrophone.Invoke();
+        InterPerToggleMicrophone?.Invoke();
     }
     #endregion
 }

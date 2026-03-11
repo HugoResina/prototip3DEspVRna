@@ -10,11 +10,7 @@ public class UIManager : MonoBehaviour
     [Header("Player HUD")]
     [SerializeField] private TextMeshProUGUI _pInteractionText;
 
-    #region Interactable Person Properties, SerializeVariables and Events
-    public bool InteractablePersonMenuState { private get => _interactablePersonMenu.activeSelf; set => _interactablePersonMenu.SetActive(value); }
-    public string InterPerInputFieldText { get => _ipInputField.text; set => _ipInputField.text = value; }
-    public string InterPerResponseText { get => _ipResponseText.text; set => _ipResponseText.text = value; }
-
+    #region Interactable Person SerializeVariables, Properties and Events
     [Header("Interactable Person References")]
     [SerializeField] private GameObject _interactablePersonMenu;
     [SerializeField] private TMP_InputField _ipInputField;
@@ -25,17 +21,27 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Color _ipMicrophoneRecordingColor = Color.green;
     [SerializeField] private Color _ipMicrophoneStoppedColor = Color.red;
 
+    public string InterPerInputFieldText => _ipInputField.text;
+
     public static event Action InterPerToggleMicrophone;
     #endregion
 
     private void OnEnable()
     {
         PlayerInteraction.OnInteractUpdate += UpdateInteractionText;
+
+        InteractablePersonEvents.OnMenuState += UpdateInteractablePersonMenuState;
+        InteractablePersonEvents.OnInputField += UpdateInteractablePersonInputField;
+        InteractablePersonEvents.OnResponse += UpdateInteractablePersonResponseText;
     }
 
     private void OnDisable()
     {
         PlayerInteraction.OnInteractUpdate -= UpdateInteractionText;
+
+        InteractablePersonEvents.OnMenuState -= UpdateInteractablePersonMenuState;
+        InteractablePersonEvents.OnInputField -= UpdateInteractablePersonInputField;
+        InteractablePersonEvents.OnResponse -= UpdateInteractablePersonResponseText;
     }
 
     private void Awake()
@@ -63,7 +69,7 @@ public class UIManager : MonoBehaviour
     private void Update()
     {
         #region Ineractable Person Microphone Button Record Color
-        if (InteractablePersonMenuState)
+        if (_interactablePersonMenu.activeSelf)
         {
             _ipMicrophoneToggleButton.gameObject.GetComponent<Image>().color = NewSTT.Recording ? _ipMicrophoneRecordingColor : _ipMicrophoneStoppedColor;
         }
@@ -78,10 +84,15 @@ public class UIManager : MonoBehaviour
         Cursor.visible = visible;
     }
 
-    #region Interactable Person Button Functions
+    #region Interactable Person Functions
+    private void UpdateInteractablePersonMenuState(bool state) => _interactablePersonMenu.SetActive(state);
+    private void UpdateInteractablePersonInputField(string text) => _ipInputField.text = text;
+    private void UpdateInteractablePersonResponseText(string text) => _ipResponseText.text = text;
+
+    #region Button Functions
     private void InterPerEraseButton()
     {
-        InterPerInputFieldText = "";
+        _ipInputField.text = "";
     }
 
     private void InterPerSendButton()
@@ -93,5 +104,6 @@ public class UIManager : MonoBehaviour
     {
         InterPerToggleMicrophone?.Invoke();
     }
+    #endregion
     #endregion
 }

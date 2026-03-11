@@ -420,7 +420,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerInteraction
   _playerCamera: {fileID: 3583694964601514779}
-  _interactiontext: {fileID: 3467591970643029418}
   _interactDistance: 2
   _itemViewer: {fileID: 4870754947390512308}
   isInteracting: 0
@@ -590,7 +589,7 @@ Transform:
   m_GameObject: {fileID: 5428152762333301168}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.81, z: 0}
+  m_LocalPosition: {x: 0, y: 0.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:

@@ -12,10 +12,7 @@ public class VehicleToMission : MonoBehaviour, IIteractable
 
     public void Interact(GameObject gameObject)
     {
-        
-        UIManager.Instance.InteractablePersonMenuState = false;
+        InteractablePersonEvents.UpdateMenuState(false);
         SceneManager.LoadScene(mission.SceneId);
     }
-
-   
 }

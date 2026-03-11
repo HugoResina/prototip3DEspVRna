@@ -38,7 +38,7 @@ public class NewSTT : MonoBehaviour
 
     private void OnEnable()
     {
-        //SetMicrophone();
+        SetMicrophone();
         UIManager.InterPerToggleMicrophone += ToggleMicrophone;
     }
 
@@ -59,20 +59,18 @@ public class NewSTT : MonoBehaviour
         _voskRecognizer = new VoskRecognizer(_voskModel, _sampleRate);
         #endregion
 
-        UIManager.Instance.InterPerInputFieldText = "";
+        InteractablePersonEvents.UpdateInputFieldText(string.Empty);
     }
 
     private void Update()
     {
-        //Debug.Log(Recording);
-       
         if (Recording)
         {
             string result = GetRecordResult();
             
             if (!string.IsNullOrEmpty(result))
             {
-                UIManager.Instance.InterPerInputFieldText += " " + result;
+                InteractablePersonEvents.UpdateInputFieldText(UIManager.Instance.InterPerInputFieldText + " " + result);
             }
         }
     }
@@ -83,15 +81,10 @@ public class NewSTT : MonoBehaviour
         if (Microphone.devices.Length == 0) { Debug.LogError("No s'han trobat micr�fons disponibles."); return; }
         if (string.IsNullOrEmpty(_micDeviceName)) _micDeviceName = Microphone.devices[0];
 
+        if (Microphone.devices.Length == 0) { Debug.LogError("No s'han trobat micr�fons disponibles."); return; }
+        if (string.IsNullOrEmpty(_micDeviceName)) _micDeviceName = Microphone.devices[0];
 
-
-
-            if (Microphone.devices.Length == 0) { Debug.LogError("No s'han trobat micr�fons disponibles."); return; }
-            if (string.IsNullOrEmpty(_micDeviceName)) _micDeviceName = Microphone.devices[0];
-
-            StartMicrophone();
-       
-          
+        StartMicrophone(); 
     }
 
     private void UnsetMicrophone()

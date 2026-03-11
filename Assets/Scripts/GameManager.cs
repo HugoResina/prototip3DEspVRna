@@ -50,13 +50,13 @@ public class GameManager : MonoBehaviour
 
                 OnAISend.Invoke(responseObj.index);
 
-                UIManager.Instance.InterPerResponseText = responseObj.response;
+                InteractablePersonEvents.UpdateResponseText(responseObj.response);
                 _tts.SpeakText(responseObj.response);
             });
         }
         else
         {
-            UIManager.Instance.InterPerResponseText = "???";
+            InteractablePersonEvents.UpdateResponseText("???");
         }
     }
 }

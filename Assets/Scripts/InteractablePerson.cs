@@ -9,8 +9,6 @@ public class InteractablePerson : MonoBehaviour, IIteractable
 
     public PromptBaseSO prompt;
 
-    public static event Action<bool> OnInteract;
-
     private void OnEnable()
     {
         PlayerInputs.ExitFunc += TurnOffCanvas;
@@ -26,18 +24,16 @@ public class InteractablePerson : MonoBehaviour, IIteractable
         if (interactor.TryGetComponent(out PlayerInteraction pi))
             pi.isInteracting = true;
 
-        OnInteract?.Invoke(true);
+        InteractablePersonEvents.UpdateMenuState(true);
+        InteractablePersonEvents.UpdateResponseText(string.Empty);
 
-        UIManager.Instance.InterPerResponseText = string.Empty;
-        //UIManager.Instance.InteractablePersonMenuState = true;
         UIManager.Instance.SetCursorState(false, true);
         GameManager.Instance.SttEnabled = true;
     }
     public void TurnOffCanvas()
     {
-        OnInteract?.Invoke(false);
+        InteractablePersonEvents.UpdateMenuState(false);
 
-        //UIManager.Instance.InteractablePersonMenuState = false;
         UIManager.Instance.SetCursorState(true, false);
         GameManager.Instance.SttEnabled = false;
     }

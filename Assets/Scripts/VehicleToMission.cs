@@ -10,7 +10,7 @@ public class VehicleToMission : MonoBehaviour, IIteractable
     public MisionSO mission;
 
 
-    public void Interact()
+    public void Interact(GameObject gameObject)
     {
         
         UIManager.Instance.InteractablePersonMenuState = false;

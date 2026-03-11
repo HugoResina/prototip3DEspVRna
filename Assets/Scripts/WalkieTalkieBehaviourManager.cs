@@ -36,6 +36,7 @@ public class WalkieTalkieBehaviourManager : MonoBehaviour
                 //AlarmEvent?.Invoke();
                 break;
             case 4:
+                Debug.Log("switch");
                 GoToMission?.Invoke(0);
                 break;
             default:

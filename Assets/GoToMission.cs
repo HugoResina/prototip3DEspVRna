@@ -27,7 +27,7 @@ public class GoToMission : MonoBehaviour
 
     public void goToMission(int num)
     {
-        
+        Debug.Log("missio num: " + num);
         if (vehicle != null && vehicle.activeInHierarchy == false)
         {
             vehicle.SetActive(true);

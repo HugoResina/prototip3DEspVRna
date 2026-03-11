@@ -31,11 +31,15 @@ public class UIManager : MonoBehaviour
     private void OnEnable()
     {
         PlayerInteraction.OnInteractUpdate += UpdateInteractionText;
+
+        InteractablePerson.OnInteract += UpdateInteractablePersonMenuState;
     }
 
     private void OnDisable()
     {
         PlayerInteraction.OnInteractUpdate -= UpdateInteractionText;
+
+        InteractablePerson.OnInteract += UpdateInteractablePersonMenuState;
     }
 
     private void Awake()
@@ -71,6 +75,7 @@ public class UIManager : MonoBehaviour
     }
 
     private void UpdateInteractionText(string text) => _pInteractionText.text = text;
+    private void UpdateInteractablePersonMenuState(bool state) => _interactablePersonMenu.SetActive(state);
 
     public void SetCursorState(bool looked, bool visible)
     {

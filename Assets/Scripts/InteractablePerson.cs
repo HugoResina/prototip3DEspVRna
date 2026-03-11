@@ -7,15 +7,10 @@ public class InteractablePerson : MonoBehaviour, IIteractable
 
     [SerializeField] private string _interactionPrompt = "Prem 'E' per interactuar";
 
-    //public static event Action<bool> lockCam;
     public PromptBaseSO prompt;
 
-    //private PlayerInteraction _pinteraction;
+    public static event Action<bool> OnInteract;
 
-    private void Start()
-    {
-        //prompt = GetComponent<PromptBaseSO>();
-    }
     private void OnEnable()
     {
         PlayerInputs.ExitFunc += TurnOffCanvas;
@@ -31,14 +26,18 @@ public class InteractablePerson : MonoBehaviour, IIteractable
         if (interactor.TryGetComponent(out PlayerInteraction pi))
             pi.isInteracting = true;
 
+        OnInteract?.Invoke(true);
+
         UIManager.Instance.InterPerResponseText = string.Empty;
-        UIManager.Instance.InteractablePersonMenuState = true;
+        //UIManager.Instance.InteractablePersonMenuState = true;
         UIManager.Instance.SetCursorState(false, true);
         GameManager.Instance.SttEnabled = true;
     }
     public void TurnOffCanvas()
     {
-        UIManager.Instance.InteractablePersonMenuState = false;
+        OnInteract?.Invoke(false);
+
+        //UIManager.Instance.InteractablePersonMenuState = false;
         UIManager.Instance.SetCursorState(true, false);
         GameManager.Instance.SttEnabled = false;
     }

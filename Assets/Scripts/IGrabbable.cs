@@ -10,6 +10,7 @@ public interface IGrabbable
 
     public void Grab(PlayerInteraction pinteractor);
     public void Relese(PlayerInteraction pinteractor);
+    public void HardRelese(PlayerInteraction pinteractor);
     public IEnumerator MoveItem(Vector3 position, Action onFinish);
     public void RotateItem(Camera cam, float x, float y);
 

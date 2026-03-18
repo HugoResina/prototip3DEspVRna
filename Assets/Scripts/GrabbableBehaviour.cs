@@ -48,6 +48,13 @@ public class GrabbableBehaviour : MonoBehaviour, IIteractable, IGrabbable
         StartCoroutine(MoveItem(_initialPosition, () => pinteractor.isInteracting = false));
     }
 
+    public void HardRelese(PlayerInteraction pinteractor)
+    {
+        if (_isMoving) StopAllCoroutines();
+
+        Relese(pinteractor);
+    }
+
     public IEnumerator MoveItem(Vector3 position, Action onFinish)
     {
         _isMoving = true;

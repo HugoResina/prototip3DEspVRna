@@ -28,8 +28,14 @@ public class PlayerInteraction : MonoBehaviour
     private void OnDisable() => PlayerInputs.ExitFunc -= OnExit;
     private void OnExit()
     {
-        if (_currentGrabbable != null) _currentGrabbable.Relese(this);
-        else isInteracting = false;
+        if (_currentGrabbable != null)
+        {
+            _currentGrabbable.HardRelese(this);
+        }
+        else
+        {
+            isInteracting = false;
+        }
     }
 
     private void Awake()

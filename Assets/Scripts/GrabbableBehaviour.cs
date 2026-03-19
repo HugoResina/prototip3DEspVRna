@@ -76,6 +76,8 @@ public class GrabbableBehaviour : MonoBehaviour, IIteractable, IGrabbable
 
     public void RotateItem(Camera cam, float x, float y)
     {
+        if (_isMoving) return;
+
         transform.Rotate(cam.transform.right, Mathf.Deg2Rad * y * _itemRotationSpeed, Space.World);
         transform.Rotate(cam.transform.up, -Mathf.Deg2Rad * x * _itemRotationSpeed, Space.World);
     }

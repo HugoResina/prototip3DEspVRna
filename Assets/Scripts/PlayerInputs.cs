@@ -47,7 +47,7 @@ public class PlayerInputs : MonoBehaviour, InputSystem_Actions.IPlayerActions
     public void OnExit(InputAction.CallbackContext context)
     {
         //IsInteracting = false;
-        //ExitInput = context.ReadValueAsButton() && !ExitInput;
+        ExitInput = context.ReadValueAsButton() && !ExitInput;
        
         ExitFunc?.Invoke();
     }

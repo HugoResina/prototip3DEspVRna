@@ -7,8 +7,13 @@ public class UIManager : MonoBehaviour
 {
     public static UIManager Instance { get; private set; }
 
+    #region Player HUD SerializeVariables
     [Header("Player HUD")]
     [SerializeField] private TextMeshProUGUI _pInteractionText;
+    [SerializeField] private GameObject _objectiveSection;
+    [SerializeField] private TextMeshProUGUI _objectiveTitle;
+    [SerializeField] private TextMeshProUGUI _objectiveText;
+    #endregion
 
     #region Interactable Person SerializeVariables, Properties and Events
     [Header("Interactable Person References")]
@@ -30,6 +35,8 @@ public class UIManager : MonoBehaviour
     {
         PlayerInteraction.OnInteractUpdate += UpdateInteractionText;
 
+        ControlsTutorial.OnUpdateObjective += UpdatePlayerObjective;
+
         InteractablePersonEvents.OnMenuState += UpdateInteractablePersonMenuState;
         InteractablePersonEvents.OnInputField += UpdateInteractablePersonInputField;
         InteractablePersonEvents.OnResponse += UpdateInteractablePersonResponseText;
@@ -38,6 +45,8 @@ public class UIManager : MonoBehaviour
     private void OnDisable()
     {
         PlayerInteraction.OnInteractUpdate -= UpdateInteractionText;
+
+        ControlsTutorial.OnUpdateObjective -= UpdatePlayerObjective;
 
         InteractablePersonEvents.OnMenuState -= UpdateInteractablePersonMenuState;
         InteractablePersonEvents.OnInputField -= UpdateInteractablePersonInputField;
@@ -82,6 +91,12 @@ public class UIManager : MonoBehaviour
     {
         Cursor.lockState = looked ? CursorLockMode.Locked : CursorLockMode.None;
         Cursor.visible = visible;
+    }
+
+    private void UpdatePlayerObjective(string title, string objective)
+    {
+        _objectiveTitle.text = title;
+        _objectiveText.text = objective;
     }
 
     #region Interactable Person Functions

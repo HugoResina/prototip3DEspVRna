@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccbf0224ac0a3e148a2fca22e1bc5705, type: 3}
   m_Name: ExitObjective
   m_EditorClassIdentifier: Assembly-CSharp::TutorialObjectiveSO
-  Title: Exit
-  Description: Exit desc
+  Title: Surt
+  Description: Prem 'ESC' per deixar d'interactuar.
   tutorialType: 5

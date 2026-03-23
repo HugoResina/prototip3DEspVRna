@@ -1,13 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.Security.AccessControl;
 using UnityEngine;
 
 public class ControlsTutorial : MonoBehaviour
 {
     [SerializeField] private bool _startOnAwake = true;
     [SerializeField] private PlayerInputs _inputs;
+
+    [Tooltip("Array ORDENAT d'objectius a realitzar")]
     [SerializeField] private TutorialObjectiveSO[] _objectives;
 
     public static event Action<string, string> OnUpdateObjective;
@@ -42,7 +43,7 @@ public class ControlsTutorial : MonoBehaviour
                     break;
 
                 case TutorialObjectiveType.Attack:
-                    _conditions.Add(TutorialObjectiveType.Attack, () => _inputs.AttackInput);
+                    _conditions.Add(TutorialObjectiveType.Attack, () => _inputs.AttackInput && _inputs.LookInput.sqrMagnitude > 0);
                     break;
 
                 case TutorialObjectiveType.Interact:

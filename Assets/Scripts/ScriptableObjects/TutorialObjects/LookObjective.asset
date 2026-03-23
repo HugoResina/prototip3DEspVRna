@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccbf0224ac0a3e148a2fca22e1bc5705, type: 3}
   m_Name: LookObjective
   m_EditorClassIdentifier: Assembly-CSharp::TutorialObjectiveSO
-  Title: Look
-  Description: Lokk dec
+  Title: Mira
+  Description: "Utilitza el ratol\xED per a moure la c\xE0mera."
   tutorialType: 0

@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccbf0224ac0a3e148a2fca22e1bc5705, type: 3}
   m_Name: AttackObjective
   m_EditorClassIdentifier: Assembly-CSharp::TutorialObjectiveSO
-  Title: Attack
-  Description: Attack desc
+  Title: Gira
+  Description: "Maten premut 'clic dret' metre mous el ratol\xED per a girar l'objecte."
   tutorialType: 3

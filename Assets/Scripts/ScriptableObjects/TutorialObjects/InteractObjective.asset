@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccbf0224ac0a3e148a2fca22e1bc5705, type: 3}
   m_Name: InteractObjective
   m_EditorClassIdentifier: Assembly-CSharp::TutorialObjectiveSO
-  Title: Interact
-  Description: Interact desc
+  Title: Agafa
+  Description: Prem 'E' per agafar un objecte.
   tutorialType: 4

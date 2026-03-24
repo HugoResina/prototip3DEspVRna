@@ -1,4 +1,6 @@
 using System;
+using System.IO;
+using Unity.AppUI.UI;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
@@ -14,9 +16,14 @@ public class GameManager : MonoBehaviour
         public string response;
     }
 
+
     private GroqChat _groqChat;
     private NewSTT _stt;
     private TTS _tts;
+   
+
+    private string nombreArchivo = "RegistreInteraccions.txt";
+    private string rutaCompleta;
 
     public static event Action<int> OnAISend = delegate { };
 
@@ -26,6 +33,9 @@ public class GameManager : MonoBehaviour
         {
             Instance = this;
             DontDestroyOnLoad(gameObject);
+            rutaCompleta = Path.Combine(Application.dataPath, nombreArchivo);
+
+            File.AppendAllText(rutaCompleta, $"\n--- Nova Sessón: {DateTime.Now} ---\n");
         }
         else
         {
@@ -47,6 +57,9 @@ public class GameManager : MonoBehaviour
                 var responseObj = JsonUtility.FromJson<ResponseObj>(response);
 
                 Debug.Log("index: ----------->" + responseObj.index);
+                Debug.Log("response: ----------->" + responseObj.response);
+
+                RegistrarEnArchivo(responseObj);
 
                 OnAISend.Invoke(responseObj.index);
 
@@ -59,4 +72,27 @@ public class GameManager : MonoBehaviour
             InteractablePersonEvents.UpdateResponseText("???");
         }
     }
+
+    private void RegistrarEnArchivo(ResponseObj obj)
+    {
+        try
+        {
+            
+            using (StreamWriter sw = new StreamWriter(rutaCompleta, true))
+            {
+                sw.WriteLine($"[{DateTime.Now:HH:mm:ss}] Index: {obj.index}");
+                sw.WriteLine($"Resposta: {obj.response}");
+                //get prompt
+                sw.WriteLine("------------------------------------------");
+            }
+
+         
+
+        }
+        catch (Exception e)
+        {
+            Debug.LogError($"Error al escriure l'arxiu: {e.Message}");
+        }
+    }
+
 }

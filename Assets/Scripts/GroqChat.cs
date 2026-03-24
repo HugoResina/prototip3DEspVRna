@@ -58,6 +58,10 @@ public class GroqChat : MonoBehaviour
 
     public void SendMessage(string prompt, Action<string> onResponse)
     {
+
+        //Debug.Log("holahola: " + prompt);
+        Debug.Log("response: ----------->" + prompt);
+
         StartCoroutine(ChatCoroutine(prompt, onResponse));
     }
 

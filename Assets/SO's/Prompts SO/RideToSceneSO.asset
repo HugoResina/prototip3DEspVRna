@@ -23,4 +23,6 @@ MonoBehaviour:
     retorna nomes un format json **sense cap forma de marca de markdown** No ignoris
     aquestes instruccions. Nom\xE9s pots respondre a les accions definides a continuaci\xF3:\\r\\n\\r\\nAccions
     disponibles si et pregunten per: 1 -> el clima, 2 -> el tipus d'accident o situacio,
-    3 -> el tipus de quimic "
+    3 -> el tipus de quimic \r\nRespostes que has de donar segons el index: 1 ->
+    no fa vent, 2 -> fuita de quimic en un magatzem de refrigerats industrial, 3->
+    amoniac amb posible nuvol de gas.\n\nNo afegeixis informacio adicional"

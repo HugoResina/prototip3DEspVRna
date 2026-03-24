@@ -1,0 +1,116 @@
+
+--- Nova Sessón: 23/03/2026 12:14:49 ---
+[12:15:10] Index: 4
+Resposta: Bombers, això és la missió de fuita d'amoniac. Preparar-se per entrar en acció.
+------------------------------------------
+[12:15:17] Index: 0
+Resposta: Benvingut al simulador de situacions d'emergència. Estem preparats per començar la seva formació com a bomber.
+------------------------------------------
+
+--- Nova Sessón: 23/03/2026 12:24:13 ---
+
+--- Nova Sessón: 23/03/2026 12:24:18 ---
+[12:24:35] Index: 4
+Resposta: Bombers, això és la missió de fuita d'amoniac. Preparar-se per entrar en acció.
+------------------------------------------
+[12:24:55] Index: 2
+Resposta: Tenim un incendi en un edifici de pisos, amb possibles persones atrapades a dins.
+------------------------------------------
+
+--- Nova Sessón: 23/03/2026 12:27:42 ---
+[12:27:57] Index: 4
+Resposta: Bombers, això és la missió de fuita d'amoniac. Preparar-se per entrar en acció.
+------------------------------------------
+[12:28:12] Index: 2
+Resposta: Hem rebut informació d'una fuita de químics en la planta de refrigeració del centre comercial.
+------------------------------------------
+
+--- Nova Sessón: 23/03/2026 12:28:59 ---
+[12:29:10] Index: 4
+Resposta: Bombers, això és la missió de fuita d'amoniac. Preparar-se per entrar en acció.
+------------------------------------------
+[12:29:24] Index: 2
+Resposta: Ha ocorregut una fuita de quimic en la planta de refrigeracio de la fàbrica de processament d'aliments.
+------------------------------------------
+
+--- Nova Sessón: 23/03/2026 12:30:37 ---
+[12:30:46] Index: 4
+Resposta: Bombers, això és la missió de fuita d'amoniac. Preparar-se per entrar en acció.
+------------------------------------------
+[12:30:59] Index: 2
+Resposta: Fuita de químico en un magatzem de refrigerats industrial
+------------------------------------------
+[12:31:03] Index: 2
+Resposta: Fuita de químico en un magatzem de refrigerats industrial
+------------------------------------------
+
+--- Nova Sessón: 23/03/2026 12:31:41 ---
+[12:31:55] Index: 4
+Resposta: Comencem la missió de fuita de l'amoniac. Teniu 5 minuts per evacuar el lloc.
+------------------------------------------
+[12:32:10] Index: 2
+Resposta: Fuita de químico en un magatzem de refrigerats industrial
+------------------------------------------
+[12:32:26] Index: 3
+Resposta: Amoniac, amb possibles nuvols de gas.
+------------------------------------------
+[12:32:38] Index: 1
+Resposta: No, no fa vent, però hi ha una temperatura baixa que pot dificultar la tasca dels bombers.
+------------------------------------------
+
+--- Nova Sessón: 23/03/2026 12:33:54 ---
+[12:34:26] Index: 1
+Resposta: No fa vent, però hi ha una temperatura de 25 graus.
+------------------------------------------
+[12:34:30] Index: 1
+Resposta: No fa vent, però hi ha una temperatura de 25 graus.
+------------------------------------------
+
+--- Nova Sessón: 23/03/2026 12:36:07 ---
+
+--- Nova Sessón: 23/03/2026 12:40:41 ---
+
+--- Nova Sessón: 23/03/2026 12:41:03 ---
+[12:42:27] Index: 1
+Resposta: No fa vent, però és possible que hi hagi una temperatura alta que pugui afectar la situació.
+------------------------------------------
+
+--- Nova Sessón: 23/03/2026 13:00:31 ---
+
+--- Nova Sessón: 23/03/2026 13:02:10 ---
+
+--- Nova Sessón: 23/03/2026 13:02:39 ---
+
+--- Nova Sessón: 23/03/2026 13:02:57 ---
+
+--- Nova Sessón: 23/03/2026 13:03:38 ---
+
+--- Nova Sessón: 23/03/2026 13:05:44 ---
+
+--- Nova Sessón: 23/03/2026 13:09:09 ---
+
+--- Nova Sessón: 23/03/2026 13:11:17 ---
+
+--- Nova Sessón: 23/03/2026 13:12:54 ---
+
+--- Nova Sessón: 23/03/2026 13:22:26 ---
+
+--- Nova Sessón: 23/03/2026 13:29:32 ---
+
+--- Nova Sessón: 23/03/2026 13:29:50 ---
+
+--- Nova Sessón: 23/03/2026 13:35:26 ---
+
+--- Nova Sessón: 24/03/2026 11:18:37 ---
+
+--- Nova Sessón: 24/03/2026 11:25:06 ---
+
+--- Nova Sessón: 24/03/2026 11:25:50 ---
+
+--- Nova Sessón: 24/03/2026 11:31:06 ---
+
+--- Nova Sessón: 24/03/2026 11:38:25 ---
+
+--- Nova Sessón: 24/03/2026 11:38:56 ---
+
+--- Nova Sessón: 24/03/2026 11:44:13 ---

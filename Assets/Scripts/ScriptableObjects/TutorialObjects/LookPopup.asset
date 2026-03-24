@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ccbf0224ac0a3e148a2fca22e1bc5705, type: 3}
-  m_Name: ExitObjective
-  m_EditorClassIdentifier: Assembly-CSharp::TutorialObjectiveSO
-  Title: Surt
-  Description: Prem 'ESC' per deixar d'interactuar.
-  tutorialType: 5
+  m_Script: {fileID: 11500000, guid: 9094fc4c3bc6f894a8dc15ee3e1e95a8, type: 3}
+  m_Name: LookPopup
+  m_EditorClassIdentifier: Assembly-CSharp::PopupSO
+  title: "C\xE0mera"
+  image: {fileID: 0}
+  content: "Mou el ratol\xED per a orientar al jugador."

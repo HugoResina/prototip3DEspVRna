@@ -114,3 +114,13 @@ Resposta: No fa vent, però és possible que hi hagi una temperatura alta que pu
 --- Nova Sessón: 24/03/2026 11:38:56 ---
 
 --- Nova Sessón: 24/03/2026 11:44:13 ---
+
+--- Nova Sessón: 24/03/2026 13:21:49 ---
+
+--- Nova Sessón: 24/03/2026 13:22:02 ---
+[13:22:18] Index: 1
+Resposta: Sóns a punt per començar. Apaguem les llums per garantir la seguretat.
+------------------------------------------
+[13:22:31] Index: 4
+Resposta: Benvingut al simulador de resposta a emergències. La missió és evacuar el lloc després d'una fuita d'amoníac. Comencem.
+------------------------------------------

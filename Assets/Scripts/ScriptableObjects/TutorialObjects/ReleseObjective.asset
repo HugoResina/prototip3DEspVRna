@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ccbf0224ac0a3e148a2fca22e1bc5705, type: 3}
-  m_Name: LookObjective
+  m_Name: ReleseObjective
   m_EditorClassIdentifier: Assembly-CSharp::TutorialObjectiveSO
-  title: Mira
-  description: "Utilitza el ratol\xED per a mirar el teu voltant."
-  tutorialType: 0
-  popup: {fileID: 11400000, guid: da1a7a34d018701478e870fb9d516e0e, type: 2}
+  title: Deixa
+  description: Utilitza 'ESC' o 'E' per deixar l'objecte.
+  tutorialType: 5
+  popup: {fileID: 11400000, guid: 309ac50954a11ba4f98e0ecc01e54901, type: 2}

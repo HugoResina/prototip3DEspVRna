@@ -24,7 +24,9 @@ public class PlayerMovement : MonoBehaviour
 
     private Vector3 _currentMovement = Vector3.zero;
     private Vector2 _cameraRotation = Vector2.zero;
-    private bool _isInteracting = false;
+
+    private void OnEnable() => UIManager.Instance.OnPauseGame += DisableInputs;
+    private void OnDisable() => UIManager.Instance.OnPauseGame -= DisableInputs;
 
     private void Awake()
     {
@@ -38,21 +40,6 @@ public class PlayerMovement : MonoBehaviour
         UIManager.Instance.SetCursorState(true, false);
     }
 
-    /*private void OnEnable()
-    {
-        InteractablePerson.lockCam += switchInteractingState;
-        PlayerInteraction.Interacting += switchInteractingState;
-    }
-    private void OnDisable()
-    {
-        InteractablePerson.lockCam -= switchInteractingState;
-        PlayerInteraction.Interacting -= switchInteractingState;
-    }*/
-
-    public void switchInteractingState(bool state)
-    {
-        _isInteracting = state;
-    }
     private void Update()
     {
        if(!_playerInteraction.isInteracting)
@@ -102,5 +89,10 @@ public class PlayerMovement : MonoBehaviour
         {
             _currentMovement.y -= gravity * Time.deltaTime;
         }
+    }
+
+    private void DisableInputs(bool disable)
+    {
+        _playerInputs.enabled = !disable;
     }
 }

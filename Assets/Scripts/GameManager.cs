@@ -46,6 +46,8 @@ public class GameManager : MonoBehaviour
         _groqChat = GetComponent<GroqChat>();
         _stt = GetComponent<NewSTT>();
         _tts = GetComponent<TTS>();
+
+        SttEnabled = false;
     }
 
     public void SendFunc()

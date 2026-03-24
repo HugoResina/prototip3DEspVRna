@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccbf0224ac0a3e148a2fca22e1bc5705, type: 3}
   m_Name: SprintObjective
   m_EditorClassIdentifier: Assembly-CSharp::TutorialObjectiveSO
-  Title: Corre
-  Description: "Utilitza 'SHIFT' metre t'est\xE0s movent per a c\xF3rrer."
+  title: Corre
+  description: "Utilitza 'SHIFT' per c\xF3rrer mentre t'est\xE0s movent."
   tutorialType: 2
+  popup: {fileID: 11400000, guid: 65c8f70cf27f06a40b21c13d7c07ddc0, type: 2}

@@ -1,4 +1,5 @@
 using System;
+using System.Security.AccessControl;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -13,6 +14,15 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject _objectiveSection;
     [SerializeField] private TextMeshProUGUI _objectiveTitle;
     [SerializeField] private TextMeshProUGUI _objectiveText;
+    #endregion
+
+    #region UI Popup SerializeVariables
+    [Header("Popup")]
+    [SerializeField] private GameObject _popupSection;
+    [SerializeField] private TextMeshProUGUI _popupTitle;
+    [SerializeField] private Image _popupImage;
+    [SerializeField] private TextMeshProUGUI _popupContent;
+    [SerializeField] private Button _popupButton;
     #endregion
 
     #region Interactable Person SerializeVariables, Properties and Events
@@ -31,11 +41,14 @@ public class UIManager : MonoBehaviour
     public static event Action InterPerToggleMicrophone;
     #endregion
 
+    public event Action<bool> OnPauseGame;
+
     private void OnEnable()
     {
         PlayerInteraction.OnInteractUpdate += UpdateInteractionText;
 
         ControlsTutorial.OnUpdateObjective += UpdatePlayerObjective;
+        ControlsTutorial.OnShowPopup += ShowPopup;
 
         InteractablePersonEvents.OnMenuState += UpdateInteractablePersonMenuState;
         InteractablePersonEvents.OnInputField += UpdateInteractablePersonInputField;
@@ -47,6 +60,7 @@ public class UIManager : MonoBehaviour
         PlayerInteraction.OnInteractUpdate -= UpdateInteractionText;
 
         ControlsTutorial.OnUpdateObjective -= UpdatePlayerObjective;
+        ControlsTutorial.OnShowPopup -= ShowPopup;
 
         InteractablePersonEvents.OnMenuState -= UpdateInteractablePersonMenuState;
         InteractablePersonEvents.OnInputField -= UpdateInteractablePersonInputField;
@@ -73,6 +87,9 @@ public class UIManager : MonoBehaviour
         _ipSendButton.onClick.AddListener(InterPerSendButton);
         _ipMicrophoneToggleButton.onClick.AddListener(ToggleMicrophone);
         #endregion
+
+        _objectiveSection.SetActive(false);
+        _popupSection.SetActive(false);
     }
 
     private void Update()
@@ -87,16 +104,45 @@ public class UIManager : MonoBehaviour
 
     private void UpdateInteractionText(string text) => _pInteractionText.text = text;
 
-    public void SetCursorState(bool looked, bool visible)
-    {
-        Cursor.lockState = looked ? CursorLockMode.Locked : CursorLockMode.None;
-        Cursor.visible = visible;
-    }
-
     private void UpdatePlayerObjective(string title, string objective)
     {
-        _objectiveTitle.text = title;
-        _objectiveText.text = objective;
+        if (string.IsNullOrEmpty(title) && string.IsNullOrEmpty(objective))
+        {
+            _objectiveSection.SetActive(false);
+        }
+        else
+        {
+            _objectiveSection.SetActive(true);
+            _objectiveTitle.text = title;
+            _objectiveText.text = objective;
+        }
+    }
+
+    private void ShowPopup(PopupSO popup, Action onContinue)
+    {
+        if (popup == null)
+        {
+            _popupSection.SetActive(false);
+        }
+        else
+        {
+            PauseGame();
+
+            _popupSection.SetActive(true);
+            _popupTitle.text = popup.title;
+
+            if (popup.image == null) _popupImage.enabled = false;
+            else { _popupImage.enabled = true; _popupImage = popup.image; }
+
+            _popupContent.text = popup.content;
+            _popupButton.onClick.AddListener(() =>
+            {
+                _popupSection.SetActive(false);
+                ResumeGame();
+
+                onContinue.Invoke();
+            });
+        }
     }
 
     #region Interactable Person Functions
@@ -121,4 +167,26 @@ public class UIManager : MonoBehaviour
     }
     #endregion
     #endregion
+
+    public void SetCursorState(bool looked, bool visible)
+    {
+        Cursor.lockState = looked ? CursorLockMode.Locked : CursorLockMode.None;
+        Cursor.visible = visible;
+    }
+
+    private void PauseGame()
+    {
+        Time.timeScale = 0f;
+        OnPauseGame?.Invoke(true);
+
+        SetCursorState(false, true);
+    }
+
+    private void ResumeGame()
+    {
+        Time.timeScale = 1f;
+        OnPauseGame?.Invoke(false);
+
+        SetCursorState(true, false);
+    }
 }

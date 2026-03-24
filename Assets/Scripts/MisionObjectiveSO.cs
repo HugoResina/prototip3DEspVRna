@@ -1,10 +1,10 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Objective", menuName = "Scriptable Objects/Mision/Objective")]
+[CreateAssetMenu(fileName = "Objective", menuName = "Scriptable Objects/MisionObjective")]
 public class MisionObjectiveSO : ScriptableObject
 {
-    public string Title;
+    public string title;
 
     [TextArea(3, 5)]
-    public string Description;
+    public string description;
 }

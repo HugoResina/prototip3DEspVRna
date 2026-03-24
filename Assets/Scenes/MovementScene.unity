@@ -497,14 +497,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ControlsTutorial
   _startOnAwake: 1
+  _startWaitTime: 1
   _inputs: {fileID: 8682046252757459270}
-  _objectives:
-  - {fileID: 11400000, guid: 0e886a971aac14d4aab8641bdc271458, type: 2}
-  - {fileID: 11400000, guid: ddc06f14e647b184fa1c7e92f90b0a49, type: 2}
-  - {fileID: 11400000, guid: 41ac76f25777dd543be4117883606a3f, type: 2}
-  - {fileID: 11400000, guid: 98621d272263ef44d9a80becbd1af3bc, type: 2}
-  - {fileID: 11400000, guid: 8ebc9ab8e011e91478c3df549d8fe30b, type: 2}
-  - {fileID: 11400000, guid: aa0acc7b2cf343042b0f602642e30fc7, type: 2}
+  _tutorialObjectives: {fileID: 11400000, guid: 798884e19ee76fe45a5d502e3d369b54, type: 2}
+  _popupWaitTime: 2
 --- !u!1 &1373792086
 GameObject:
   m_ObjectHideFlags: 0

@@ -10,8 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ccbf0224ac0a3e148a2fca22e1bc5705, type: 3}
-  m_Name: InteractObjective
+  m_Name: PickupObjective
   m_EditorClassIdentifier: Assembly-CSharp::TutorialObjectiveSO
-  Title: Agafa
-  Description: Prem 'E' per agafar un objecte.
-  tutorialType: 4
+  title: Agafa
+  description: Utilitza 'E' mentre mires un objecte per agafar-lo.
+  tutorialType: 3
+  popup: {fileID: 11400000, guid: 092e7a07e3e1b14449b7ebaee63be74e, type: 2}

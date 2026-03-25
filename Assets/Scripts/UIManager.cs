@@ -33,8 +33,11 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Button _ipEraseButton;
     [SerializeField] private Button _ipSendButton;
     [SerializeField] private Button _ipMicrophoneToggleButton;
+    [SerializeField] private Image _ipMicrophoneToggleButtonImage;
     [SerializeField] private Color _ipMicrophoneRecordingColor = Color.green;
+    [SerializeField] private Sprite _ipMicrophoneRecordingIcon;
     [SerializeField] private Color _ipMicrophoneStoppedColor = Color.red;
+    [SerializeField] private Sprite _ipMicrophoneStoppedIcon;
 
     public string InterPerInputFieldText => _ipInputField.text;
 
@@ -97,6 +100,7 @@ public class UIManager : MonoBehaviour
         #region Ineractable Person Microphone Button Record Color
         if (_interactablePersonMenu.activeSelf)
         {
+            _ipMicrophoneToggleButtonImage.sprite = NewSTT.Recording ? _ipMicrophoneRecordingIcon : _ipMicrophoneStoppedIcon;
             _ipMicrophoneToggleButton.gameObject.GetComponent<Image>().color = NewSTT.Recording ? _ipMicrophoneRecordingColor : _ipMicrophoneStoppedColor;
         }
         #endregion

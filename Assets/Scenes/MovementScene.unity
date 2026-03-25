@@ -496,7 +496,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b5d2d1a4262b1d4e87604b893365b4c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ControlsTutorial
-  _startOnAwake: 1
+  _startOnAwake: 0
   _startWaitTime: 1
   _inputs: {fileID: 8682046252757459270}
   _tutorialObjectives: {fileID: 11400000, guid: 798884e19ee76fe45a5d502e3d369b54, type: 2}

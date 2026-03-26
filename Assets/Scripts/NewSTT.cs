@@ -81,8 +81,8 @@ public class NewSTT : MonoBehaviour
         if (Microphone.devices.Length == 0) { Debug.LogError("No s'han trobat micr�fons disponibles."); return; }
         if (string.IsNullOrEmpty(_micDeviceName)) _micDeviceName = Microphone.devices[0];
 
-        if (Microphone.devices.Length == 0) { Debug.LogError("No s'han trobat micr�fons disponibles."); return; }
-        if (string.IsNullOrEmpty(_micDeviceName)) _micDeviceName = Microphone.devices[0];
+        //if (Microphone.devices.Length == 0) { Debug.LogError("No s'han trobat micr�fons disponibles."); return; }
+        //if (string.IsNullOrEmpty(_micDeviceName)) _micDeviceName = Microphone.devices[0];
 
         StartMicrophone(); 
     }
@@ -173,6 +173,7 @@ public class NewSTT : MonoBehaviour
 
             if (_voskRecognizer.AcceptWaveform(bytes, bytes.Length))
             {
+                
                 string json = _voskRecognizer.Result();
                 RecognizerResult recoResult = JsonUtility.FromJson<RecognizerResult>(json);
 

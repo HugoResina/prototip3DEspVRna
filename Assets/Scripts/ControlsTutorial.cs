@@ -18,6 +18,11 @@ public class ControlsTutorial : MonoBehaviour
     private readonly Dictionary<TutorialObjectiveType, Func<bool>> _conditions = new Dictionary<TutorialObjectiveType, Func<bool>>();
 
     private bool _waiting = false;
+    private bool _grabbing = false;
+    private bool _relese = false;
+
+    private void OnEnable() => GrabbableBehaviour.OnGrabItem += UpdateGrabbing;
+    private void OnDisable() => GrabbableBehaviour.OnGrabItem -= UpdateGrabbing;
 
     private void Awake()
     {
@@ -48,15 +53,15 @@ public class ControlsTutorial : MonoBehaviour
                     break;
 
                 case TutorialObjectiveType.Pickup:
-                    _conditions.Add(TutorialObjectiveType.Pickup, () => _inputs.InteractInput);
+                    _conditions.Add(TutorialObjectiveType.Pickup, () => (_inputs.InteractInput) && _grabbing);
                     break;
 
                 case TutorialObjectiveType.Rotate:
-                    _conditions.Add(TutorialObjectiveType.Rotate, () => _inputs.AttackInput && _inputs.LookInput.sqrMagnitude > 0);
+                    _conditions.Add(TutorialObjectiveType.Rotate, () => (_inputs.AttackInput && _inputs.LookInput.sqrMagnitude > 0) && _grabbing);
                     break;
 
                 case TutorialObjectiveType.Relese:
-                    _conditions.Add(TutorialObjectiveType.Relese, () => _inputs.ExitInput || _inputs.InteractInput);
+                    _conditions.Add(TutorialObjectiveType.Relese, () => (_inputs.ExitInput || _inputs.InteractInput) && _relese);
                     break;
 
                 default:
@@ -105,5 +110,19 @@ public class ControlsTutorial : MonoBehaviour
         _waiting = false;
 
         OnUpdateObjective?.Invoke(string.Empty, string.Empty);
+    }
+
+    private void UpdateGrabbing(bool grabbing)
+    {
+        _grabbing = grabbing;
+
+        if (!grabbing) StartCoroutine(ResetRelese());
+    }
+
+    private IEnumerator ResetRelese()
+    {
+        _relese = true;
+        yield return new WaitForSeconds(1f);
+        _relese = false;
     }
 }

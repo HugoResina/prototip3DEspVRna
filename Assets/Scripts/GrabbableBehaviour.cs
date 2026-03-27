@@ -13,6 +13,8 @@ public class GrabbableBehaviour : MonoBehaviour, IIteractable, IGrabbable
     public bool IsMoving => _isMoving;
     public float RotationSpeed => _itemRotationSpeed;
 
+    public static event Action<bool> OnGrabItem;
+
     private bool _isMoving = false;
 
     private Vector3 _initialPosition;
@@ -26,10 +28,12 @@ public class GrabbableBehaviour : MonoBehaviour, IIteractable, IGrabbable
         if (!pinteractor.isInteracting)
         {
             Grab(pinteractor);
+            OnGrabItem?.Invoke(true);
         }
         else
         {
             Relese(pinteractor);
+            OnGrabItem?.Invoke(false);
         }
     }
 

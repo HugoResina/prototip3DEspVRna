@@ -1,0 +1,149 @@
+[
+    {
+    "id" : 1,
+    "name" : "Fuita Amoniac",
+    "description" : "Missió de Fuita de Amoniac",
+    "totalpoints" : 8,
+    "decisions" : [
+        {
+            "id" : 1,
+            "title" : "Arribada al magatzem",
+            "answers" : [
+                {
+                    "text" : "M’apropo fins a 20 m per tenir millor visió",
+                    "points" : 0,
+                    "actions":["checkPoint1"],
+                    "feedback": "Hem aparcat massa a prop. Un buf d’amoníac ens arriba i ens piquen els ulls. No és greu, però és un error de criteri.",
+                    "post-actions":["screen(red)"]
+                },
+                {
+                    "text" : "Mantinc el vehicle a 50 m, encarat cap a la nau i vent a l’esquena",
+                    "points" : 1,
+                    "actions":["checkPoint2","exitCar"],
+                    "feedback": "El vent ve del nord-est, perfecte, ens queda a l’esquena. Em trobo amb el comandament del BRP.",
+                    "post-actions":["nexAction(2)"]
+                },
+                {
+                    "text" : "Ens situem entrant pel costat del vent per poder realitzar el 360",
+                    "points" : 0 ,
+                    "actions":["checkPoint(prefab,transform)"],
+                    "feedback": "PENDENT ERROR",
+                    "post-actions":["screen(red)"]
+                }
+            ]
+        },
+        {
+            "id" : 2,
+            "title" : "Baixada del vehicle i començamanet",
+            "answers" : [
+                {
+                    "text" : "M'acosto al accés de la nau per examinar l'escenari mentre l'equip monta el ABD",
+                    "points" : 0, 
+                    "actions":["checkPoint(prefab,transform)","mountADB()"]
+                },
+                {
+                    "text" : "Decideixo esperar dos dotacions més per tenir capacitat d'actuació",
+                    "points" : 0,
+                    "actions":["esperar(time)"]
+                },
+                {
+                    "text" : "Examino l'entorn per valorar fuita, núvol, dianes i ruta per a la resta de vehicles",
+                    "points" : 1,
+                    "actions":["esperar(time)"]
+                }
+            ]
+        },
+        {
+            "id" : 3,
+            "title" : "Baixada del vehicle i començamanet",
+            "answers" : [
+                {
+                    "text" : "M'acosto al accés de la nau per examinar l'escenari mentre l'equip monta el ABD",
+                    "points" : 0,
+                    "actions":["esperar(time)"]
+
+                },
+                {
+                    "text" : "Decideixo esperar dos dotacions més per tenir capacitat d'actuació",
+                    "points" : 0
+                },
+                {
+                    "text" : "Examino l'entorn per valorar fuita, núvol, dianes i ruta per a la resta de vehicles",
+                    "points" : 1
+                }
+            ]
+        },
+        {
+            "id" : 4,
+            "title" : "Baixada del vehicle i començamanet",
+            "answers" : [
+                {
+                    "text" : "M'acosto al accés de la nau per examinar l'escenari mentre l'equip monta el ABD",
+                    "points" : 0
+                },
+                {
+                    "text" : "Decideixo esperar dos dotacions més per tenir capacitat d'actuació",
+                    "points" : 0
+                },
+                {
+                    "text" : "Examino l'entorn per valorar fuita, núvol, dianes i ruta per a la resta de vehicles",
+                    "points" : 1
+                }
+            ]
+        },
+        {
+            "id" : 2,
+            "title" : "Baixada del vehicle i començamanet",
+            "answers" : [
+                {
+                    "text" : "M'acosto al accés de la nau per examinar l'escenari mentre l'equip monta el ABD",
+                    "points" : 0
+                },
+                {
+                    "text" : "Decideixo esperar dos dotacions més per tenir capacitat d'actuació",
+                    "points" : 0
+                },
+                {
+                    "text" : "Examino l'entorn per valorar fuita, núvol, dianes i ruta per a la resta de vehicles",
+                    "points" : 1
+                }
+            ]
+        },
+        {
+            "id" : 2,
+            "title" : "Baixada del vehicle i començamanet",
+            "answers" : [
+                {
+                    "text" : "M'acosto al accés de la nau per examinar l'escenari mentre l'equip monta el ABD",
+                    "points" : 0
+                },
+                {
+                    "text" : "Decideixo esperar dos dotacions més per tenir capacitat d'actuació",
+                    "points" : 0
+                },
+                {
+                    "text" : "Examino l'entorn per valorar fuita, núvol, dianes i ruta per a la resta de vehicles",
+                    "points" : 1
+                }
+            ]
+        },
+        {
+            "id" : 2,
+            "title" : "Baixada del vehicle i començamanet",
+            "answers" : [
+                {
+                    "text" : "M'acosto al accés de la nau per examinar l'escenari mentre l'equip monta el ABD",
+                    "points" : 0
+                },
+                {
+                    "text" : "Decideixo esperar dos dotacions més per tenir capacitat d'actuació",
+                    "points" : 0
+                },
+                {
+                    "text" : "Examino l'entorn per valorar fuita, núvol, dianes i ruta per a la resta de vehicles",
+                    "points" : 1
+                }
+            ]
+        }
+    ]}
+]

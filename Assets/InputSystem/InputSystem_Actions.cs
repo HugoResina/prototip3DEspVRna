@@ -896,6 +896,34 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": false
                 }
             ]
+        },
+        {
+            ""name"": ""Walkie"",
+            ""id"": ""facc4d50-7ede-4e1a-a798-ef018ab23980"",
+            ""actions"": [
+                {
+                    ""name"": ""Radio"",
+                    ""type"": ""Button"",
+                    ""id"": ""d18cd739-140f-4c1b-bec4-35689d860332"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""047e7ac9-55a5-4ef8-ab70-2851e7b9d616"",
+                    ""path"": ""<Keyboard>/b"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Radio"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -981,12 +1009,16 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         m_UI_ScrollWheel = m_UI.FindAction("ScrollWheel", throwIfNotFound: true);
         m_UI_TrackedDevicePosition = m_UI.FindAction("TrackedDevicePosition", throwIfNotFound: true);
         m_UI_TrackedDeviceOrientation = m_UI.FindAction("TrackedDeviceOrientation", throwIfNotFound: true);
+        // Walkie
+        m_Walkie = asset.FindActionMap("Walkie", throwIfNotFound: true);
+        m_Walkie_Radio = m_Walkie.FindAction("Radio", throwIfNotFound: true);
     }
 
     ~@InputSystem_Actions()
     {
         UnityEngine.Debug.Assert(!m_Player.enabled, "This will cause a leak and performance issues, InputSystem_Actions.Player.Disable() has not been called.");
         UnityEngine.Debug.Assert(!m_UI.enabled, "This will cause a leak and performance issues, InputSystem_Actions.UI.Disable() has not been called.");
+        UnityEngine.Debug.Assert(!m_Walkie.enabled, "This will cause a leak and performance issues, InputSystem_Actions.Walkie.Disable() has not been called.");
     }
 
     /// <summary>
@@ -1404,6 +1436,102 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
     /// Provides a new <see cref="UIActions" /> instance referencing this action map.
     /// </summary>
     public UIActions @UI => new UIActions(this);
+
+    // Walkie
+    private readonly InputActionMap m_Walkie;
+    private List<IWalkieActions> m_WalkieActionsCallbackInterfaces = new List<IWalkieActions>();
+    private readonly InputAction m_Walkie_Radio;
+    /// <summary>
+    /// Provides access to input actions defined in input action map "Walkie".
+    /// </summary>
+    public struct WalkieActions
+    {
+        private @InputSystem_Actions m_Wrapper;
+
+        /// <summary>
+        /// Construct a new instance of the input action map wrapper class.
+        /// </summary>
+        public WalkieActions(@InputSystem_Actions wrapper) { m_Wrapper = wrapper; }
+        /// <summary>
+        /// Provides access to the underlying input action "Walkie/Radio".
+        /// </summary>
+        public InputAction @Radio => m_Wrapper.m_Walkie_Radio;
+        /// <summary>
+        /// Provides access to the underlying input action map instance.
+        /// </summary>
+        public InputActionMap Get() { return m_Wrapper.m_Walkie; }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Enable()" />
+        public void Enable() { Get().Enable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.Disable()" />
+        public void Disable() { Get().Disable(); }
+        /// <inheritdoc cref="UnityEngine.InputSystem.InputActionMap.enabled" />
+        public bool enabled => Get().enabled;
+        /// <summary>
+        /// Implicitly converts an <see ref="WalkieActions" /> to an <see ref="InputActionMap" /> instance.
+        /// </summary>
+        public static implicit operator InputActionMap(WalkieActions set) { return set.Get(); }
+        /// <summary>
+        /// Adds <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <param name="instance">Callback instance.</param>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c> or <paramref name="instance"/> have already been added this method does nothing.
+        /// </remarks>
+        /// <seealso cref="WalkieActions" />
+        public void AddCallbacks(IWalkieActions instance)
+        {
+            if (instance == null || m_Wrapper.m_WalkieActionsCallbackInterfaces.Contains(instance)) return;
+            m_Wrapper.m_WalkieActionsCallbackInterfaces.Add(instance);
+            @Radio.started += instance.OnRadio;
+            @Radio.performed += instance.OnRadio;
+            @Radio.canceled += instance.OnRadio;
+        }
+
+        /// <summary>
+        /// Removes <see cref="InputAction.started"/>, <see cref="InputAction.performed"/> and <see cref="InputAction.canceled"/> callbacks provided via <param cref="instance" /> on all input actions contained in this map.
+        /// </summary>
+        /// <remarks>
+        /// Calling this method when <paramref name="instance" /> have not previously been registered has no side-effects.
+        /// </remarks>
+        /// <seealso cref="WalkieActions" />
+        private void UnregisterCallbacks(IWalkieActions instance)
+        {
+            @Radio.started -= instance.OnRadio;
+            @Radio.performed -= instance.OnRadio;
+            @Radio.canceled -= instance.OnRadio;
+        }
+
+        /// <summary>
+        /// Unregisters <param cref="instance" /> and unregisters all input action callbacks via <see cref="WalkieActions.UnregisterCallbacks(IWalkieActions)" />.
+        /// </summary>
+        /// <seealso cref="WalkieActions.UnregisterCallbacks(IWalkieActions)" />
+        public void RemoveCallbacks(IWalkieActions instance)
+        {
+            if (m_Wrapper.m_WalkieActionsCallbackInterfaces.Remove(instance))
+                UnregisterCallbacks(instance);
+        }
+
+        /// <summary>
+        /// Replaces all existing callback instances and previously registered input action callbacks associated with them with callbacks provided via <param cref="instance" />.
+        /// </summary>
+        /// <remarks>
+        /// If <paramref name="instance" /> is <c>null</c>, calling this method will only unregister all existing callbacks but not register any new callbacks.
+        /// </remarks>
+        /// <seealso cref="WalkieActions.AddCallbacks(IWalkieActions)" />
+        /// <seealso cref="WalkieActions.RemoveCallbacks(IWalkieActions)" />
+        /// <seealso cref="WalkieActions.UnregisterCallbacks(IWalkieActions)" />
+        public void SetCallbacks(IWalkieActions instance)
+        {
+            foreach (var item in m_Wrapper.m_WalkieActionsCallbackInterfaces)
+                UnregisterCallbacks(item);
+            m_Wrapper.m_WalkieActionsCallbackInterfaces.Clear();
+            AddCallbacks(instance);
+        }
+    }
+    /// <summary>
+    /// Provides a new <see cref="WalkieActions" /> instance referencing this action map.
+    /// </summary>
+    public WalkieActions @Walkie => new WalkieActions(this);
     private int m_KeyboardMouseSchemeIndex = -1;
     /// <summary>
     /// Provides access to the input control scheme.
@@ -1596,5 +1724,20 @@ public partial class @InputSystem_Actions: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnTrackedDeviceOrientation(InputAction.CallbackContext context);
+    }
+    /// <summary>
+    /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "Walkie" which allows adding and removing callbacks.
+    /// </summary>
+    /// <seealso cref="WalkieActions.AddCallbacks(IWalkieActions)" />
+    /// <seealso cref="WalkieActions.RemoveCallbacks(IWalkieActions)" />
+    public interface IWalkieActions
+    {
+        /// <summary>
+        /// Method invoked when associated input action "Radio" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// </summary>
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
+        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
+        void OnRadio(InputAction.CallbackContext context);
     }
 }

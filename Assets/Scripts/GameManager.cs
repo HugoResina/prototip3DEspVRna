@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour
                 Debug.Log("index: ----------->" + responseObj.index);
                 Debug.Log("response: ----------->" + responseObj.response);
 
-                RegistrarEnArchivo(responseObj);
+                //RegistrarEnArchivo(responseObj);
 
                 OnAISend.Invoke(responseObj.index);
 

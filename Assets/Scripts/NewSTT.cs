@@ -66,11 +66,16 @@ public class NewSTT : MonoBehaviour
     {
         if (Recording)
         {
+
             string result = GetRecordResult();
-            
+
+
+
+            Debug.Log(" " + result);
             if (!string.IsNullOrEmpty(result))
             {
                 InteractablePersonEvents.UpdateInputFieldText(UIManager.Instance.InterPerInputFieldText + " " + result);
+                
             }
         }
     }
@@ -127,14 +132,14 @@ public class NewSTT : MonoBehaviour
         if (!string.IsNullOrEmpty(_micDeviceName) && Microphone.IsRecording(_micDeviceName))
         {
             Microphone.End(_micDeviceName);
-            Debug.Log("Fi de la gravaci�");
+            Debug.Log("Fi de la gravacio");
             Recording = false;
         }
     }
 
     private string GetRecordResult()
     {
-        if (_isProcessing) return "";
+        if (!_isProcessing) return "";
         if (_micClip == null || _voskRecognizer == null) return "";
 
         int micCurrentPos = Microphone.GetPosition(_micDeviceName);

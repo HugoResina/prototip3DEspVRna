@@ -7,6 +7,8 @@ public class ExitCInematic : MonoBehaviour
 
     public void ExitCinematic()
     {
+        ObjectiveList.Instance.ShowNext();
+        //UIManager.Instance.
         Debug.Log("sortir de la cinematica");
         //call on last frame of cinematic 
         Player.SetActive(true);

@@ -50,6 +50,9 @@ public class UIManager : MonoBehaviour
     {
         PlayerInteraction.OnInteractUpdate += UpdateInteractionText;
 
+        ObjectiveList.ShowObjective += UpdatePlayerObjective;
+
+
         ControlsTutorial.OnUpdateObjective += UpdatePlayerObjective;
         ControlsTutorial.OnShowPopup += ShowPopup;
 
@@ -61,6 +64,8 @@ public class UIManager : MonoBehaviour
     private void OnDisable()
     {
         PlayerInteraction.OnInteractUpdate -= UpdateInteractionText;
+
+        ObjectiveList.ShowObjective -= UpdatePlayerObjective;
 
         ControlsTutorial.OnUpdateObjective -= UpdatePlayerObjective;
         ControlsTutorial.OnShowPopup -= ShowPopup;

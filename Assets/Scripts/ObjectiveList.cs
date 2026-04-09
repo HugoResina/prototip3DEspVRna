@@ -9,6 +9,7 @@ public class ObjectiveList : MonoBehaviour
     private int currentObjective = 0;
     public static event Action<string, string> ShowObjective;
 
+
     public static ObjectiveList Instance { get; private set; }
 
     private void Awake()
@@ -26,6 +27,7 @@ public class ObjectiveList : MonoBehaviour
 
     private void Start()
     {
+        ShowNext();
         //ShowObjective?.Invoke(objectives[currentObjective].title, objectives[currentObjective].description);
     }
 

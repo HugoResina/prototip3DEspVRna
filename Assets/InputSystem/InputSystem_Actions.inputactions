@@ -810,6 +810,34 @@
                     "isPartOfComposite": false
                 }
             ]
+        },
+        {
+            "name": "Walkie",
+            "id": "facc4d50-7ede-4e1a-a798-ef018ab23980",
+            "actions": [
+                {
+                    "name": "Radio",
+                    "type": "Button",
+                    "id": "d18cd739-140f-4c1b-bec4-35689d860332",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "047e7ac9-55a5-4ef8-ab70-2851e7b9d616",
+                    "path": "<Keyboard>/b",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Radio",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

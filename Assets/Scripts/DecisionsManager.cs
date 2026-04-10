@@ -9,13 +9,13 @@ public class DecisionsManager : MonoBehaviour
     public static event Action<string, Action> OnDecisionShown;
     public static event Action<int> OnUpdateScore;
 
-    private Decision[] _missionDecisions;
+    private PrevDecision[] _missionDecisions;
     private int _score = 0;
     private bool _waitingForAnswer = false;
 
     private void Awake()
     {
-        _missionDecisions = DecisionsHelper.LoadMissionDecisions(missionId);
+        _missionDecisions = MissionLoader.PrevLoadMissionDecisions(missionId);
     }
 
     private void Start()
@@ -30,11 +30,11 @@ public class DecisionsManager : MonoBehaviour
 
     private IEnumerator ShowDecisions()
     {
-        foreach (Decision decision in _missionDecisions)
+        foreach (PrevDecision decision in _missionDecisions)
         {
             _waitingForAnswer = true;
 
-            foreach (DecisionAnswer answer in decision.answers)
+            foreach (PrevDecisionAnswer answer in decision.answers)
             {
                 LoadAnswer(answer);
             }
@@ -43,7 +43,7 @@ public class DecisionsManager : MonoBehaviour
         }
     }
 
-    private void LoadAnswer(DecisionAnswer answer)
+    private void LoadAnswer(PrevDecisionAnswer answer)
     {
         OnDecisionShown?.Invoke(answer.text, () =>
         {

@@ -1,0 +1,57 @@
+{
+    "missionId" : "M01_FuitaAmoniac",
+    "title" : "Fuita d'Amoniac",
+    "description" : "Fuita química d’amoníac en un magatzem de conservació en fred.",
+    "entry": "step_arribada_magatzem",
+    "steps" : [
+        {
+            "stepId" : "step_arribada_magatzem",
+            "type" : "freeroam",
+            "objectiveText" : "Em arribat al magatzem, on aparquem?",
+            "activate" : [
+                "trigger_magatzem_20m",
+                "trigger_magatzem_50m",
+                "trigger_magatzem_costat_vent"
+            ],
+            "decisions" : [
+                {
+                    "decisionId" : "d_aparcar_20m",
+                    "triggeredBy" : "trigger_magatzem_20m",
+                    "effects" : [
+                        {
+                            "flag" : "parked_20m", "value" : true
+                        }
+                    ],
+                    "next" : "step_aparcat"
+                },
+                {
+                    "decisionId" : "d_aparcar_50m",
+                    "triggeredBy" : "trigger_magatzem_50m",
+                    "effects" : [
+                        {
+                            "flag" : "parked_50m", "value" : true
+                        }
+                    ],
+                    "next" : "step_aparcat"
+                },
+                {
+                    "decisionId" : "d_aparcar_costat_vent",
+                    "triggeredBy" : "trigger_magatzem_costat_vent",
+                    "effects" : [
+                        {
+                            "flag" : "parked_wind_side", "value" : true
+                        }
+                    ],
+                    "next" : "step_aparcat"
+                }
+            ]
+        },
+        {
+            "stepId": "step_aparcat",
+            "type": "freeroam",
+            "decisionObjectiveText": "[EN CONSTRUCCIÓ]",
+            "activate": [],
+            "decisions": []
+        }
+    ]
+}

@@ -25,7 +25,7 @@
                 },
                 {
                     "text" : "Ens situem entrant pel costat del vent per poder realitzar el 360",
-                    "points" : 0 ,
+                    "points" : 0,
                     "actions":["checkPoint(prefab,transform)"],
                     "feedback": "PENDENT ERROR",
                     "post-actions":["screen(red)"]

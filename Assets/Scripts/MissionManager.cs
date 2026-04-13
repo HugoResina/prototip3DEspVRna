@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Linq;
 using UnityEngine;
 
@@ -26,7 +27,13 @@ public class MissionManager : MonoBehaviour
 
     private void Start()
     {
-        LoadMission("M01_FuitaAmoniac");
+        StartCoroutine(StartMissionAfterDelay("M01_FuitaAmoniac", 2f));
+    }
+
+    private IEnumerator StartMissionAfterDelay(string missionId, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        LoadMission(missionId);
     }
 
     public void LoadMission(string missionId)

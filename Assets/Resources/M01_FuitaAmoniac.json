@@ -48,7 +48,7 @@
         },
         {
             "stepId": "step_aparcat",
-            "type": "freeroam",
+            "type": "dialogue",
             "decisionObjectiveText": "[EN CONSTRUCCIÓ]",
             "activate": [],
             "decisions": []

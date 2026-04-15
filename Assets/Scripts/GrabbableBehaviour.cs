@@ -9,6 +9,7 @@ public class GrabbableBehaviour : MonoBehaviour, IIteractable, IGrabbable
     [SerializeField] private float _itemRotationSpeed = 100f;
 
     public string InteractionPrompt => _interactionPrompt;
+    public bool InteractionEnabled => enabled;
     public string RelesePrompt => _relesePrompt;
     public bool IsMoving => _isMoving;
     public float RotationSpeed => _itemRotationSpeed;

@@ -3,15 +3,23 @@ using UnityEngine;
 
 public class FreeRoamHandler : MonoBehaviour
 {
-    private static Dictionary<string, GameObject> _registry = new Dictionary<string, GameObject>();
+    private static Dictionary<string, MissionGameObject> _registry = new Dictionary<string, MissionGameObject>();
 
-    public void RegisterGameObject(string id, GameObject obj)
+    public void RegisterGameObject(string id, MissionGameObject obj)
     {
         _registry[id] = obj;
-        obj.SetActive(false);
+        
+        if (obj.TryGetComponent(out MissionTrigger trigger))
+        {
+            obj.gameObject.SetActive(false);
+        }
+        else if (obj.TryGetComponent(out MissionInteractablePerson person))
+        {
+            person.enabled = false;
+        }
     }
 
-    public static GameObject GetRegisteredGameObject(string id)
+    public static MissionGameObject GetRegisteredGameObject(string id)
     {
         return _registry.TryGetValue(id, out var obj) ? obj : null;
     }
@@ -20,20 +28,36 @@ public class FreeRoamHandler : MonoBehaviour
     {
         // Desactiva tots primer
         foreach (var kv in _registry)
-            kv.Value.SetActive(false);
+        {
+            if (kv.Value.TryGetComponent(out MissionTrigger trigger))
+            {
+                kv.Value.gameObject.SetActive(false);
+            }
+            else if (kv.Value.TryGetComponent(out MissionInteractablePerson person))
+            {
+                person.enabled = false;
+            }
+        }
 
         // Activa només els d'aquest step
         foreach (var id in step.activate)
         {
             if (_registry.TryGetValue(id, out var obj))
             {
-                obj.SetActive(true);
+                if (obj.TryGetComponent(out MissionTrigger trigger))
+                {
+                    obj.gameObject.SetActive(true);
+                }
+                else if (obj.TryGetComponent(out MissionInteractablePerson person))
+                {
+                    person.enabled = true;
+                }
 
                 foreach (var decision in step.decisions)
                 {
                     if (decision.triggeredBy == id)
                     {
-                        obj.GetComponent<MissionObject>().decision = decision;
+                        obj.GetComponent<MissionGameObject>().decision = decision;
                     }
                 }
             }

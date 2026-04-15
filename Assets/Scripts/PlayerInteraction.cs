@@ -65,7 +65,7 @@ public class PlayerInteraction : MonoBehaviour
             IIteractable interactable = hit.collider.GetComponent<IIteractable>();
             _currentGrabbable = hit.collider.GetComponent<IGrabbable>();
 
-            if (interactable != null)
+            if (interactable != null && interactable.InteractionEnabled)
             {
                 if (interactable is InteractablePerson person)
                 {

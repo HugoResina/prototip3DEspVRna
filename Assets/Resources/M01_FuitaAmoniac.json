@@ -48,10 +48,138 @@
         },
         {
             "stepId": "step_aparcat",
+            "type": "freeroam",
+            "decisionObjectiveText": "Parla amb el cap de bombers",
+            "activate": [
+                "interactable_cap_bombers"
+            ],
+            "decisions": [
+                {
+                    "decisionId" : "d_interact_cap_bombers",
+                    "triggeredBy" : "cap_bombers",
+                    "effects" : [
+                        {
+                            "flag" : "cap_interacted", "value" : true
+                        }
+                    ],
+                    "next" : "step_conversa_cap_bombers"
+                }
+            ]
+        },
+        {
+            "stepId": "step_conversa_cap_bombers",
             "type": "dialogue",
-            "decisionObjectiveText": "[EN CONSTRUCCIÓ]",
-            "activate": [],
-            "decisions": []
+            "speaker": "cap_bombers",
+            "exchanges": [
+                {
+                    "exchangeId": "exchange_root",
+                    "text": "Comandant, quines són les ordres?",
+                    "decisions": [
+                        {
+                            "decisionId": "d_ordre_evacuacio",
+                            "label": "Evacua tot el personal no essencial.",
+                            "effects": [
+                                { 
+                                    "flag": "ordre_evacuacio_donada", "value": true 
+                                }
+                            ],
+                            "next": "exchange_confirmacio_evacuacio"
+                        },
+                        {
+                            "decisionId": "d_ordre_epi",
+                            "label": "Prepareu els EPIs de nivell 3.",
+                            "effects": [
+                                { 
+                                    "flag": "ordre_epi_donada", "value": true 
+                                }
+                            ],
+                            "next": "exchange_confirmacio_epi"
+                        },
+                        {
+                            "decisionId": "d_ordre_cono",
+                            "label": "Munteu la línia d'aigua amb con de protecció.",
+                            "effects": [
+                                { 
+                                    "flag": "ordre_cono_donada", "value": true 
+                                }
+                            ],
+                            "next": "exchange_confirmacio_cono"
+                        },
+                        {
+                            "decisionId": "d_ordre_comunicacio",
+                            "label": "Establiu comunicació contínua amb control.",
+                            "effects": [
+                                { 
+                                    "flag": "ordre_comunicacio_donada", "value": true 
+                                }
+                            ],
+                            "next": "exchange_confirmacio_comunicacio"
+                        },
+                        {
+                            "decisionId": "d_sortir_conversa",
+                            "label": "Això és tot, executa les ordres.",
+                            "requires": [
+                                { 
+                                    "flag": "ordre_evacuacio_donada",   "value": true 
+                                },
+                                { 
+                                    "flag": "ordre_epi_donada",          "value": true 
+                                }
+                            ],
+                            "effects": [
+                                { 
+                                    "flag": "briefing_completat", "value": true 
+                                }
+                            ],
+                            "next": "step_operacio_activa"
+                        }
+                    ]
+                },
+                {
+                    "exchangeId": "exchange_confirmacio_evacuacio",
+                    "text": "Entès. Iniciem l'evacuació del personal no essencial.",
+                    "decisions": [
+                        {
+                            "decisionId": "d_tornar_evacuacio",
+                            "label": "Continua.",
+                            "next": "exchange_root"
+                        }
+                    ]
+                },
+                {
+                    "exchangeId": "exchange_confirmacio_epi",
+                    "text": "Rebut. Preparem EPIs de nivell 3 per a tot l'equip.",
+                    "decisions": [
+                        {
+                            "decisionId": "d_tornar_epi",
+                            "label": "Continua.",
+                            "next": "exchange_root"
+                        }
+                    ]
+                },
+                {
+                    "exchangeId": "exchange_confirmacio_cono",
+                    "text": "D'acord. Muntem la línia i preparem el con.",
+                    "decisions": [
+                        {
+                            "decisionId": "d_tornar_cono",
+                            "label": "Continua.",
+                            "next": "exchange_root"
+                        }
+                    ]
+                },
+                {
+                    "exchangeId": "exchange_confirmacio_comunicacio",
+                    "text": "Perfecte. Canal obert amb control des d'ara.",
+                    "decisions": [
+                        {
+                            "decisionId": "d_tornar_comunicacio",
+                            "label": "Continua.",
+                            "next": "exchange_root"
+                        }
+                    ]
+                }
+            ]
         }
     ]
 }

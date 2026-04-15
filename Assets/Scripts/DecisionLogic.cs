@@ -8,15 +8,15 @@ public static class DecisionLogic
         {
             // Logica de cada decisió específica
             case "d_aparcar_20m":
-                FreeRoamHandler.GetRegisteredGameObject("trigger_magatzem_20m").SetActive(false);
+                FreeRoamHandler.GetRegisteredGameObject("trigger_magatzem_20m").gameObject.SetActive(false);
                 break;
 
             case "d_aparcar_50m":
-                FreeRoamHandler.GetRegisteredGameObject("trigger_magatzem_50m").SetActive(false);
+                FreeRoamHandler.GetRegisteredGameObject("trigger_magatzem_50m").gameObject.SetActive(false);
                 break;
 
             case "d_aparcar_costat_vent":
-                FreeRoamHandler.GetRegisteredGameObject("trigger_magatzem_costat_vent").SetActive(false);
+                FreeRoamHandler.GetRegisteredGameObject("trigger_magatzem_costat_vent").gameObject.SetActive(false);
                 break;
         }
     }

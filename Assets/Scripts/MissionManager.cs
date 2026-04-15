@@ -89,7 +89,7 @@ public class MissionManager : MonoBehaviour
         GoToStep(decision.next);
     }
 
-    public void RegisterFreeRoamGameObject(string id, GameObject obj)
+    public void RegisterFreeRoamGameObject(string id, MissionGameObject obj)
     {
         _freeRoamHandler.RegisterGameObject(id, obj);
     }

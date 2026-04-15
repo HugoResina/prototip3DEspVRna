@@ -35,7 +35,7 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             rutaCompleta = Path.Combine(Application.dataPath, nombreArchivo);
 
-            File.AppendAllText(rutaCompleta, $"\n--- Nova Sessón: {DateTime.Now} ---\n");
+            //File.AppendAllText(rutaCompleta, $"\n--- Nova Sessón: {DateTime.Now} ---\n");
         }
         else
         {

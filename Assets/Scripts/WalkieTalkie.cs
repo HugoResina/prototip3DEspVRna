@@ -2,6 +2,7 @@ using System;
 using UnityEditor.Recorder.Input;
 using UnityEngine;
 using UnityEngine.InputSystem;
+//using static UnityEngine.Rendering.DynamicArray<T>;
 
 
 public class WalkieTalkie : MonoBehaviour, InputSystem_Actions.IWalkieActions
@@ -27,23 +28,41 @@ public class WalkieTalkie : MonoBehaviour, InputSystem_Actions.IWalkieActions
 
         InputActions.Walkie.Enable();
         InputActions.Walkie.SetCallbacks(this);
+        NewSTT.TurnOffWalkie += TurnOffRadio;
     }
 
     private void OnDisable()
     {
         InputActions.Walkie.Disable();
         InputActions.Walkie.RemoveCallbacks(this);
+        NewSTT.TurnOffWalkie -= TurnOffRadio;
+
     }
 
     public void OnRadio(InputAction.CallbackContext context)
     {
-        RadioInput = context.ReadValueAsButton();
-        //Debug.Log(RadioInput);
-        WalkieLight.color = RadioInput ? Color.green : Color.red;
-        if (RadioInput) audioSource.PlayOneShot(beep);
+        if (context.ReadValueAsButton() && !RadioInput)
+        {
 
-        GameManager.Instance.SttEnabled = RadioInput;
-        NewSTT.Recording = RadioInput;
-        //Debug.Log("recording: " + NewSTT.Recording);
+            Debug.Log("pulso b");
+            RadioInput = true;
+            //Debug.Log(RadioInput);
+            WalkieLight.color = Color.green;//RadioInput ? Color.green : Color.red;
+            audioSource.PlayOneShot(beep);
+
+            GameManager.Instance.SttEnabled = true;
+            NewSTT.Recording = true;
+            //Debug.Log("recording: " + NewSTT.Recording);           
+        }
+    }
+
+    public void TurnOffRadio()
+    {
+        RadioInput = false;
+        WalkieLight.color = Color.red;
+        //audioSource.PlayOneShot(); sonido apagar?
+
+        GameManager.Instance.SttEnabled = false;
+        NewSTT.Recording = false;
     }
 }

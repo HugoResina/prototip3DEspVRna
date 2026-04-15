@@ -111,5 +111,5 @@ public class Exchange
 public class Condition
 {
     [JsonProperty("flag")]                  public string flag;
-    [JsonProperty("value")]                 public string value;
+    [JsonProperty("value")]                 public bool value;
 }

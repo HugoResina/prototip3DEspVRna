@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
@@ -5,6 +6,8 @@ using UnityEngine;
 public class MissionManager : MonoBehaviour
 {
     public static MissionManager Instance { get; private set; }
+
+    public static event Action<string, string> OnUpdateObjective;
 
     private DialogueHandler _dialogueHandler;
     private FreeRoamHandler _freeRoamHandler;
@@ -46,23 +49,27 @@ public class MissionManager : MonoBehaviour
     {
         _currentStep = _currentMission.steps.FirstOrDefault(s => s.id == stepId);
 
-        // Filtra les decisions per flags (mostra només les disponibles)
-        var validDecisions = _currentStep.decisions
-            .Where(d => d.requires == null || d.requires.All(req => FlagSystem.Instance.GetFlag(req.flag) == (req.value == "true")))
-            .ToList();
+        if (_currentStep == null)
+        {
+            Debug.LogError($"MISSION MANAGER: Step with id '{stepId}' not found in the mission.");
+            return;
+        }
 
         // Avisa la UI que mostri les opcions
         //DialogueUI.Instance.ShowStep(_currentStep.description, validDecisions);
-        Debug.Log($"Step: {_currentStep.id} - { _currentStep.objectiveText}");
+        Debug.Log($"MISSION MANAGER: Step -> {_currentStep.id} - Objective -> {_currentStep.objectiveText}");
+        OnUpdateObjective?.Invoke(_currentMission.id, _currentStep.objectiveText);
 
         switch (_currentStep.type)
         {
             case "dialogue":
-                _dialogueHandler.StartDialogue(_currentStep);
+                Debug.Log("MISSION MANAGER: Starting dialogue step.");
+                HandleDialogueStep(_currentStep);
                 break;
 
             case "freeroam":
-                _freeRoamHandler.ActivateForStep(_currentStep);
+                Debug.Log("MISSION MANAGER: Starting freeroam step.");
+                HandleFreeRoamStep(_currentStep);
                 break;
 
             default:
@@ -71,8 +78,25 @@ public class MissionManager : MonoBehaviour
         }
     }
 
+    private void HandleFreeRoamStep(MissionStep step)
+    {
+        var validDecisions = step.decisions?
+            .Where(d => d.requires == null ||
+                        d.requires.All(req => FlagSystem.Instance.GetFlag(req.flag) == req.value))
+            .ToList();
+
+        _freeRoamHandler.ActivateForStep(_currentStep);
+    }
+
+    private void HandleDialogueStep(MissionStep step)
+    {
+        _dialogueHandler.StartDialogue(step);
+    }
+
     public void OnDecisionMade(Decision decision)
     {
+        if (_currentMission.steps.FirstOrDefault(s => s.id == decision.next).id == _currentStep.id) return;
+
         // 1. Aplica el flag de la decisió
         if (decision.effects != null)
         {

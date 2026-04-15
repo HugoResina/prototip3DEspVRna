@@ -53,6 +53,16 @@ public class UIManager : MonoBehaviour
     public static event Action InterPerToggleMicrophone;
     #endregion
 
+    #region Mission Interactable Person (_mip) SerializeVariables
+    [Header("Mission Interactable Person References")]
+    [SerializeField] private GameObject _mInteractablePersonMenu;
+    [SerializeField] private TextMeshProUGUI _mipDialogueText;
+    [SerializeField] private GameObject _mipAnswerButtonContainer;
+    [SerializeField] private Button _mipAnswerButtonPrefab;
+
+    private static Stack<Button> _mipAnswerButtonStack = new Stack<Button>();
+    #endregion
+
     public event Action<bool> OnPauseGame;
 
     private void OnEnable()
@@ -61,6 +71,12 @@ public class UIManager : MonoBehaviour
 
         DecisionsManager.OnDecisionShown += AddPlayerAnswerButton;
         DecisionsManager.OnUpdateScore += UpdatePlayerObjectiveScore;
+
+        MissionManager.OnUpdateObjective += UpdatePlayerObjective;
+
+        DialogueHandler.OnToggleDialogueMenu += UpdateMissionInterPerMenu;
+        DialogueHandler.OnUpdateDialogueText += UpdateMissionInterPerDialogueText;
+        DialogueHandler.OnShowDecision += AddMissionInterPerAnswerButton;
 
         ControlsTutorial.OnUpdateObjective += UpdatePlayerObjective;
         ControlsTutorial.OnShowPopup += ShowPopup;
@@ -76,6 +92,8 @@ public class UIManager : MonoBehaviour
 
         DecisionsManager.OnDecisionShown -= AddPlayerAnswerButton;
         DecisionsManager.OnUpdateScore -= UpdatePlayerObjectiveScore;
+
+        MissionManager.OnUpdateObjective -= UpdatePlayerObjective;
 
         ControlsTutorial.OnUpdateObjective -= UpdatePlayerObjective;
         ControlsTutorial.OnShowPopup -= ShowPopup;
@@ -240,6 +258,43 @@ public class UIManager : MonoBehaviour
         InterPerToggleMicrophone?.Invoke();
     }
     #endregion
+    #endregion
+
+    #region Mission Interactable Person Functions
+    private void UpdateMissionInterPerMenu(bool active) => _mInteractablePersonMenu.SetActive(active);
+    private void UpdateMissionInterPerDialogueText(string text) => _mipDialogueText.text = text;
+
+    private void AddMissionInterPerAnswerButton(string answerText, Action onClick)
+    {
+        Button button;
+        if (_mipAnswerButtonStack.Count > 0)
+        {
+            button = _mipAnswerButtonStack.Pop();
+            button.gameObject.SetActive(true);
+        }
+        else
+        {
+            button = Instantiate(_mipAnswerButtonPrefab, _mipAnswerButtonContainer.transform);
+        }
+
+        button.GetComponentInChildren<TextMeshProUGUI>().text = answerText;
+        button.onClick.AddListener(() =>
+        {
+            onClick.Invoke();
+            RemoveAllMissionInterPerAnswerButtons();
+        });
+    }
+
+    private void RemoveAllMissionInterPerAnswerButtons()
+    {
+        foreach (Button button in _mipAnswerButtonContainer.GetComponentsInChildren<Button>())
+        {
+            button.GetComponentInChildren<TextMeshProUGUI>().text = string.Empty;
+            button.onClick.RemoveAllListeners();
+            button.gameObject.SetActive(false);
+            _mipAnswerButtonStack.Push(button);
+        }
+    }
     #endregion
 
     public void SetCursorState(bool looked, bool visible)

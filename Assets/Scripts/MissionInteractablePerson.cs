@@ -8,6 +8,7 @@ public class MissionInteractablePerson : MissionGameObject, IIteractable
     public bool InteractionEnabled => enabled;
 
     private Collider _collider;
+    private GameObject _interactor;
 
     private void Awake()
     {
@@ -24,10 +25,22 @@ public class MissionInteractablePerson : MissionGameObject, IIteractable
         if (interactor.TryGetComponent(out PlayerInteraction interaction))
         {
             interaction.isInteracting = true;
+            _interactor = interactor;
         }
 
         UIManager.Instance.SetCursorState(false, true);
 
         OnDecisionMade();
+    }
+
+    public void EndInteraction()
+    {
+        if (_interactor != null && _interactor.TryGetComponent(out PlayerInteraction interaction))
+        {
+            interaction.isInteracting = false;
+            _interactor = null;
+        }
+
+        UIManager.Instance.SetCursorState(true, false);
     }
 }

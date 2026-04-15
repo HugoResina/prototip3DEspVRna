@@ -49,14 +49,14 @@
         {
             "stepId": "step_aparcat",
             "type": "freeroam",
-            "decisionObjectiveText": "Parla amb el cap de bombers",
+            "objectiveText": "Parla amb el cap de bombers",
             "activate": [
                 "interactable_cap_bombers"
             ],
             "decisions": [
                 {
                     "decisionId" : "d_interact_cap_bombers",
-                    "triggeredBy" : "cap_bombers",
+                    "triggeredBy" : "interactable_cap_bombers",
                     "effects" : [
                         {
                             "flag" : "cap_interacted", "value" : true
@@ -69,7 +69,7 @@
         {
             "stepId": "step_conversa_cap_bombers",
             "type": "dialogue",
-            "speaker": "cap_bombers",
+            "speaker": "interactable_cap_bombers",
             "exchanges": [
                 {
                     "exchangeId": "exchange_root",
@@ -180,6 +180,13 @@
                     ]
                 }
             ]
+        },
+        {
+            "stepId": "step_operacio_activa",
+            "type": "freeroam",
+            "objectiveText": "Fi",
+            "activate": [],
+            "decisions": []
         }
     ]
 }

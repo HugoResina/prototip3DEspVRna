@@ -1,16 +1,16 @@
+using System;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class SaveVictims : MonoBehaviour
 {
-   
     private NavMeshAgent navMeshAgent;
     private Animator animator;
+    public static event Action GetVictimOut;
     [SerializeField] Transform destination;
+    [SerializeField] Transform decontaminationPoint;
     bool called = false;
     [SerializeField]
-  
-
 
     void Start()
     {
@@ -25,22 +25,22 @@ public class SaveVictims : MonoBehaviour
         //{
         //    SetDestination(destination1);
         //}
-
     }
 
     private void Update()
     {
         if (called)
-        {
-
-
+        {           
             if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance && !navMeshAgent.pathPending)
             {
-                //animacio acortinador?
+           
                 animator.SetBool("IsWalking", false);
                 called = false;
                 //Smoke.SetActive(false);
-              
+                Debug.Log("----------------> At Destination");
+                //navMeshAgent.SetDestination(decontaminationPoint.transform.position);
+                GetVictimOut?.Invoke();
+                this.gameObject.SetActive(false);
             }
         }
     }
@@ -58,14 +58,15 @@ public class SaveVictims : MonoBehaviour
         called = true;
         if (destination != null)
         {
-
             animator.SetBool("IsWalking", true);
             Vector3 targetVector = destination.transform.position;
-            navMeshAgent.SetDestination(targetVector);
-
+            navMeshAgent.SetDestination(targetVector);  
         }
-
     }
+  
+       
+        //podria ser un evento que activase otro objecto con la animacion entera 
+    
 }
 
 

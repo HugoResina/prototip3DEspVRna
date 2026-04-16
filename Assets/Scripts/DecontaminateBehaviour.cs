@@ -12,6 +12,7 @@ public class DecontaminateBehaviour : MonoBehaviour
     }
     public void Decontaminate()
     {
+        //anim 
         Debug.Log("descontaminem a la victima");
     }
 }

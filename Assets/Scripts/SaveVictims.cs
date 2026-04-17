@@ -37,7 +37,7 @@ public class SaveVictims : MonoBehaviour
                 animator.SetBool("IsWalking", false);
                 called = false;
                 //Smoke.SetActive(false);
-                Debug.Log("----------------> At Destination");
+                //Debug.Log("----------------> At Destination");
                 //navMeshAgent.SetDestination(decontaminationPoint.transform.position);
                 GetVictimOut?.Invoke();
                 this.gameObject.SetActive(false);

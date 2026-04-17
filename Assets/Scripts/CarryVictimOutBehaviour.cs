@@ -25,7 +25,7 @@ public class CarryVictimOutBehaviour : MonoBehaviour
             
             //Debug.Log("asdfasdf");
             //Debug.Log(navMeshAgent.remainingDistance);
-            Debug.Log((navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance));
+            //Debug.Log((navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance));     
 
             if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance)
             {

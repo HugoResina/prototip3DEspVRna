@@ -43,6 +43,10 @@ public class SmokeParticlesScript : MonoBehaviour
             }
         }
     }
+    public void CurtainEffect()
+    {
+        system.startLifetime = 5;
+    }
 
     public void StartToDisipate()
     {

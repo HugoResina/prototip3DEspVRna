@@ -4,6 +4,7 @@ using UnityEngine;
 public class InteractablePerson : MonoBehaviour, IIteractable
 {
     public string InteractionPrompt { get => _interactionPrompt; }
+    public bool InteractionEnabled => enabled;
 
     [SerializeField] private string _interactionPrompt = "Prem 'E' per interactuar";
 

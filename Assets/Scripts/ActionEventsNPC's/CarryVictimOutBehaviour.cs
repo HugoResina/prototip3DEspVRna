@@ -9,9 +9,6 @@ public class CarryVictimOutBehaviour : MonoBehaviour
     public static event Action Decontaminate;
     public Transform destination;
     private bool called = false;
-    //public GameObject bomber1;
-    //public GameObject bomber2;
-    //public GameObject bomber3;
 
     private void Start()
     {

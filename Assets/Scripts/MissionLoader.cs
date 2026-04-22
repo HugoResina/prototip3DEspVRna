@@ -81,6 +81,7 @@ public class MissionStep
 {
     [JsonProperty("stepId")]                public string id;
     [JsonProperty("type")]                  public string type;
+    [JsonProperty("objectiveTitle")]        public string objectiveTitle;
     [JsonProperty("objectiveText")]         public string objectiveText;
     [JsonProperty("activate")]              public string[] activate;
     [JsonProperty("speaker")]               public string speaker;

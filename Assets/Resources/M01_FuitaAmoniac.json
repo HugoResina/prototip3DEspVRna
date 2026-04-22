@@ -2,64 +2,23 @@
     "missionId" : "M01_FuitaAmoniac",
     "title" : "Fuita d'Amoniac",
     "description" : "Fuita química d’amoníac en un magatzem de conservació en fred.",
-    "entry": "step_arribada_magatzem",
+    "entry": "step_arribada",
     "steps" : [
         {
-            "stepId" : "step_arribada_magatzem",
+            "stepId" : "step_arribada",
             "type" : "freeroam",
-            "objectiveText" : "Em arribat al magatzem, on aparquem?",
+            "objectiveTitle" : "Busca el comandament del BRP",
+            "objectiveText" : "Ordena al comandament del BRP muntar la línia de protecció i ABD bàsica",
             "activate" : [
-                "trigger_magatzem_20m",
-                "trigger_magatzem_50m",
-                "trigger_magatzem_costat_vent"
-            ],
-            "decisions" : [
-                {
-                    "decisionId" : "d_aparcar_20m",
-                    "triggeredBy" : "trigger_magatzem_20m",
-                    "effects" : [
-                        {
-                            "flag" : "parked_20m", "value" : true
-                        }
-                    ],
-                    "next" : "step_aparcat"
-                },
-                {
-                    "decisionId" : "d_aparcar_50m",
-                    "triggeredBy" : "trigger_magatzem_50m",
-                    "effects" : [
-                        {
-                            "flag" : "parked_50m", "value" : true
-                        }
-                    ],
-                    "next" : "step_aparcat"
-                },
-                {
-                    "decisionId" : "d_aparcar_costat_vent",
-                    "triggeredBy" : "trigger_magatzem_costat_vent",
-                    "effects" : [
-                        {
-                            "flag" : "parked_wind_side", "value" : true
-                        }
-                    ],
-                    "next" : "step_aparcat"
-                }
-            ]
-        },
-        {
-            "stepId": "step_aparcat",
-            "type": "freeroam",
-            "objectiveText": "Parla amb el cap de bombers",
-            "activate": [
                 "interactable_cap_bombers"
             ],
-            "decisions": [
+            "decisions" : [
                 {
                     "decisionId" : "d_interact_cap_bombers",
                     "triggeredBy" : "interactable_cap_bombers",
                     "effects" : [
                         {
-                            "flag" : "cap_interacted", "value" : true
+                            "flag" : "interactuat_cap_bombers", "value" : true
                         }
                     ],
                     "next" : "step_conversa_cap_bombers"
@@ -76,104 +35,38 @@
                     "text": "Comandant, quines són les ordres?",
                     "decisions": [
                         {
-                            "decisionId": "d_ordre_evacuacio",
-                            "label": "Evacua tot el personal no essencial.",
+                            "decisionId": "d_muntar_ABD",
+                            "label": "Munteu la línia de protecció i l'ABD bàsica",
                             "effects": [
                                 { 
-                                    "flag": "ordre_evacuacio_donada", "value": true 
+                                    "flag": "ordre_muntar_ABD_donada", "value": true 
                                 }
                             ],
-                            "next": "exchange_confirmacio_evacuacio"
-                        },
-                        {
-                            "decisionId": "d_ordre_epi",
-                            "label": "Prepareu els EPIs de nivell 3.",
-                            "effects": [
-                                { 
-                                    "flag": "ordre_epi_donada", "value": true 
-                                }
-                            ],
-                            "next": "exchange_confirmacio_epi"
-                        },
-                        {
-                            "decisionId": "d_ordre_cono",
-                            "label": "Munteu la línia d'aigua amb con de protecció.",
-                            "effects": [
-                                { 
-                                    "flag": "ordre_cono_donada", "value": true 
-                                }
-                            ],
-                            "next": "exchange_confirmacio_cono"
-                        },
-                        {
-                            "decisionId": "d_ordre_comunicacio",
-                            "label": "Establiu comunicació contínua amb control.",
-                            "effects": [
-                                { 
-                                    "flag": "ordre_comunicacio_donada", "value": true 
-                                }
-                            ],
-                            "next": "exchange_confirmacio_comunicacio"
+                            "next": "exchange_confirmacio_ABD"
                         },
                         {
                             "decisionId": "d_sortir_conversa",
-                            "label": "Això és tot, executa les ordres.",
+                            "label": "Això és tot.",
                             "requires": [
                                 { 
-                                    "flag": "ordre_evacuacio_donada",   "value": true 
-                                },
-                                { 
-                                    "flag": "ordre_epi_donada",          "value": true 
+                                    "flag": "ordre_muntar_ABD_donada",   "value": true 
                                 }
                             ],
                             "effects": [
                                 { 
-                                    "flag": "briefing_completat", "value": true 
+                                    "flag": "conversa_ABD_completat", "value": true 
                                 }
                             ],
-                            "next": "step_operacio_activa"
+                            "next": "step_treballadors_fora"
                         }
                     ]
                 },
                 {
-                    "exchangeId": "exchange_confirmacio_evacuacio",
-                    "text": "Entès. Iniciem l'evacuació del personal no essencial.",
+                    "exchangeId": "exchange_confirmacio_ABD",
+                    "text": "Entès. Iniciem el muntatge de l'ABD bàsica.",
                     "decisions": [
                         {
-                            "decisionId": "d_tornar_evacuacio",
-                            "label": "Continua.",
-                            "next": "exchange_root"
-                        }
-                    ]
-                },
-                {
-                    "exchangeId": "exchange_confirmacio_epi",
-                    "text": "Rebut. Preparem EPIs de nivell 3 per a tot l'equip.",
-                    "decisions": [
-                        {
-                            "decisionId": "d_tornar_epi",
-                            "label": "Continua.",
-                            "next": "exchange_root"
-                        }
-                    ]
-                },
-                {
-                    "exchangeId": "exchange_confirmacio_cono",
-                    "text": "D'acord. Muntem la línia i preparem el con.",
-                    "decisions": [
-                        {
-                            "decisionId": "d_tornar_cono",
-                            "label": "Continua.",
-                            "next": "exchange_root"
-                        }
-                    ]
-                },
-                {
-                    "exchangeId": "exchange_confirmacio_comunicacio",
-                    "text": "Perfecte. Canal obert amb control des d'ara.",
-                    "decisions": [
-                        {
-                            "decisionId": "d_tornar_comunicacio",
+                            "decisionId": "d_tornar_muntar_ABD",
                             "label": "Continua.",
                             "next": "exchange_root"
                         }
@@ -182,11 +75,172 @@
             ]
         },
         {
-            "stepId": "step_operacio_activa",
+            "stepId": "step_treballadors_fora",
             "type": "freeroam",
-            "objectiveText": "Fi",
+            "objectiveTitle" : "Obtén informació",
+            "objectiveText": "Parla amb els dos treballadors fora del magatzem",
+            "activate": [
+                "interactable_treballador"
+            ],
+            "decisions": [
+                {
+                    "decisionId" : "d_interact_treballador",
+                    "triggeredBy" : "interactable_treballador",
+                    "effects" : [
+                        {
+                            "flag" : "interactuat_treballador", "value" : true
+                        }
+                    ],
+                    "next" : "step_conversa_treballador"
+                }
+            ]
+        },
+        {
+            "stepId": "step_conversa_treballador",
+            "type": "dialogue",
+            "speaker": "interactable_treballador",
+            "exchanges": [
+                {
+                    "exchangeId": "exchange_root",
+                    "text": "Encara hi ha un treballador dins del magatzem! Necessita ajuda!",
+                    "decisions": [
+                        {
+                            "decisionId": "d_confirmar_ajuda",
+                            "label": "No es preucupi, l'ajudarem a sortir",
+                            "effects": [
+                                { 
+                                    "flag": "info_treballador_obtinguda", "value": true 
+                                }
+                            ],
+                            "next": "exchange_confirmacio_ajuda"
+                        },
+                        {
+                            "decisionId": "d_sortir_conversa",
+                            "label": "Això és tot.",
+                            "requires": [
+                                { 
+                                    "flag": "info_treballador_obtinguda",   "value": true 
+                                }
+                            ],
+                            "effects": [
+                                { 
+                                    "flag": "conversa_treballador_completat", "value": true 
+                                }
+                            ],
+                            "next": "step_responsable_empresa"
+                        }
+                    ]
+                },
+                {
+                    "exchangeId": "exchange_confirmacio_ajuda",
+                    "text": "Moltes gràcies",
+                    "decisions": [
+                        {
+                            "decisionId": "d_treballdor_agraiment",
+                            "label": "Continua.",
+                            "next": "exchange_root"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "stepId": "step_responsable_empresa",
+            "type": "freeroam",
+            "objectiveTitle" : "Obtén informació",
+            "objectiveText": "Parla amb el responsable de l'empresa",
+            "activate": [
+                "interactable_responsable"
+            ],
+            "decisions": [
+                {
+                    "decisionId" : "d_interact_responsable",
+                    "triggeredBy" : "interactable_responsable",
+                    "effects" : [
+                        {
+                            "flag" : "interactuat_responsable", "value" : true
+                        }
+                    ],
+                    "next" : "step_conversa_responsable"
+                }
+            ]
+        },
+        {
+            "stepId": "step_conversa_responsable",
+            "type": "dialogue",
+            "speaker": "interactable_responsable",
+            "exchanges": [
+                {
+                    "exchangeId": "exchange_root",
+                    "text": "Un dels treballadors encara és dins del magatzem",
+                    "decisions": [
+                        {
+                            "decisionId": "d_confirmar_ajuda2",
+                            "label": "Estem fent tot el possible",
+                            "effects": [
+                                { 
+                                    "flag": "info_responsable_obtinguda", "value": true 
+                                }
+                            ],
+                            "next": "exchange_confirmacio_ajuda"
+                        },
+                        {
+                            "decisionId": "d_sortir_conversa",
+                            "label": "Això és tot.",
+                            "requires": [
+                                { 
+                                    "flag": "info_responsable_obtinguda",   "value": true 
+                                }
+                            ],
+                            "effects": [
+                                { 
+                                    "flag": "conversa_responsable_completat", "value": true 
+                                }
+                            ],
+                            "next": "step_walkie1"
+                        }
+                    ]
+                },
+                {
+                    "exchangeId": "exchange_confirmacio_ajuda",
+                    "text": "Moltes gràcies",
+                    "decisions": [
+                        {
+                            "decisionId": "d_treballdor_agraiment",
+                            "label": "Continua.",
+                            "next": "exchange_root"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "stepId": "step_walkie1",
+            "type": "freeroam",
+            "objectiveTitle": "Fi",
             "activate": [],
             "decisions": []
+        },
+        {
+            "stepId": "step_walkie10000",
+            "type": "freeroam",
+            "objectiveTitle" : "Parla amb el walkie",
+            "objectiveText": "Està sonant el walie, parla amb ell per continuar",
+            "activate": [
+                "interactable_walkie1"
+            ],
+            "decisions": [
+                {
+                    "decisionId" : "d_interact_walkie1",
+                    "triggeredBy" : "interactable_walkie1",
+                    "effects" : [
+                        {
+                            "flag" : "interactuat_walkie1", "value" : true
+                        }
+                    ],
+                    "next" : "step_"
+                }
+            ]
         }
     ]
 }

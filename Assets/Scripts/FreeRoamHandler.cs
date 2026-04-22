@@ -9,7 +9,7 @@ public class FreeRoamHandler : MonoBehaviour
     {
         _registry[id] = obj;
         
-        if (obj.TryGetComponent(out MissionTrigger trigger))
+        if (obj.TryGetComponent(out MissionTrigger _))
         {
             obj.gameObject.SetActive(false);
         }
@@ -47,10 +47,12 @@ public class FreeRoamHandler : MonoBehaviour
                 if (obj.TryGetComponent(out MissionTrigger trigger))
                 {
                     obj.gameObject.SetActive(true);
+                    Debug.Log("FREE ROAM HANDLER: Activated MissionTrigger -> " + id);
                 }
                 else if (obj.TryGetComponent(out MissionInteractablePerson person))
                 {
                     person.enabled = true;
+                    Debug.Log($"FREE ROAM HANDLER: Activated MissionInteractablePerson -> {id} ({person.gameObject.name})");
                 }
 
                 foreach (var decision in step.decisions)

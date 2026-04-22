@@ -41,7 +41,7 @@ public class MissionManager : MonoBehaviour
 
     public void LoadMission(string missionId)
     {
-        _currentMission = MissionLoader.Load(missionId); // llegeix el JSON
+        _currentMission = MissionLoader.Load(missionId);
         GoToStep(_currentMission.entry);
     }
 
@@ -57,8 +57,8 @@ public class MissionManager : MonoBehaviour
 
         // Avisa la UI que mostri les opcions
         //DialogueUI.Instance.ShowStep(_currentStep.description, validDecisions);
-        Debug.Log($"MISSION MANAGER: Step -> {_currentStep.id} - Objective -> {_currentStep.objectiveText}");
-        OnUpdateObjective?.Invoke(_currentMission.id, _currentStep.objectiveText);
+        Debug.Log($"MISSION MANAGER: Step -> {_currentStep.id} - Objective -> {_currentStep.objectiveTitle}");
+        OnUpdateObjective?.Invoke(_currentStep.objectiveTitle, _currentStep.objectiveText);
 
         switch (_currentStep.type)
         {

@@ -208,7 +208,7 @@ ModelImporter:
       name: pick up camilla
       takeName: Camilla|CamillaAction
       internalID: -8107876159382963813
-      firstFrame: 239
+      firstFrame: 225
       lastFrame: 1381
       wrapMode: 0
       orientationOffsetY: 0

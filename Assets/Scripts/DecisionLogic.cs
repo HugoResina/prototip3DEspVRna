@@ -18,6 +18,7 @@ public static class DecisionLogic
             case "d_aparcar_costat_vent":
                 FreeRoamHandler.GetRegisteredGameObject("trigger_magatzem_costat_vent").gameObject.SetActive(false);
                 break;
+
         }
     }
 }

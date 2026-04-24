@@ -747,7 +747,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4b2726ca1bcd7644a866520b5eb834c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::VehicleToMission
-  _interactionPrompt: "Prem 'E' per comen\xE7ar la missi\xF3"
+  _interactionPrompt: 
   mission: {fileID: 0}
 --- !u!65 &425860047
 BoxCollider:

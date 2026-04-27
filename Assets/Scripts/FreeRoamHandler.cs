@@ -9,7 +9,7 @@ public class FreeRoamHandler : MonoBehaviour
     {
         _registry[id] = obj;
         
-        if (obj.TryGetComponent(out MissionTrigger _))
+        if (obj.TryGetComponent(out MissionTrigger _) || obj.TryGetComponent(out MissionWalkie _))
         {
             obj.gameObject.SetActive(false);
         }
@@ -29,7 +29,7 @@ public class FreeRoamHandler : MonoBehaviour
         // Desactiva tots primer
         foreach (var kv in _registry)
         {
-            if (kv.Value.TryGetComponent(out MissionTrigger trigger))
+            if (kv.Value.TryGetComponent(out MissionTrigger trigger) || kv.Value.TryGetComponent(out MissionWalkie _))
             {
                 kv.Value.gameObject.SetActive(false);
             }
@@ -44,10 +44,10 @@ public class FreeRoamHandler : MonoBehaviour
         {
             if (_registry.TryGetValue(id, out var obj))
             {
-                if (obj.TryGetComponent(out MissionTrigger trigger))
+                if (obj.TryGetComponent(out MissionTrigger _)|| obj.TryGetComponent(out MissionWalkie _))
                 {
                     obj.gameObject.SetActive(true);
-                    Debug.Log("FREE ROAM HANDLER: Activated MissionTrigger -> " + id);
+                    Debug.Log("FREE ROAM HANDLER: Activated -> " + id);
                 }
                 else if (obj.TryGetComponent(out MissionInteractablePerson person))
                 {

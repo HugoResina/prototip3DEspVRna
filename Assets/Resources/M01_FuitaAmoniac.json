@@ -217,28 +217,541 @@
         {
             "stepId": "step_walkie1",
             "type": "freeroam",
-            "objectiveTitle": "Fi",
-            "activate": [],
-            "decisions": []
-        },
-        {
-            "stepId": "step_walkie10000",
-            "type": "freeroam",
-            "objectiveTitle" : "Parla amb el walkie",
-            "objectiveText": "Està sonant el walie, parla amb ell per continuar",
+            "objectiveTitle": "Contesta al walkie",
+            "objectiveText": "Communica amb el walkie les següents ordres",
             "activate": [
-                "interactable_walkie1"
+                "walkie1"
             ],
             "decisions": [
                 {
                     "decisionId" : "d_interact_walkie1",
-                    "triggeredBy" : "interactable_walkie1",
+                    "triggeredBy" : "walkie1",
                     "effects" : [
                         {
                             "flag" : "interactuat_walkie1", "value" : true
                         }
                     ],
-                    "next" : "step_"
+                    "next" : "step_conversa_walkie1"
+                }
+            ]
+        },
+        {
+            "stepId": "step_conversa_walkie1",
+            "type": "dialogue",
+            "speaker": "walkie1",
+            "exchanges": [
+                {
+                    "exchangeId": "exchange_root",
+                    "text": "Que necessita que fem?",
+                    "decisions": [
+                        {
+                            "decisionId": "d_reforcar_distancia",
+                            "label": "Reforceu la distància de seguretat de la dotació i la resta d'actuants",
+                            "effects": [
+                                { 
+                                    "flag": "ordre_reforcar_distancia", "value": true 
+                                }
+                            ],
+                            "next": "exchange_reforcar_distancia"
+                        },
+                        {
+                            "decisionId": "d_linia_aigua",
+                            "label": "Munteu la línia d'aigua i avanceu amb con de protecció",
+                            "effects": [
+                                { 
+                                    "flag": "ordre_linia_aigua", "value": true 
+                                }
+                            ],
+                            "next": "exchange_linia_aigua"
+                        },
+                        {
+                            "decisionId": "d_sortir_conversa",
+                            "label": "Això és tot.",
+                            "requires": [
+                                { 
+                                    "flag": "ordre_reforcar_distancia",   "value": true 
+                                }
+                            ],
+                            "effects": [
+                                { 
+                                    "flag": "conversa_walkie1_completat", "value": true 
+                                }
+                            ],
+                            "next": "step_walkie2"
+                        }
+                    ]
+                },
+                {
+                    "exchangeId": "exchange_reforcar_distancia",
+                    "text": "Entès. Iniciem el reforç de la distància de seguratat de la dotació i resta d'actuants",
+                    "decisions": [
+                        {
+                            "decisionId": "d_confirmar_reforcar_distancia",
+                            "label": "Continua.",
+                            "next": "exchange_root"
+                        }
+                    ]
+                },
+                {
+                    "exchangeId": "exchange_linia_aigua",
+                    "text": "No crec que sigui una decisió acertada en la situació actual",
+                    "decisions": [
+                        {
+                            "decisionId": "d_confirmar_linia_aigua",
+                            "label": "Continua.",
+                            "next": "exchange_root"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "stepId": "step_walkie2",
+            "type": "freeroam",
+            "objectiveTitle": "Contesta al walkie",
+            "objectiveText": "Communicat amb el walkie i decideix el primer objectiu segons les prioritats operatives NRQ",
+            "activate": [
+                "walkie2"
+            ],
+            "decisions": [
+                {
+                    "decisionId" : "d_interact_walkie2",
+                    "triggeredBy" : "walkie2",
+                    "effects" : [
+                        {
+                            "flag" : "interactuat_walkie2", "value" : true
+                        }
+                    ],
+                    "next" : "step_conversa_walkie2"
+                }
+            ]
+        },
+        {
+            "stepId": "step_conversa_walkie2",
+            "type": "dialogue",
+            "speaker": "walkie2",
+            "exchanges": [
+                {
+                    "exchangeId": "exchange_root",
+                    "text": "Que prioritzem?",
+                    "decisions": [
+                        {
+                            "decisionId": "d_prioritzar_font",
+                            "label": "Prioritzem actuar sobre la font per evitar més propagació del risc",
+                            "effects": [
+                                { 
+                                    "flag": "ordre_prioritzar_font", "value": true 
+                                }
+                            ],
+                            "next": "exchange_prioritzar_font"
+                        },
+                        {
+                            "decisionId": "d_prioritzar_dianes",
+                            "label": "Prioritzem el rescatar del treballador al interior de la nau",
+                            "effects": [
+                                { 
+                                    "flag": "ordre_prioritzar_dianes", "value": true 
+                                }
+                            ],
+                            "next": "exchange_prioritzar_dianes"
+                        },
+                        {
+                            "decisionId": "d_prioritzar_flux",
+                            "label": "Prioritzem fer la maniobra per dispersar el núvol i evitar altres afectacions",
+                            "effects": [
+                                { 
+                                    "flag": "ordre_prioritzar_flux", "value": true 
+                                }
+                            ],
+                            "next": "exchange_prioritzar_flux"
+                        },
+                        {
+                            "decisionId": "d_sortir_conversa",
+                            "label": "Això és tot.",
+                            "requires": [
+                                { 
+                                    "flag": "ordre_prioritzar_dianes",   "value": true 
+                                }
+                            ],
+                            "effects": [
+                                { 
+                                    "flag": "conversa_walkie2_completat", "value": true 
+                                }
+                            ],
+                            "next": "step_walkie3"
+                        }
+                    ]
+                },
+                {
+                    "exchangeId": "exchange_prioritzar_font",
+                    "text": "Primer hem de salvar a la persona amb situació crítica",
+                    "decisions": [
+                        {
+                            "decisionId": "d_confirmar_prioritzar_font",
+                            "label": "Continua.",
+                            "next": "exchange_root"
+                        }
+                    ]
+                },
+                {
+                    "exchangeId": "exchange_prioritzar_dianes",
+                    "text": "Entès",
+                    "decisions": [
+                        {
+                            "decisionId": "d_confirmar_prioritzar_dianes",
+                            "label": "Continua.",
+                            "next": "exchange_root"
+                        }
+                    ]
+                },
+                {
+                    "exchangeId": "exchange_prioritzar_flux",
+                    "text": "Primer hem de salvar a la persona amb situació crítica",
+                    "decisions": [
+                        {
+                            "decisionId": "d_confirmar_prioritzar_flux",
+                            "label": "Continua.",
+                            "next": "exchange_root"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "stepId": "step_walkie3",
+            "type": "freeroam",
+            "objectiveTitle": "Contesta al walkie",
+            "objectiveText": "Communica amb el walkie les següents ordres",
+            "activate": [
+                "walkie3"
+            ],
+            "decisions": [
+                {
+                    "decisionId" : "d_interact_walkie3",
+                    "triggeredBy" : "walkie3",
+                    "effects" : [
+                        {
+                            "flag" : "interactuat_walkie3", "value" : true
+                        }
+                    ],
+                    "next" : "step_conversa_walkie3"
+                }
+            ]
+        },
+        {
+            "stepId": "step_conversa_walkie3",
+            "type": "dialogue",
+            "speaker": "walkie3",
+            "exchanges": [
+                {
+                    "exchangeId": "exchange_root",
+                    "text": "El FRQ està a punt d'arribar. Que fem a continuació?",
+                    "decisions": [
+                        {
+                            "decisionId": "d_bomber_entren",
+                            "label": "Que entrin dos bombers amb EPI pesant i ERA per fer la extracció del treballador",
+                            "effects": [
+                                { 
+                                    "flag": "ordre_extraccio_treballador", "value": true 
+                                }
+                            ],
+                            "next": "exchange_extraccio_treballador"
+                        },
+                        {
+                            "decisionId": "d_esperar_frq",
+                            "label": "Esperem al FRQ per entrar amb EPI tipus 1",
+                            "effects": [
+                                { 
+                                    "flag": "ordre_esperar_frq", "value": true 
+                                }
+                            ],
+                            "next": "exchange_esperar_frq"
+                        },
+                        {
+                            "decisionId": "d_sortir_conversa",
+                            "label": "Això és tot.",
+                            "requires": [
+                                { 
+                                    "flag": "ordre_extraccio_treballador",   "value": true
+                                }
+                            ],
+                            "effects": [
+                                { 
+                                    "flag": "conversa_walkie3_completat", "value": true 
+                                }
+                            ],
+                            "next": "step_walkie4"
+                        }
+                    ]
+                },
+                {
+                    "exchangeId": "exchange_extraccio_treballador",
+                    "text": "Entès. S'enviaràn dos bombers amb ERA per a l'extracció",
+                    "decisions": [
+                        {
+                            "decisionId": "d_confirmar_extraccio_treballador",
+                            "label": "Continua.",
+                            "next": "exchange_root"
+                        }
+                    ]
+                },
+                {
+                    "exchangeId": "exchange_esperar_frq",
+                    "text": "No tenim temps que esperar. El treballador encara és dins de la nau.",
+                    "decisions": [
+                        {
+                            "decisionId": "d_confirmar_",
+                            "label": "Continua.",
+                            "next": "exchange_root"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "stepId": "step_walkie4",
+            "type": "freeroam",
+            "objectiveTitle": "Contesta al walkie",
+            "objectiveText": "Communica amb el walkie com construir el PAI operatiu",
+            "activate": [
+                "walkie4"
+            ],
+            "decisions": [
+                {
+                    "decisionId" : "d_interact_walkie4",
+                    "triggeredBy" : "walkie4",
+                    "effects" : [
+                        {
+                            "flag" : "interactuat_walkie4", "value" : true
+                        }
+                    ],
+                    "next" : "step_conversa_walkie4"
+                }
+            ]
+        },
+        {
+            "stepId": "step_conversa_walkie4",
+            "type": "dialogue",
+            "speaker": "walkie4",
+            "exchanges": [
+                {
+                    "exchangeId": "exchange_root",
+                    "text": "Quin és el PAI operatiu?",
+                    "decisions": [
+                        {
+                            "decisionId": "d_pai_font",
+                            "label": "Actuar sobre la dispersió del flux, que és l'element més visible",
+                            "effects": [
+                                { 
+                                    "flag": "ordre_pai_font", "value": true 
+                                }
+                            ],
+                            "next": "exchange_pai"
+                        },
+                        {
+                            "decisionId": "d_pai_dianes",
+                            "label": "Prioritzar accions sobre dianes, flux i per últim sobre la font",
+                            "effects": [
+                                { 
+                                    "flag": "ordre_pai_dianes", "value": true 
+                                }
+                            ],
+                            "next": "exchange_pai"
+                        },
+                        {
+                            "decisionId": "d_pai_simultani",
+                            "label": "Definir un PAI amb 3 objectius simultanis per actuar sobre dianes, flux i font alhora i estabilitzar l'escenari",
+                            "effects": [
+                                { 
+                                    "flag": "ordre_pai_simultani", "value": true 
+                                }
+                            ],
+                            "next": "exchange_pai"
+                        }
+                    ]
+                },
+                {
+                    "exchangeId": "exchange_pai",
+                    "text": "Entès.",
+                    "decisions": [
+                        {
+                            "decisionId": "d_confirmar_pai",
+                            "label": "Continua.",
+                            "next": "step_walkie5"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "stepId": "step_walkie5",
+            "type": "freeroam",
+            "objectiveTitle": "Contesta al walkie",
+            "objectiveText": "Communica amb el walkie per fer la descontaminació de la víctima",
+            "activate": [
+                "walkie5"
+            ],
+            "decisions": [
+                {
+                    "decisionId" : "d_interact_walkie5",
+                    "triggeredBy" : "walkie5",
+                    "effects" : [
+                        {
+                            "flag" : "interactuat_walkie5", "value" : true
+                        }
+                    ],
+                    "next" : "step_conversa_walkie5"
+                }
+            ]
+        },
+        {
+            "stepId": "step_conversa_walkie5",
+            "type": "dialogue",
+            "speaker": "walkie5",
+            "exchanges": [
+                {
+                    "exchangeId": "exchange_root",
+                    "text": "Hem localitzat a la víctima, i ja és fora de la nau. Quin tipus de descontaminació cal fer?",
+                    "decisions": [
+                        {
+                            "decisionId": "d_descontaminacio_res",
+                            "label": "No fer descontaminació, ja que és prioritari la atenció per part dels sanitaris fora de la zona calenta",
+                            "effects": [
+                                { 
+                                    "flag": "ordre_descontaminacio_res", "value": true 
+                                }
+                            ],
+                            "next": "exchange_descontaminacio"
+                        },
+                        {
+                            "decisionId": "d_descontaminacio_quimica",
+                            "label": "Descontaminació per cremada quimica",
+                            "effects": [
+                                { 
+                                    "flag": "ordre_descontaminacio_quimica", "value": true 
+                                }
+                            ],
+                            "next": "exchange_descontaminacio"
+                        },
+                        {
+                            "decisionId": "d_descontaminacio_encapsulament",
+                            "label": "Descontaminació per encapsulament",
+                            "effects": [
+                                { 
+                                    "flag": "ordre_descontaminacio_encapsulament", "value": true 
+                                }
+                            ],
+                            "next": "exchange_descontaminacio"
+                        }
+                    ]
+                },
+                {
+                    "exchangeId": "exchange_descontaminacio",
+                    "text": "Entès.",
+                    "decisions": [
+                        {
+                            "decisionId": "d_confirmar_descontaminacio",
+                            "label": "Continua.",
+                            "next": "step_"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "stepId": "step_comandament_frq",
+            "type": "freeroam",
+            "objectiveTitle": "Parla amb el commandament del FRQ",
+            "objectiveText": "Ordena que fer a continuació",
+            "activate": [
+                "interactable_comandament_frq"
+            ],
+            "decisions": [
+                {
+                    "decisionId" : "d_interact_comandament_frq",
+                    "triggeredBy" : "interactable_comandament_frq",
+                    "effects" : [
+                        {
+                            "flag" : "interactuat_comandament_frq", "value" : true
+                        }
+                    ],
+                    "next" : "step_conversa_comandament_frq"
+                }
+            ]
+        },
+        {
+            "stepId": "step_conversa_comandament_frq",
+            "type": "dialogue",
+            "speaker": "interactable_comandament_frq",
+            "exchanges": [
+                {
+                    "exchangeId": "exchange_root",
+                    "text": "",
+                    "decisions": [
+                        {
+                            "decisionId": "d_envia_era",
+                            "label": "Envio equips amb ERA per ajudar a tancar la fuita",
+                            "effects": [
+                                { 
+                                    "flag": "ordre_envia_era", "value": true
+                                }
+                            ],
+                            "next": "exchange_envia_era"
+                        },
+                        {
+                            "decisionId": "d_control",
+                            "label": "Ordeno mantenir el control del flux i reforçar amb personal la maniobra de atacar la font",
+                            "effects": [
+                                { 
+                                    "flag": "ordre_control", "value": true 
+                                }
+                            ],
+                            "next": "exchange_control"
+                        }
+                    ]
+                },
+                {
+                    "exchangeId": "exchange_envia_era",
+                    "text": "No crec que sigui una decisió acertada en la situació actual",
+                    "decisions": [
+                        {
+                            "decisionId": "d_confirmar_envia_era",
+                            "label": "Continua.",
+                            "next": "exchange_root"
+                        }
+                    ]
+                },
+                {
+                    "exchangeId": "exchange_control",
+                    "text": "Entès",
+                    "decisions": [
+                        {
+                            "decisionId": "d_confirmar_control",
+                            "label": "Continua.",
+                            "next": "step_fi"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "stepId": "step_fi",
+            "type": "freeroam",
+            "objectiveTitle": "Fi",
+            "objectiveText": "",
+            "activate": [
+                ""
+            ],
+            "decisions": [
+                {
+                    "decisionId" : "",
+                    "triggeredBy" : "",
+                    "effects" : [
+                        {
+                            "flag" : "fi", "value" : true
+                        }
+                    ],
+                    "next" : ""
                 }
             ]
         }

@@ -1223,7 +1223,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 206676962}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 284e9752da6d5374095e91edaee08b1b, type: 3}
   m_Name: 
@@ -1235,13 +1235,34 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 206676962}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fc581ecda137d6f47814c8efc9c094e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::InteractablePerson
   _interactionPrompt: Prem 'E' per interactuar
   prompt: {fileID: 11400000, guid: 4ac15233d1e22a74bae94ac0f6f4e568, type: 2}
+--- !u!114 &206676974
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 206676962}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93579b97344a8bd47a8edc5c06c0b547, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MissionInteractablePerson
+  _objectName: interactable_cap_bombers
+  decision:
+    id: 
+    label: 
+    triggeredBy: 
+    requires: []
+    effects: []
+    next: 
+  _interactionPrompt: Prem 'E' per interactuar
 --- !u!1001 &208556678
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1304,6 +1325,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 379a93ea860fbd64681d8db8b3e8006f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1779294546}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 379a93ea860fbd64681d8db8b3e8006f, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1779294547}
   m_SourcePrefab: {fileID: 100100000, guid: 379a93ea860fbd64681d8db8b3e8006f, type: 3}
 --- !u!4 &260404443 stripped
 Transform:
@@ -2866,6 +2890,164 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 8694943657195700422, guid: 581b137ef2daf7c40a000a0c63c1dfe9, type: 3}
   m_PrefabInstance: {fileID: 8712261909218255559}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &617812574
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 617812577}
+  - component: {fileID: 617812576}
+  - component: {fileID: 617812575}
+  m_Layer: 0
+  m_Name: Mission Walkie1 (4)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &617812575
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 617812574}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.1, y: 0.1, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &617812576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 617812574}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ebb81c818fc50e429a4488b9fc5f3b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MissionWalkie
+  _objectName: walkie5
+  decision:
+    id: 
+    label: 
+    triggeredBy: 
+    requires: []
+    effects: []
+    next: 
+  _interactionPrompt: Prem 'E' per agafar el walkie
+--- !u!4 &617812577
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 617812574}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &650929501
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 650929506}
+  - component: {fileID: 650929505}
+  - component: {fileID: 650929504}
+  - component: {fileID: 650929503}
+  - component: {fileID: 650929502}
+  m_Layer: 0
+  m_Name: Mission Object
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &650929502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650929501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 89167bd18730e714cb38f7fa96dc5201, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FlagSystem
+--- !u!114 &650929503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650929501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d31d1a1d191a0234fb886d7d7856d513, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FreeRoamStepHandler
+--- !u!114 &650929504
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650929501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c94e84a02d57dc449492ee5e39373e7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DialogueHandler
+--- !u!114 &650929505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650929501}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62f6ec5bf6a552048a026c611c5bf00c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MissionManager
+--- !u!4 &650929506
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 650929501}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 527.0918, y: 261.21756, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &651664327
 GameObject:
   m_ObjectHideFlags: 0
@@ -6044,6 +6226,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 6222276297428301087, guid: 919320b2e7059fe4bbe9a2632fbf3a33, type: 3}
       insertIndex: -1
       addedObject: {fileID: 206676968}
+    - targetCorrespondingSourceObject: {fileID: 6222276297428301087, guid: 919320b2e7059fe4bbe9a2632fbf3a33, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 206676974}
   m_SourcePrefab: {fileID: 100100000, guid: 919320b2e7059fe4bbe9a2632fbf3a33, type: 3}
 --- !u!1001 &1234107666
 PrefabInstance:
@@ -7101,6 +7286,81 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1489385057}
   m_Mesh: {fileID: 10207, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1507928008
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1507928011}
+  - component: {fileID: 1507928010}
+  - component: {fileID: 1507928009}
+  m_Layer: 0
+  m_Name: Mission Walkie1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1507928009
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507928008}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.1, y: 0.1, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1507928010
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507928008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ebb81c818fc50e429a4488b9fc5f3b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MissionWalkie
+  _objectName: walkie1
+  decision:
+    id: 
+    label: 
+    triggeredBy: 
+    requires: []
+    effects: []
+    next: 
+  _interactionPrompt: Prem 'E' per agafar el walkie
+--- !u!4 &1507928011
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507928008}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1521410197 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3790138734759520477, guid: dd4889c0a76026d4e8581fa80d7362e1, type: 3}
@@ -7338,6 +7598,32 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 1164381146}
   m_SourcePrefab: {fileID: 100100000, guid: 581b137ef2daf7c40a000a0c63c1dfe9, type: 3}
+--- !u!1 &1646607094 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8350084499809229436, guid: 581b137ef2daf7c40a000a0c63c1dfe9, type: 3}
+  m_PrefabInstance: {fileID: 8712261909218255559}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1646607095
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1646607094}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93579b97344a8bd47a8edc5c06c0b547, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MissionInteractablePerson
+  _objectName: interactable_responsable
+  decision:
+    id: 
+    label: 
+    triggeredBy: 
+    requires: []
+    effects: []
+    next: 
+  _interactionPrompt: Prem 'E' per interactuar
 --- !u!1 &1646953880
 GameObject:
   m_ObjectHideFlags: 0
@@ -7639,7 +7925,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3136609580394300736, guid: 2eb7a247312a94f42813ec8f21ca65c5, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5428152762333301168, guid: 2eb7a247312a94f42813ec8f21ca65c5, type: 3}
       propertyPath: m_IsActive
@@ -7729,6 +8015,81 @@ Transform:
   - {fileID: 260404443}
   - {fileID: 1028698580}
   - {fileID: 1763841633}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1704757447
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1704757450}
+  - component: {fileID: 1704757449}
+  - component: {fileID: 1704757448}
+  m_Layer: 0
+  m_Name: Mission Walkie1 (1)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1704757448
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704757447}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.1, y: 0.1, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1704757449
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704757447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ebb81c818fc50e429a4488b9fc5f3b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MissionWalkie
+  _objectName: walkie2
+  decision:
+    id: 
+    label: 
+    triggeredBy: 
+    requires: []
+    effects: []
+    next: 
+  _interactionPrompt: Prem 'E' per agafar el walkie
+--- !u!4 &1704757450
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1704757447}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1719009058 stripped
@@ -8056,6 +8417,102 @@ CapsuleCollider:
   m_Height: 1.7557034
   m_Direction: 1
   m_Center: {x: 0.03228426, y: 0.85755134, z: 0.050000012}
+--- !u!114 &1779294547
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1779294543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 93579b97344a8bd47a8edc5c06c0b547, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MissionInteractablePerson
+  _objectName: interactable_treballador
+  decision:
+    id: 
+    label: 
+    triggeredBy: 
+    requires: []
+    effects: []
+    next: 
+  _interactionPrompt: Prem 'E' per interactuar
+--- !u!1 &1781519328
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1781519331}
+  - component: {fileID: 1781519330}
+  - component: {fileID: 1781519329}
+  m_Layer: 0
+  m_Name: Mission Walkie1 (3)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1781519329
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781519328}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.1, y: 0.1, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1781519330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781519328}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ebb81c818fc50e429a4488b9fc5f3b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MissionWalkie
+  _objectName: walkie4
+  decision:
+    id: 
+    label: 
+    triggeredBy: 
+    requires: []
+    effects: []
+    next: 
+  _interactionPrompt: Prem 'E' per agafar el walkie
+--- !u!4 &1781519331
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1781519328}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1786517322 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: bc8c325d6253fa54a8d9712224839429, type: 3}
@@ -10900,7 +11357,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4231966165274072459, guid: e246fcb13f67a294b905b16ef1f31b18, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4237432320706208175, guid: e246fcb13f67a294b905b16ef1f31b18, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -12423,6 +12880,81 @@ PrefabInstance:
       insertIndex: -1
       addedObject: {fileID: 2058589610}
   m_SourcePrefab: {fileID: 100100000, guid: e246fcb13f67a294b905b16ef1f31b18, type: 3}
+--- !u!1 &1925076805
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1925076808}
+  - component: {fileID: 1925076807}
+  - component: {fileID: 1925076806}
+  m_Layer: 0
+  m_Name: Mission Walkie1 (2)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!65 &1925076806
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925076805}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.1, y: 0.1, z: 0.1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1925076807
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925076805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5ebb81c818fc50e429a4488b9fc5f3b6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MissionWalkie
+  _objectName: walkie3
+  decision:
+    id: 
+    label: 
+    triggeredBy: 
+    requires: []
+    effects: []
+    next: 
+  _interactionPrompt: Prem 'E' per agafar el walkie
+--- !u!4 &1925076808
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925076805}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1941887950
 GameObject:
   m_ObjectHideFlags: 0
@@ -14337,7 +14869,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8694943657195700422, guid: 581b137ef2daf7c40a000a0c63c1dfe9, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 13.1484
+      value: 4.846
       objectReference: {fileID: 0}
     - target: {fileID: 8694943657195700422, guid: 581b137ef2daf7c40a000a0c63c1dfe9, type: 3}
       propertyPath: m_LocalPosition.y
@@ -14345,7 +14877,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8694943657195700422, guid: 581b137ef2daf7c40a000a0c63c1dfe9, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 15.411406
+      value: 20.182
       objectReference: {fileID: 0}
     - target: {fileID: 8694943657195700422, guid: 581b137ef2daf7c40a000a0c63c1dfe9, type: 3}
       propertyPath: m_LocalRotation.w
@@ -14375,10 +14907,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3440530601087995564, guid: 581b137ef2daf7c40a000a0c63c1dfe9, type: 3}
+    - {fileID: 5167675916134765969, guid: 581b137ef2daf7c40a000a0c63c1dfe9, type: 3}
+    - {fileID: 1749832588856396104, guid: 581b137ef2daf7c40a000a0c63c1dfe9, type: 3}
+    - {fileID: 4758952672882674288, guid: 581b137ef2daf7c40a000a0c63c1dfe9, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8350084499809229436, guid: 581b137ef2daf7c40a000a0c63c1dfe9, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1646607095}
   m_SourcePrefab: {fileID: 100100000, guid: 581b137ef2daf7c40a000a0c63c1dfe9, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
@@ -14419,3 +14958,9 @@ SceneRoots:
   - {fileID: 1941887952}
   - {fileID: 1825123368}
   - {fileID: 1197953103}
+  - {fileID: 1507928011}
+  - {fileID: 1704757450}
+  - {fileID: 1925076808}
+  - {fileID: 1781519331}
+  - {fileID: 617812577}
+  - {fileID: 650929506}

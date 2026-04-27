@@ -108,7 +108,7 @@ public class MissionManager : MonoBehaviour
 
         // 2. Executa lògica específica si cal (via codi)
         DecisionLogic.Execute(decision.id);
-
+        Debug.Log("-----> hola");
         // 3. Avança al proper pas
         GoToStep(decision.next);
     }

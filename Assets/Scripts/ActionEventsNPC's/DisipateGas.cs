@@ -44,11 +44,11 @@ public class DisipateGas : MonoBehaviour
     }
     private void OnEnable()
     {
-        FireFighterBehaviourManager.DisipateGasEvent += DisipateGasCloud;
+        DecisionLogic.DisipateGasEvent += DisipateGasCloud;
     }
     private void OnDisable()
     {
-        FireFighterBehaviourManager.DisipateGasEvent -= DisipateGasCloud;
+        DecisionLogic.DisipateGasEvent -= DisipateGasCloud;
     }
 
     public void DisipateGasCloud()

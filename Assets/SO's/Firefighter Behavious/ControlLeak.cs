@@ -45,11 +45,11 @@ public class ControlLeak : MonoBehaviour
     }
     private void OnEnable()
     {
-        FireFighterBehaviourManager.ControlLeakEvent += ControlLeaK;
+        DecisionLogic.ControlLeakEvent += ControlLeaK;
     }
     private void OnDisable()
     {
-        FireFighterBehaviourManager.ControlLeakEvent -= ControlLeaK;
+        DecisionLogic.ControlLeakEvent -= ControlLeaK;
     }
 
     public void ControlLeaK()

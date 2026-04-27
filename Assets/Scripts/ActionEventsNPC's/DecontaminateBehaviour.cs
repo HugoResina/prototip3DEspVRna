@@ -15,15 +15,15 @@ public class DecontaminateBehaviour : MonoBehaviour
     }
     private void OnEnable()
     {
-        FireFighterBehaviourManager.Decontaminate += Decontaminate;
+        DecisionLogic.Decontaminate += Decontaminate;
     }
     private void OnDisable()
     {
-        FireFighterBehaviourManager.Decontaminate -= Decontaminate;
+        DecisionLogic.Decontaminate -= Decontaminate;
     }
     public void Decontaminate()
     {
-        //anim 
+        
 
         Debug.Log("descontaminem a la victima");
         animator.SetBool("RestOnFloor", false);

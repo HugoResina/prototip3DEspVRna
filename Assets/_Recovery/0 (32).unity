@@ -7984,7 +7984,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3136609580394300736, guid: 2eb7a247312a94f42813ec8f21ca65c5, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5428152762333301168, guid: 2eb7a247312a94f42813ec8f21ca65c5, type: 3}
       propertyPath: m_IsActive
@@ -11416,7 +11416,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4231966165274072459, guid: e246fcb13f67a294b905b16ef1f31b18, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4237432320706208175, guid: e246fcb13f67a294b905b16ef1f31b18, type: 3}
       propertyPath: m_StaticEditorFlags
@@ -14914,10 +14914,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1240996957}
     m_Modifications:
-    - target: {fileID: 2014624727270079323, guid: 581b137ef2daf7c40a000a0c63c1dfe9, type: 3}
-      propertyPath: 'm_Materials.Array.data[0]'
-      value: 
-      objectReference: {fileID: 2100000, guid: c0dfa7a63d1cd8143a03b43770708d70, type: 2}
     - target: {fileID: 3440530601087995564, guid: 581b137ef2daf7c40a000a0c63c1dfe9, type: 3}
       propertyPath: destination
       value: 

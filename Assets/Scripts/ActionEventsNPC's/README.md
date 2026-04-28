@@ -1,0 +1,99 @@
+# Afegir comportament de NPc's i/o events a punts del arxiu JSON de una missió
+
+<b style='color:red;'>Primer es recomana estar familiatrizat amb els continguts del arxiu JSON de la missió, informació pertintent: link</b>
+
+- Suposem un script que defineix una acció que ha de succeir en un punt de la missió:
+aquest script en concret fa apareixer un nou camió i l'acortinador i crida a un metode de una clase SmokeParticlesScript que limita la emisio del objecte Smoke per que sembli que la fuita esta sent controlada pel fluxe d'aigua del acortinador
+
+```c#
+using System.Collections;
+using UnityEngine;
+using UnityEngine.AI;
+
+public class DisipateGas : MonoBehaviour
+{
+
+    public GameObject Truck;
+    public GameObject CurtainHose;
+    bool called = false;
+    [SerializeField]
+    private GameObject Smoke;
+    
+    private Fade fade;
+    SmokeParticlesScript sps;
+
+
+    private void Start()
+    {
+        fade = GetComponent<Fade>();
+        sps = Smoke.GetComponent<SmokeParticlesScript>();
+        
+    }
+
+    private void OnEnable()
+    {
+        DecisionLogic.DisipateGasEvent += DisipateGasCloud;
+    }
+    private void OnDisable()
+    {
+        DecisionLogic.DisipateGasEvent -= DisipateGasCloud;
+    }
+
+    public void DisipateGasCloud()
+    {
+        StartCoroutine(DisipateRoutine());
+    }
+    public IEnumerator DisipateRoutine()
+    {
+        fade.FadeIn();
+        yield return new WaitForSeconds(1f);
+        Truck.SetActive(true);
+        CurtainHose.SetActive(true);
+        sps.CurtainEffect();
+        Debug.Log("activat");
+        yield return new WaitForSeconds(0.5f);
+        fade.FadeOut();
+    }
+}
+```
+
+- Volem que tot aixo pasi en un punt concret de la interacció com seria donar l'ordre de disipar el gas als bombers en aquest element d'un bloc decisions 
+
+```json
+ {
+    "decisionId": "d_control",
+    "label": "Ordeno mantenir el control del flux i reforçar amb personal la maniobra de atacar la font",
+    "effects": [
+        { 
+            "flag": "ordre_control", "value": true 
+        }
+    ],
+    "next": "exchange_control"
+}
+```
+
+- per tal de que en aquest punt s'executi la logica d'abans afegirem un block case + "decisionId" al Switch case de la classe DecisionLogic:
+
+```c#
+using System;
+using UnityEditor.ShaderGraph;
+using UnityEngine;
+
+public static class DecisionLogic
+{
+    //[...]
+    public static event Action DisipateGasEvent;
+
+    public static void Execute(string decisionId)
+    {
+        switch (decisionId)
+        {
+            case "d_control":
+    
+            DisipateGasEvent?.Invoke();
+            
+            break;
+            //[...]
+```
+
+- si el comportament implica enviar ordres a un npc per que, per exemple, el seu navmeshagent es mogui a un punt, el script de logica haurà de ser un monobehaviour que implementi tot aquell npc que hagi de executar la logica 

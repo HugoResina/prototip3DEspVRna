@@ -75,26 +75,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void RegistrarEnArchivo(ResponseObj obj)
-    {
-        try
-        {
-            
-            using (StreamWriter sw = new StreamWriter(rutaCompleta, true))
-            {
-                sw.WriteLine($"[{DateTime.Now:HH:mm:ss}] Index: {obj.index}");
-                sw.WriteLine($"Resposta: {obj.response}");
-                //get prompt
-                sw.WriteLine("------------------------------------------");
-            }
-
-         
-
-        }
-        catch (Exception e)
-        {
-            Debug.LogError($"Error al escriure l'arxiu: {e.Message}");
-        }
-    }
+   
 
 }

@@ -23,9 +23,7 @@ public class DecontaminateBehaviour : MonoBehaviour
     }
     public void Decontaminate()
     {
-        
-
-        Debug.Log("descontaminem a la victima");
+      
         animator.SetBool("RestOnFloor", false);
         animator.SetBool("Treated", true);
     }

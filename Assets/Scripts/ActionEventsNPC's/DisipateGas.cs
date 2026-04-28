@@ -5,11 +5,8 @@ using UnityEngine.AI;
 public class DisipateGas : MonoBehaviour
 {
 
-    //private NavMeshAgent navMeshAgent;
-    //private Animator animator;
     public GameObject Truck;
     public GameObject CurtainHose;
-    //[SerializeField] 
     bool called = false;
     [SerializeField]
     private GameObject Smoke;
@@ -25,23 +22,6 @@ public class DisipateGas : MonoBehaviour
         
     }
 
-    private void Update()
-    {
-        //if (called)
-        //{
-
-
-        //    //if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance && !navMeshAgent.pathPending)
-        //    //{
-        //    //    //animacio acortinador?
-        //    //    animator.SetBool("IsWalking", false);
-        //    //    called = false;
-        //        //Smoke.SetActive(false);
-        //        SmokeParticlesScript sps = Smoke.GetComponent<SmokeParticlesScript>();
-        //        //sps.StartToDisipate();
-        //    //}
-        //}
-    }
     private void OnEnable()
     {
         DecisionLogic.DisipateGasEvent += DisipateGasCloud;

@@ -30,13 +30,25 @@ public class MissionManager : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(StartMissionAfterDelay("M01_FuitaAmoniac", 2f));
+        //StartCoroutine(StartMissionAfterDelay("M01_FuitaAmoniac", 2f));
     }
 
-    private IEnumerator StartMissionAfterDelay(string missionId, float delay)
+    private void OnEnable()
     {
-        yield return new WaitForSeconds(delay);
-        LoadMission(missionId);
+        ExitCInematic.StartMission += StartMision;
+    }
+    private void OnDisable()
+    {
+        ExitCInematic.StartMission -= StartMision;
+    }
+    //private IEnumerator StartMissionAfterDelay(string missionId, float delay)
+    //{
+    //    yield return new WaitForSeconds(delay);
+    //    LoadMission(missionId);
+    //}
+    public void StartMision()
+    {
+        LoadMission("M01_FuitaAmoniac");
     }
 
     public void LoadMission(string missionId)

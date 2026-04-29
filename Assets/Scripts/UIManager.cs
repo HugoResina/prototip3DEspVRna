@@ -69,9 +69,6 @@ public class UIManager : MonoBehaviour
     {
         PlayerInteraction.OnInteractUpdate += UpdateInteractionText;
 
-        DecisionsManager.OnDecisionShown += AddPlayerAnswerButton;
-        DecisionsManager.OnUpdateScore += UpdatePlayerObjectiveScore;
-
         MissionManager.OnUpdateObjective += UpdatePlayerObjective;
 
         DialogueHandler.OnToggleDialogueMenu += UpdateMissionInterPerMenu;
@@ -89,6 +86,12 @@ public class UIManager : MonoBehaviour
     private void OnDisable()
     {
         PlayerInteraction.OnInteractUpdate -= UpdateInteractionText;
+
+        MissionManager.OnUpdateObjective -= UpdatePlayerObjective;
+
+        DialogueHandler.OnToggleDialogueMenu -= UpdateMissionInterPerMenu;
+        DialogueHandler.OnUpdateDialogueText -= UpdateMissionInterPerDialogueText;
+        DialogueHandler.OnShowDecision -= AddMissionInterPerAnswerButton;
 
         ControlsTutorial.OnUpdateObjective -= UpdatePlayerObjective;
         ControlsTutorial.OnShowPopup -= ShowPopup;

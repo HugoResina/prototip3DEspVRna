@@ -3,7 +3,7 @@
 <b style='color:red;'>Primer es recomana estar familiatrizat amb els continguts del arxiu JSON de la missió, informació pertintent: link</b>
 
 - Suposem un script que defineix una acció que ha de succeir en un punt de la missió:
-aquest script en concret fa apareixer un nou camió i l'acortinador i crida a un metode de una clase SmokeParticlesScript que limita la emisio del objecte Smoke per que sembli que la fuita esta sent controlada pel fluxe d'aigua del acortinador
+aquest script en concret fa aparèixer un nou camió i l'acortinador i crida a un mètode d'una classe SmokeParticlesScript que limita la emissió del objecte Smoke perquè sembli que la fuita està sent controlada pel flux d'aigua del acortinador
 
 ```c#
 using System.Collections;

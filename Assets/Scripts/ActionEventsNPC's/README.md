@@ -57,7 +57,7 @@ public class DisipateGas : MonoBehaviour
 }
 ```
 
-- Volem que tot aixo pasi en un punt concret de la interacció com seria donar l'ordre de disipar el gas als bombers en aquest element d'un bloc decisions 
+- Volem que tot això passi en un punt concret de la interacció, com seria donar l'ordre de dissipar el gas als bombers en aquest element d'un bloc decisions.
 
 ```json
  {
@@ -72,7 +72,7 @@ public class DisipateGas : MonoBehaviour
 }
 ```
 
-- per tal de que en aquest punt s'executi la logica d'abans afegirem un block case + "decisionId" al Switch case de la classe DecisionLogic:
+- Per tal que en aquest punt s'executi la lògica d'abans, afegirem un block case + "decisionId" al Switch case de la classe DecisionLogic:
 
 ```c#
 using System;
@@ -96,4 +96,4 @@ public static class DecisionLogic
             //[...]
 ```
 
-- si el comportament implica enviar ordres a un npc per que, per exemple, el seu navmeshagent es mogui a un punt, el script de logica haurà de ser un monobehaviour que implementi tot aquell npc que hagi de executar la logica 
+- Si el comportament implica enviar ordres a un npc perquè, per exemple, el seu navmeshagent es mogui a un punt, el script de lògica haurà de ser un monobehaviour que implementi tot aquell npc que hagi d'executar la lògica 

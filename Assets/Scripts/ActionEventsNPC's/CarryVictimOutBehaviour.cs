@@ -6,7 +6,6 @@ public class CarryVictimOutBehaviour : MonoBehaviour
 {
     private NavMeshAgent navMeshAgent;
     private Animator animator;
-    //public static event Action Decontaminate;
     public Transform destination;
     private bool called = false;
 

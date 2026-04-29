@@ -9,7 +9,6 @@ public class DisipateGas : MonoBehaviour
 
     public GameObject Truck;
     public GameObject CurtainHose;
-    //bool called = false;
     [SerializeField]
     private GameObject Smoke;
     

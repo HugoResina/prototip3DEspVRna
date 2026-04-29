@@ -30,7 +30,6 @@ public class MissionManager : MonoBehaviour
 
     private void Start()
     {
-        //StartCoroutine(StartMissionAfterDelay("M01_FuitaAmoniac", 2f));
     }
 
     private void OnEnable()
@@ -41,11 +40,7 @@ public class MissionManager : MonoBehaviour
     {
         ExitCInematic.StartMission -= StartMision;
     }
-    //private IEnumerator StartMissionAfterDelay(string missionId, float delay)
-    //{
-    //    yield return new WaitForSeconds(delay);
-    //    LoadMission(missionId);
-    //}
+   
     public void StartMision()
     {
         LoadMission("M01_FuitaAmoniac");
@@ -68,7 +63,6 @@ public class MissionManager : MonoBehaviour
         }
 
         // Avisa la UI que mostri les opcions
-        //DialogueUI.Instance.ShowStep(_currentStep.description, validDecisions);
         Debug.Log($"MISSION MANAGER: Step -> {_currentStep.id} - Objective -> {_currentStep.objectiveTitle}");
         OnUpdateObjective?.Invoke(_currentStep.objectiveTitle, _currentStep.objectiveText);
 

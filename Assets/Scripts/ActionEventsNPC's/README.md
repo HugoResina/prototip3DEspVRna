@@ -1,6 +1,6 @@
 # Afegir comportament de NPc's i/o events a punts del arxiu JSON de una missió
 
-<b style='color:red;'>Primer es recomana estar familiatrizat amb els continguts del arxiu JSON de la missió, informació pertintent: link</b>
+<b style='color:red;'>Primer es recomana estar familiatrizat amb els continguts del arxiu JSON de la missió, informació pertintent: [JSON Missió](https://github.com/HugoResina/prototip3DEspVRna/tree/main/Assets/Resources#readme)</b>
 
 - Suposem un script que defineix una acció que ha de succeir en un punt de la missió:
 aquest script en concret fa aparèixer un nou camió i l'acortinador i crida a un mètode d'una classe SmokeParticlesScript que limita la emissió del objecte Smoke perquè sembli que la fuita està sent controlada pel flux d'aigua del acortinador

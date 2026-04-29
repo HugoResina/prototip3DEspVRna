@@ -51,14 +51,7 @@ public class MissionManager : MonoBehaviour
     }
     #endregion
 
-    private void OnEnable()
-    {
-        ExitCInematic.StartMission += StartMision;
-    }
-    private void OnDisable()
-    {
-        ExitCInematic.StartMission -= StartMision;
-    }
+   
    
     /// <summary>
     /// Carrega i inicia una missió

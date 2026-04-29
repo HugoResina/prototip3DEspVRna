@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2674378040107526207}
   - component: {fileID: 4320157691493758919}
   - component: {fileID: 3467591970643029418}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Interaction Text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -148,7 +148,7 @@ GameObject:
   - component: {fileID: 7731485999036697457}
   - component: {fileID: 6134627382669101185}
   - component: {fileID: 2311089918535927289}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Point
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -221,7 +221,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4870754947390512308}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ItemViewer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -259,7 +259,7 @@ GameObject:
   - component: {fileID: 5172574866432565116}
   - component: {fileID: 8426154846617306000}
   - component: {fileID: 8443963201047343725}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -449,7 +449,7 @@ GameObject:
   - component: {fileID: 6832812758825781562}
   - component: {fileID: 1627729734474093792}
   - component: {fileID: 254066703364710785}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -573,7 +573,7 @@ GameObject:
   - component: {fileID: 3583694964601514779}
   - component: {fileID: 7113515041422996951}
   - component: {fileID: 5981372602480592632}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Camera
   m_TagString: MainCamera
   m_Icon: {fileID: 0}
@@ -711,7 +711,7 @@ GameObject:
   - component: {fileID: 2197125076967841220}
   - component: {fileID: 9211673844571180188}
   - component: {fileID: 3237348870987390081}
-  m_Layer: 5
+  m_Layer: 10
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -6,7 +6,7 @@ public class VehicleToMission : MonoBehaviour, IIteractable
     public string InteractionPrompt { get => _interactionPrompt; set => _interactionPrompt = value; }
     public bool InteractionEnabled => enabled;
 
-    [SerializeField] private string _interactionPrompt = "Prem 'E' per començar la missió";
+    [SerializeField] private string _interactionPrompt = "";//"Prem 'E' per començar la missió";
 
     public MisionSO mission;
 
@@ -14,6 +14,7 @@ public class VehicleToMission : MonoBehaviour, IIteractable
     public void Interact(GameObject gameObject)
     {
         InteractablePersonEvents.UpdateMenuState(false);
+        _interactionPrompt = "";    
         SceneManager.LoadScene(mission.SceneId);
     }
 }

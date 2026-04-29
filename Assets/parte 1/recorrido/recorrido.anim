@@ -13226,7 +13226,7 @@ AnimationClip:
   m_HasGenericRootTransform: 1
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 188.5
+  - time: 188.41667
     functionName: ExitCinematic
     data: 
     objectReferenceParameter: {fileID: 0}

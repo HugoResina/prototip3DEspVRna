@@ -82,6 +82,7 @@ public class DialogueHandler : MonoBehaviour
 
     private void OnExchangeDecision(Decision decision)
     {
+        DecisionLogic.Execute(decision.id);
         // Decisió interna de conversa -> següent exchange
         if (decision.next.StartsWith("exchange_"))
         {

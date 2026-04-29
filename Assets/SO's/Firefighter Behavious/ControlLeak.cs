@@ -21,11 +21,6 @@ public class ControlLeak : MonoBehaviour
         {
             Debug.LogError("nav mesh agent component not attached");
         }
-        //else
-        //{
-        //    SetDestination(destination1);
-        //}
-
     }
 
     private void Update()
@@ -34,10 +29,8 @@ public class ControlLeak : MonoBehaviour
         {
             if (navMeshAgent.remainingDistance <= navMeshAgent.stoppingDistance && !navMeshAgent.pathPending)
             {
-                //animacio acortinador?
                 animator.SetBool("IsWalking", false);
                 called = false;
-                //Smoke.SetActive(false);
                 SmokeParticlesScript sps = Smoke.GetComponent<SmokeParticlesScript>();
                 sps.StartToDisipate();
             }
@@ -45,11 +38,11 @@ public class ControlLeak : MonoBehaviour
     }
     private void OnEnable()
     {
-        FireFighterBehaviourManager.ControlLeakEvent += ControlLeaK;
+        DecisionLogic.ControlLeakEvent += ControlLeaK;
     }
     private void OnDisable()
     {
-        FireFighterBehaviourManager.ControlLeakEvent -= ControlLeaK;
+        DecisionLogic.ControlLeakEvent -= ControlLeaK;
     }
 
     public void ControlLeaK()
@@ -57,7 +50,6 @@ public class ControlLeak : MonoBehaviour
         called = true;
         if (destination != null)
         {
-
             animator.SetBool("IsWalking", true);
             Vector3 targetVector = destination.transform.position;
             navMeshAgent.SetDestination(targetVector);

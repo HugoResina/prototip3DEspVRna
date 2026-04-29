@@ -13,6 +13,7 @@ public class FireFighterBehaviourManager : MonoBehaviour
     public static event Action ActivateABDEvent;
     public static event Action DisipateGasEvent;
     public static event Action SaveVictimsEvent;
+    public static event Action Decontaminate;
     
 
 
@@ -44,8 +45,8 @@ public class FireFighterBehaviourManager : MonoBehaviour
                 ActivateABDEvent?.Invoke();
                 break;
             case 10:
+                Decontaminate?.Invoke();
                 break;
-
             default:
                 break;
 

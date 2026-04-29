@@ -19,12 +19,12 @@ public class SetABDSafeZone : MonoBehaviour
   
     private void OnEnable()
     {
-        
-        FireFighterBehaviourManager.ActivateABDEvent += ActivateABDZone;
+
+        DecisionLogic.ActivateABDEvent += ActivateABDZone;
     }
     private void OnDisable()
     {
-        FireFighterBehaviourManager.ActivateABDEvent -= ActivateABDZone;
+        DecisionLogic.ActivateABDEvent -= ActivateABDZone;
     }
 
     public void ActivateABDZone()

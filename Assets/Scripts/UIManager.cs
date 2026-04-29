@@ -90,11 +90,6 @@ public class UIManager : MonoBehaviour
     {
         PlayerInteraction.OnInteractUpdate -= UpdateInteractionText;
 
-        DecisionsManager.OnDecisionShown -= AddPlayerAnswerButton;
-        DecisionsManager.OnUpdateScore -= UpdatePlayerObjectiveScore;
-
-        MissionManager.OnUpdateObjective -= UpdatePlayerObjective;
-
         ControlsTutorial.OnUpdateObjective -= UpdatePlayerObjective;
         ControlsTutorial.OnShowPopup -= ShowPopup;
 
@@ -193,7 +188,7 @@ public class UIManager : MonoBehaviour
 
     private void UpdatePlayerObjectiveScore(int score)
     {
-        _objectiveScoreText.text = $"Puntuació: {score}";
+        _objectiveScoreText.text = $"Puntuaciï¿½: {score}";
     }
 
     private void ToggleObjectiveSectionContent(bool showText)

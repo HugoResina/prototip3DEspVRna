@@ -4,6 +4,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputs : MonoBehaviour, InputSystem_Actions.IPlayerActions
 {
+
     public InputSystem_Actions InputActions { get; private set; }
     public Vector2 MoveInput { get; private set; }
     public Vector2 LookInput { get; private set; }
@@ -11,7 +12,9 @@ public class PlayerInputs : MonoBehaviour, InputSystem_Actions.IPlayerActions
     public bool SprintInput { get; private set; }
     public bool AttackInput { get; private set; }
     public bool ExitInput { get; private set; }
+    public bool RadioInput { get; private set; }
     public static event Action ExitFunc;
+    //public static event Action<bool> onWalkieCLick;
     //public bool IsInteracting = false;
 
     private void OnEnable()
@@ -61,4 +64,6 @@ public class PlayerInputs : MonoBehaviour, InputSystem_Actions.IPlayerActions
     {
         AttackInput = context.ReadValueAsButton();
     }
+
+   
 }

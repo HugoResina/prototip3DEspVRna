@@ -12,7 +12,6 @@ public static class DecisionLogic
 
     public static void Execute(string decisionId)
     {
-        Debug.Log("id---------------- " + decisionId);
         switch (decisionId)
         {
             // Logica de cada decisió específica
@@ -44,7 +43,7 @@ public static class DecisionLogic
                 Decontaminate?.Invoke();
                 break;
             case "d_control":
-                //tallar fuita i acortinador
+               
                 DisipateGasEvent?.Invoke();
                 ControlLeakEvent?.Invoke();
                 break;

@@ -6,7 +6,7 @@ public class CarryVictimOutBehaviour : MonoBehaviour
 {
     private NavMeshAgent navMeshAgent;
     private Animator animator;
-    public static event Action Decontaminate;
+    //public static event Action Decontaminate;
     public Transform destination;
     private bool called = false;
 
@@ -29,7 +29,6 @@ public class CarryVictimOutBehaviour : MonoBehaviour
                 navMeshAgent.isStopped = true;
                 navMeshAgent.stoppingDistance = 0.5f;
 
-                Debug.Log("llegue");
                 animator.SetBool("RestOnFloor", true);
             }
             navMeshAgent.stoppingDistance = 0.5f;
@@ -57,7 +56,6 @@ public class CarryVictimOutBehaviour : MonoBehaviour
             navMeshAgent.SetDestination(destination.position);
             navMeshAgent.stoppingDistance = -1;
            
-            Debug.Log("sacamos a la victima");
           
             called = true;
 

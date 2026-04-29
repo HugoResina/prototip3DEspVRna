@@ -1,4 +1,4 @@
-# Afegir comportament de NPc's i/o events a punts del arxiu JSON de una missió
+# Afegir comportament de NPC's i/o events a punts del arxiu JSON de una missió
 
 <b style='color:red;'>Primer es recomana estar familiatrizat amb els continguts del arxiu JSON de la missió, informació pertintent: [JSON Missió](https://github.com/HugoResina/prototip3DEspVRna/tree/main/Assets/Resources#readme)</b>
 

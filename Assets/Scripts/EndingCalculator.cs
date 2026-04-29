@@ -2,6 +2,10 @@ using UnityEngine;
 
 public class EndingCalculator : MonoBehaviour
 {
+    /// <summary>
+    /// Calcula un final o un altre segons els flags actius
+    /// </summary>
+    /// <returns>Ending resultant</returns>
     public string CalculateEnding()
     {
         var flags = FlagSystem.Instance;

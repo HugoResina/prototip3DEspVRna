@@ -1,9 +1,9 @@
-# Afegir comportament de NPc's i/o events a punts del arxiu JSON de una missió
+# Afegir comportament de NPC's i/o events a punts del arxiu JSON de una missió
 
-<b style='color:red;'>Primer es recomana estar familiatrizat amb els continguts del arxiu JSON de la missió, informació pertintent: link</b>
+<b style='color:red;'>Primer es recomana estar familiatrizat amb els continguts del arxiu JSON de la missió, informació pertintent: [JSON Missió](https://github.com/HugoResina/prototip3DEspVRna/tree/main/Assets/Resources#readme)</b>
 
 - Suposem un script que defineix una acció que ha de succeir en un punt de la missió:
-aquest script en concret fa apareixer un nou camió i l'acortinador i crida a un metode de una clase SmokeParticlesScript que limita la emisio del objecte Smoke per que sembli que la fuita esta sent controlada pel fluxe d'aigua del acortinador
+aquest script en concret fa aparèixer un nou camió i l'acortinador i crida a un mètode d'una classe SmokeParticlesScript que limita la emissió del objecte Smoke perquè sembli que la fuita està sent controlada pel flux d'aigua del acortinador
 
 ```c#
 using System.Collections;
@@ -57,7 +57,7 @@ public class DisipateGas : MonoBehaviour
 }
 ```
 
-- Volem que tot aixo pasi en un punt concret de la interacció com seria donar l'ordre de disipar el gas als bombers en aquest element d'un bloc decisions 
+- Volem que tot això passi en un punt concret de la interacció, com seria donar l'ordre de dissipar el gas als bombers en aquest element d'un bloc decisions.
 
 ```json
  {
@@ -72,7 +72,7 @@ public class DisipateGas : MonoBehaviour
 }
 ```
 
-- per tal de que en aquest punt s'executi la logica d'abans afegirem un block case + "decisionId" al Switch case de la classe DecisionLogic:
+- Per tal que en aquest punt s'executi la lògica d'abans, afegirem un block case + "decisionId" al Switch case de la classe DecisionLogic:
 
 ```c#
 using System;
@@ -95,5 +95,3 @@ public static class DecisionLogic
             break;
             //[...]
 ```
-
-- si el comportament implica enviar ordres a un npc per que, per exemple, el seu navmeshagent es mogui a un punt, el script de logica haurà de ser un monobehaviour que implementi tot aquell npc que hagi de executar la logica 

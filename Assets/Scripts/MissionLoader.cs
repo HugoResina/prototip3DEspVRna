@@ -1,11 +1,16 @@
 using Newtonsoft.Json;
 using System;
-using UnityEngine;
 
 public static class MissionLoader
 {
+    // Directori on es troben els arxius Json de missions
     private readonly static string _jsonDirPath = "Assets/Resources";
 
+    /// <summary>
+    /// Carrega una missió a través del seu id i buscant el corresponent arxiu json
+    /// </summary>
+    /// <param name="missionId">Indentificador de la missió</param>
+    /// <returns>Objecte de missió deserialitzat</returns>
     public static MissionData Load(string missionId)
     {
         string filePath = $"{_jsonDirPath}/{missionId}.json";
@@ -13,59 +18,9 @@ public static class MissionLoader
 
         return JsonConvert.DeserializeObject<MissionData>(json);
     }
-
-    #region Previous Mission Data
-    private readonly static string _prevJsonFilePath = "Assets/Resources/decisions.json";
-
-    public static PrevDecision[] PrevLoadMissionDecisions(int missionId)
-    {
-        PrevMission[] missions = PrevLoadMissions();
-        PrevMission mission = Array.Find(missions, m => m.id == missionId);
-
-        if (mission == null)
-        {
-            Debug.LogError($"DECISIONS HELPER: Mission with ID {missionId} not found.");
-            return null;
-        }
-
-        return mission.decisions;
-    }
-
-    private static PrevMission[] PrevLoadMissions()
-    {
-        string json = System.IO.File.ReadAllText(_prevJsonFilePath);
-        return JsonConvert.DeserializeObject<PrevMission[]>(json);
-    }
-    #endregion
 }
 
-#region Previous Mission Data Structures
-[Serializable]
-public class PrevMission
-{
-    [JsonProperty("id")]            public int id;
-    [JsonProperty("name")]          public string name;
-    [JsonProperty("description")]   public string description;
-    [JsonProperty("totalpoints")]   public int totalPoints;
-    [JsonProperty("decisions")]     public PrevDecision[] decisions;
-}
-
-[Serializable]
-public class PrevDecision
-{
-    [JsonProperty("id")]            public int id;
-    [JsonProperty("title")]         public string title;
-    [JsonProperty("answers")]       public PrevDecisionAnswer[] answers;
-}
-
-[Serializable]
-public class PrevDecisionAnswer
-{
-    [JsonProperty("text")]          public string text;
-    [JsonProperty("points")]        public int points;
-}
-#endregion
-
+#region MissionData Classes
 [Serializable]
 public class MissionData
 {
@@ -114,3 +69,4 @@ public class Condition
     [JsonProperty("flag")]                  public string flag;
     [JsonProperty("value")]                 public bool value;
 }
+#endregion

@@ -4,30 +4,26 @@ using UnityEngine;
 
 public static class DecisionLogic
 {
+    #region Logic Events
+    // Events que es llancen per executar la lògica de cada decisió
     public static event Action ControlLeakEvent;
     public static event Action ActivateABDEvent;
     public static event Action DisipateGasEvent;
     public static event Action SaveVictimsEvent;
     public static event Action Decontaminate;
+    #endregion
 
+    #region Decision Logics
+    /// <summary>
+    /// Executa la lògica de les decisions
+    /// </summary>
+    /// <param name="decisionId">Id de la decisió de la qual es vol executar la lògica</param>
     public static void Execute(string decisionId)
     {
         switch (decisionId)
         {
             // Logica de cada decisió específica
-            case "d_aparcar_20m":
-                FreeRoamHandler.GetRegisteredGameObject("trigger_magatzem_20m").gameObject.SetActive(false);
-                break;
-
-            case "d_aparcar_50m":
-                FreeRoamHandler.GetRegisteredGameObject("trigger_magatzem_50m").gameObject.SetActive(false);
-                break;
-
-            case "d_aparcar_costat_vent":
-                FreeRoamHandler.GetRegisteredGameObject("trigger_magatzem_costat_vent").gameObject.SetActive(false);
-                break;
              case "d_tornar_muntar_ABD":
-                Debug.Log("ABDABDABDABDA");
                 ActivateABDEvent?.Invoke();
                 break;
             case "d_bomber_entren":
@@ -49,4 +45,5 @@ public static class DecisionLogic
                 break;
         }
     }
+    #endregion
 }

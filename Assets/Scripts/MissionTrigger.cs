@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class MissionTrigger : MissionGameObject
 {
+    // Trigger Collider amb el que col·lisionar
     private Collider _collider;
 
     private void Awake()
@@ -14,12 +15,18 @@ public class MissionTrigger : MissionGameObject
         }
         else
         {
-            _collider.isTrigger = true;
+            _collider.isTrigger = true; // Inicialitzar com de tipus trigger
         }
     }
 
+    /// <summary>
+    /// En entrar al collider es pren la decisió
+    /// </summary>
     private void OnTriggerEnter(Collider other)
     {
-        OnDecisionMade();
+        if (other.gameObject.TryGetComponent(out PlayerInteraction _))
+        {
+            OnDecisionMade();
+        }
     }
 }

@@ -1,11 +1,16 @@
 using Newtonsoft.Json;
 using System;
-using UnityEngine;
 
 public static class MissionLoader
 {
+    // Directori on es troben els arxius Json de missions
     private readonly static string _jsonDirPath = "Assets/Resources";
 
+    /// <summary>
+    /// Carrega una missió a través del seu id i buscant el corresponent arxiu json
+    /// </summary>
+    /// <param name="missionId">Indentificador de la missió</param>
+    /// <returns>Objecte de missió deserialitzat</returns>
     public static MissionData Load(string missionId)
     {
         string filePath = $"{_jsonDirPath}/{missionId}.json";
@@ -15,6 +20,7 @@ public static class MissionLoader
     }
 }
 
+#region MissionData Classes
 [Serializable]
 public class MissionData
 {
@@ -63,3 +69,4 @@ public class Condition
     [JsonProperty("flag")]                  public string flag;
     [JsonProperty("value")]                 public bool value;
 }
+#endregion

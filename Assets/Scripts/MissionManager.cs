@@ -3,15 +3,20 @@ using System.Collections;
 using System.Linq;
 using UnityEngine;
 
+[RequireComponent(typeof(DialogueHandler), typeof(FreeRoamHandler))] // Requereix els handlers da cada tipus per funcionar
 public class MissionManager : MonoBehaviour
 {
+    // Instància estàtica
     public static MissionManager Instance { get; private set; }
 
+    // Event per actualitzar la UI
     public static event Action<string, string> OnUpdateObjective;
 
+    // MonoBehaviours dels tipus de decisions
     private DialogueHandler _dialogueHandler;
     private FreeRoamHandler _freeRoamHandler;
 
+    // Missió i pas actual
     private MissionData _currentMission;
     private MissionStep _currentStep;
 
@@ -28,35 +33,48 @@ public class MissionManager : MonoBehaviour
         _freeRoamHandler = GetComponent<FreeRoamHandler>();
     }
 
-    private void Start()
-    {
-        //StartCoroutine(StartMissionAfterDelay("M01_FuitaAmoniac", 2f));
-    }
+    // Subscripció i desubscripció d'events
+    private void OnEnable() => ExitCInematic.StartMission += StartMision;
+    private void OnDisable() => ExitCInematic.StartMission -= StartMision;
 
-    private void OnEnable()
+    #region Mission Loading
+    #region Testing Corroutine
+    /// <summary>
+    /// Corrutina per carregar i iniciar la missió amb un temps d'espera
+    /// </summary>
+    /// <param name="missionId">Identificador de la missió a carregar</param>
+    /// <param name="delay">Temps d'espera</param>
+    private IEnumerator StartMissionAfterDelay(string missionId, float delay)
     {
-        ExitCInematic.StartMission += StartMision;
+        yield return new WaitForSeconds(delay);
+        LoadMission(missionId);
     }
-    private void OnDisable()
-    {
-        ExitCInematic.StartMission -= StartMision;
-    }
-    //private IEnumerator StartMissionAfterDelay(string missionId, float delay)
-    //{
-    //    yield return new WaitForSeconds(delay);
-    //    LoadMission(missionId);
-    //}
+    #endregion
+
+    /// <summary>
+    /// Carrega i inicia una missió
+    /// </summary>
     public void StartMision()
     {
         LoadMission("M01_FuitaAmoniac");
     }
 
+    /// <summary>
+    /// Carrega una missió i la inicia
+    /// </summary>
+    /// <param name="missionId">Identificador de la missió a carregar</param>
     public void LoadMission(string missionId)
     {
         _currentMission = MissionLoader.Load(missionId);
         GoToStep(_currentMission.entry);
     }
+    #endregion
 
+    #region Step Handling
+    /// <summary>
+    /// Comprova el pas següent i l'inicia segons el tipus que és
+    /// </summary>
+    /// <param name="stepId">Identificador del pas</param>
     public void GoToStep(string stepId)
     {
         _currentStep = _currentMission.steps.FirstOrDefault(s => s.id == stepId);
@@ -67,20 +85,17 @@ public class MissionManager : MonoBehaviour
             return;
         }
 
-        // Avisa la UI que mostri les opcions
-        //DialogueUI.Instance.ShowStep(_currentStep.description, validDecisions);
-        Debug.Log($"MISSION MANAGER: Step -> {_currentStep.id} - Objective -> {_currentStep.objectiveTitle}");
+        // Avisa la UI que mostri l'objectiu
         OnUpdateObjective?.Invoke(_currentStep.objectiveTitle, _currentStep.objectiveText);
 
+        // Comprova el tipus de pas i l'inicia en conseqüència
         switch (_currentStep.type)
         {
             case "dialogue":
-                Debug.Log("MISSION MANAGER: Starting dialogue step.");
                 HandleDialogueStep(_currentStep);
                 break;
 
             case "freeroam":
-                Debug.Log("MISSION MANAGER: Starting freeroam step.");
                 HandleFreeRoamStep(_currentStep);
                 break;
 
@@ -90,6 +105,10 @@ public class MissionManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Inicia un pas de tipus FreeRoam
+    /// </summary>
+    /// <param name="step">Identificador del pas</param>
     private void HandleFreeRoamStep(MissionStep step)
     {
         var validDecisions = step.decisions?
@@ -100,11 +119,19 @@ public class MissionManager : MonoBehaviour
         _freeRoamHandler.ActivateForStep(_currentStep);
     }
 
+    /// <summary>
+    /// Inicia un pas de tipus Dialogue
+    /// </summary>
+    /// <param name="step">Identificador del pas</param>
     private void HandleDialogueStep(MissionStep step)
     {
         _dialogueHandler.StartDialogue(step);
     }
 
+    /// <summary>
+    /// Executa tot el necessari en realitzar una decisió, així com passar a la següent decisió.
+    /// </summary>
+    /// <param name="decision">Decisió que s'ha pres</param>
     public void OnDecisionMade(Decision decision)
     {
         if (_currentMission.steps.FirstOrDefault(s => s.id == decision.next).id == _currentStep.id) return;
@@ -120,11 +147,17 @@ public class MissionManager : MonoBehaviour
 
         // 2. Executa lògica específica si cal (via codi)
         DecisionLogic.Execute(decision.id);
-        Debug.Log("-----> hola");
+
         // 3. Avança al proper pas
         GoToStep(decision.next);
     }
+    #endregion
 
+    /// <summary>
+    /// Registra un MissionGameObject en FreeRoamHandler
+    /// </summary>
+    /// <param name="id">Indentificador del nou gameobject registrat</param>
+    /// <param name="obj">Objecte a registrar</param>
     public void RegisterFreeRoamGameObject(string id, MissionGameObject obj)
     {
         _freeRoamHandler.RegisterGameObject(id, obj);

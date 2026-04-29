@@ -3,8 +3,10 @@ using UnityEngine;
 
 public class FlagSystem : MonoBehaviour
 {
+    // Instància per accedir al FlagSystem
     public static FlagSystem Instance { get; private set; }
 
+    // Diccionari de flags
     private Dictionary<string, bool> _boolFlags = new Dictionary<string, bool>();
     private Dictionary<string, int> _intFlags = new Dictionary<string, int>();
 
@@ -18,6 +20,7 @@ public class FlagSystem : MonoBehaviour
         Instance = this;
     }
 
+    // Setter i Getter per al Diccionary de flags
     public void SetFlag(string key, bool value) => _boolFlags[key] = value;
     public bool GetFlag(string key) => _boolFlags.TryGetValue(key, out var v) && v;
 

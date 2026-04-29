@@ -27,7 +27,7 @@ public static class DecisionLogic
                 FreeRoamHandler.GetRegisteredGameObject("trigger_magatzem_costat_vent").gameObject.SetActive(false);
                 break;
              case "d_tornar_muntar_ABD":
-                Debug.Log("ABDABDABDABDA");
+                
                 ActivateABDEvent?.Invoke();
                 break;
             case "d_bomber_entren":

@@ -44,7 +44,7 @@ public class DisipateGas : MonoBehaviour
         Truck.SetActive(true);
         CurtainHose.SetActive(true);
         sps.CurtainEffect();
-        Debug.Log("activat");
+        
         yield return new WaitForSeconds(0.5f);
         fade.FadeOut();
     }

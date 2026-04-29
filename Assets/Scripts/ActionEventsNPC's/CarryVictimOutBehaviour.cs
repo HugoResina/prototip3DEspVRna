@@ -20,8 +20,7 @@ public class CarryVictimOutBehaviour : MonoBehaviour
         if (called)
         {
 
-            Debug.Log(navMeshAgent.remainingDistance);
-            Debug.Log(navMeshAgent.stoppingDistance);
+           
 
             if (navMeshAgent.remainingDistance < navMeshAgent.stoppingDistance)
             {

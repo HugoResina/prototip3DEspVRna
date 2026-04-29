@@ -95,5 +95,3 @@ public static class DecisionLogic
             break;
             //[...]
 ```
-
-- Si el comportament implica enviar ordres a un npc perquè, per exemple, el seu navmeshagent es mogui a un punt, el script de lògica haurà de ser un monobehaviour que implementi tot aquell npc que hagi d'executar la lògica 

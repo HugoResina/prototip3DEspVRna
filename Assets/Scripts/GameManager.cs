@@ -35,7 +35,6 @@ public class GameManager : MonoBehaviour
             DontDestroyOnLoad(gameObject);
             rutaCompleta = Path.Combine(Application.dataPath, nombreArchivo);
 
-            //File.AppendAllText(rutaCompleta, $"\n--- Nova Sessón: {DateTime.Now} ---\n");
         }
         else
         {
@@ -61,7 +60,6 @@ public class GameManager : MonoBehaviour
                 Debug.Log("index: ----------->" + responseObj.index);
                 Debug.Log("response: ----------->" + responseObj.response);
 
-                //RegistrarEnArchivo(responseObj);
 
                 OnAISend.Invoke(responseObj.index);
 

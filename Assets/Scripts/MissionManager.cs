@@ -6,7 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(DialogueHandler), typeof(FreeRoamHandler))] // Requereix els handlers da cada tipus per funcionar
 public class MissionManager : MonoBehaviour
 {
-    // Instància estàtica
+    // InstÃ ncia estÃ tica
     public static MissionManager Instance { get; private set; }
 
     // Event per actualitzar la UI
@@ -16,7 +16,7 @@ public class MissionManager : MonoBehaviour
     private DialogueHandler _dialogueHandler;
     private FreeRoamHandler _freeRoamHandler;
 
-    // Missió i pas actual
+    // MissiÃ³ i pas actual
     private MissionData _currentMission;
     private MissionStep _currentStep;
 
@@ -33,16 +33,16 @@ public class MissionManager : MonoBehaviour
         _freeRoamHandler = GetComponent<FreeRoamHandler>();
     }
 
-    // Subscripció i desubscripció d'events
+    // SubscripciÃ³ i desubscripciÃ³ d'events
     private void OnEnable() => ExitCInematic.StartMission += StartMision;
     private void OnDisable() => ExitCInematic.StartMission -= StartMision;
 
     #region Mission Loading
     #region Testing Corroutine
     /// <summary>
-    /// Corrutina per carregar i iniciar la missió amb un temps d'espera
+    /// Corrutina per carregar i iniciar la missiÃ³ amb un temps d'espera
     /// </summary>
-    /// <param name="missionId">Identificador de la missió a carregar</param>
+    /// <param name="missionId">Identificador de la missiÃ³ a carregar</param>
     /// <param name="delay">Temps d'espera</param>
     private IEnumerator StartMissionAfterDelay(string missionId, float delay)
     {
@@ -51,8 +51,17 @@ public class MissionManager : MonoBehaviour
     }
     #endregion
 
+    private void OnEnable()
+    {
+        ExitCInematic.StartMission += StartMision;
+    }
+    private void OnDisable()
+    {
+        ExitCInematic.StartMission -= StartMision;
+    }
+   
     /// <summary>
-    /// Carrega i inicia una missió
+    /// Carrega i inicia una missiÃ³
     /// </summary>
     public void StartMision()
     {
@@ -60,9 +69,9 @@ public class MissionManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Carrega una missió i la inicia
+    /// Carrega una missiÃ³ i la inicia
     /// </summary>
-    /// <param name="missionId">Identificador de la missió a carregar</param>
+    /// <param name="missionId">Identificador de la missiÃ³ a carregar</param>
     public void LoadMission(string missionId)
     {
         _currentMission = MissionLoader.Load(missionId);
@@ -72,7 +81,7 @@ public class MissionManager : MonoBehaviour
 
     #region Step Handling
     /// <summary>
-    /// Comprova el pas següent i l'inicia segons el tipus que és
+    /// Comprova el pas segÃ¼ent i l'inicia segons el tipus que Ã©s
     /// </summary>
     /// <param name="stepId">Identificador del pas</param>
     public void GoToStep(string stepId)
@@ -85,10 +94,12 @@ public class MissionManager : MonoBehaviour
             return;
         }
 
+        // Avisa la UI que mostri les opcions
+        Debug.Log($"MISSION MANAGER: Step -> {_currentStep.id} - Objective -> {_currentStep.objectiveTitle}");
         // Avisa la UI que mostri l'objectiu
         OnUpdateObjective?.Invoke(_currentStep.objectiveTitle, _currentStep.objectiveText);
 
-        // Comprova el tipus de pas i l'inicia en conseqüència
+        // Comprova el tipus de pas i l'inicia en conseqÃ¼Ã¨ncia
         switch (_currentStep.type)
         {
             case "dialogue":
@@ -129,14 +140,14 @@ public class MissionManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Executa tot el necessari en realitzar una decisió, així com passar a la següent decisió.
+    /// Executa tot el necessari en realitzar una decisiÃ³, aixÃ­ com passar a la segÃ¼ent decisiÃ³.
     /// </summary>
-    /// <param name="decision">Decisió que s'ha pres</param>
+    /// <param name="decision">DecisiÃ³ que s'ha pres</param>
     public void OnDecisionMade(Decision decision)
     {
         if (_currentMission.steps.FirstOrDefault(s => s.id == decision.next).id == _currentStep.id) return;
 
-        // 1. Aplica el flag de la decisió
+        // 1. Aplica el flag de la decisiÃ³
         if (decision.effects != null)
         {
             foreach (var effect in decision.effects)
@@ -145,10 +156,11 @@ public class MissionManager : MonoBehaviour
             }
         }
 
-        // 2. Executa lògica específica si cal (via codi)
+        // 2. Executa lÃ²gica especÃ­fica si cal (via codi)
         DecisionLogic.Execute(decision.id);
+        
 
-        // 3. Avança al proper pas
+        // 3. AvanÃ§a al proper pas
         GoToStep(decision.next);
     }
     #endregion

@@ -5,7 +5,7 @@ using UnityEngine;
 public static class DecisionLogic
 {
     #region Logic Events
-    // Events que es llancen per executar la lògica de cada decisió
+    // Events que es llancen per executar la lÃ²gica de cada decisiÃ³
     public static event Action ControlLeakEvent;
     public static event Action ActivateABDEvent;
     public static event Action DisipateGasEvent;
@@ -15,15 +15,16 @@ public static class DecisionLogic
 
     #region Decision Logics
     /// <summary>
-    /// Executa la lògica de les decisions
+    /// Executa la lÃ²gica de les decisions
     /// </summary>
-    /// <param name="decisionId">Id de la decisió de la qual es vol executar la lògica</param>
+    /// <param name="decisionId">Id de la decisiÃ³ de la qual es vol executar la lÃ²gica</param>
     public static void Execute(string decisionId)
     {
         switch (decisionId)
         {
-            // Logica de cada decisió específica
+            // Logica de cada decisiÃ³ especÃ­fica
              case "d_tornar_muntar_ABD":
+                
                 ActivateABDEvent?.Invoke();
                 break;
             case "d_bomber_entren":

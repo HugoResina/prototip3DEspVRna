@@ -1,4 +1,0 @@
-index: 0
-response: Benvingut al simulador de situacions d'emergència. Estem a punt per començar el tutorial.
-index: 4
-response: Bombers, això és la missió de fuita d'amoniac. Preparar-se per entrar en acció.

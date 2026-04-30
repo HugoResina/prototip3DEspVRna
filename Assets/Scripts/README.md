@@ -2,6 +2,8 @@
 
 ## Scripts de gestió de veu
 
+### [GroqChat](GroqChat.cs)
+
 
 
 ## Scripts de gestió de les missions

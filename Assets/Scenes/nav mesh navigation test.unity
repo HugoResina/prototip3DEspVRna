@@ -3435,10 +3435,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3729043478787323907, guid: 8188fa198d7a76146ada627922596d05, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 7123763769970212157, guid: 8188fa198d7a76146ada627922596d05, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 805418958}
     - targetCorrespondingSourceObject: {fileID: 7123763769970212157, guid: 8188fa198d7a76146ada627922596d05, type: 3}
       insertIndex: -1
       addedObject: {fileID: 805418952}
@@ -3562,6 +3566,21 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &805418958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 805418951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04ba9458cfc46ff41a1f06dc77f340e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::STT
+  _sampleRate: 16000
+  _relativeVoskModelPath: ./Assets/VoskModels/vosk-model-small-ca-0.4
+  _micClipLength: 10
 --- !u!4 &815371463 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8869792787683769050, guid: e246fcb13f67a294b905b16ef1f31b18, type: 3}
@@ -14335,13 +14354,6 @@ SceneRoots:
   - {fileID: 805418950}
   - {fileID: 155870014}
   - {fileID: 650929506}
-  - {fileID: 1656472180}
-  - {fileID: 269694380}
-  - {fileID: 1744186006}
-  - {fileID: 2007623766}
-  - {fileID: 1822783062}
-  - {fileID: 1489385058}
-  - {fileID: 31732036}
   - {fileID: 725198728}
   - {fileID: 364061749}
   - {fileID: 1677472448}
@@ -14362,8 +14374,6 @@ SceneRoots:
   - {fileID: 208556678}
   - {fileID: 1825123368}
   - {fileID: 1197953103}
-  - {fileID: 1507928011}
-  - {fileID: 1704757450}
-  - {fileID: 1925076808}
-  - {fileID: 1781519331}
-  - {fileID: 617812577}
+  - {fileID: 2887294161455061776}
+  - {fileID: 508780448}
+  - {fileID: 1833862633}

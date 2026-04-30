@@ -18,6 +18,15 @@ Carrega la API key des de `Assets/Resources/env.txt`: *GROQ_API_KEY=la_teva_clau
 groqChat.SendMessage("Hola!", response => Debug.Log(response));
 ```
 
+L'arxiu *env.txt* s'ha de crear per a que **GroqChat** pugui funcionar. Per crear-lo segueix aquestes instruccions:
+- Crea o inicia secció en el teu compte de [Groq](https://console.groq.com).
+- Accedeix a la secció de **API Keys** en la part superior dreta del menú superior de la web.
+- Crea una *API Key* nova si no tens cap o s'hi no saps la *key* d'alguna.
+- Un cop la crees copia la *key* que et dona, perquè no et deixarà tornar-la a copiar en cap altra ocasió, i guarda-la on sigui.
+- Després simplement crea l'arxiu *env.txt* dins de `Assets/Resources/` i afegeix aquesta única línia:
+    - GROQ_API_KEY=la_teva_clau
+- Canvia *la_teva_clau* per la *key* que has obtinguit.
+
 ### [GroqObjs](GroqObjs.cs)
 
 Defineix les estructures de dades per serialitzar/deserialitzar les peticions i respostes de l'API de Groq amb *JsonUtility*.

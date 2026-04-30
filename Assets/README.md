@@ -1,0 +1,44 @@
+# Estructura bàsica de carpetes
+
+- _Recovery
+    - carpeta propia de unity a on es guarden les escenes no guardades si unity crasheja o es tanca sense guardar
+- Animations
+    - conté alguns animationClips i fbx's que contenen animacions necesaries
+- Effects
+    - conté efectes de so o de particules
+- estacion
+    - model propi de la escena EstacioTest
+- InputSystem
+    - Conte la logica del input system i el input map
+- Materials
+    - alguns materials solts
+- MMS-TTS
+    - model de text a veu en català
+- Models
+    - diferents models i fbx's 
+- parte 1
+    - models propis de la zona que precedeix a la missio de la fuita de gas
+- pickup
+    - model del vehicle pickup (redundant ?)
+- Plugins
+    - dependencies importades a mà de llibreries externes
+- Prefabs
+    - prefabs diversos
+- Resources
+    - arxius de text diversos 
+- Scenes
+    - principalment les diverses escenes amb les que treballem
+- Scripts
+    - tots els scripts 
+- Settings
+    - Ajustos de renderització ???
+- SO's
+    - alguns scriptable objects que hem fet servir
+- StreamingAssets
+    - informacio pertinent pel MMS( massive multilingual speech)
+- TextMesh pro
+    - material per ui
+- UI
+    - actualment nomes conte incones utilitzades a la ui
+- VoskModels
+    - conte el model de vosk pel stt(speech to text) en català

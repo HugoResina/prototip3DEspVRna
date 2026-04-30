@@ -1,5 +1,9 @@
 # Sobre els Scripts
 
+## Scripts de gestió de veu
+
+
+
 ## Scripts de gestió de les missions
 
 Aquest són els scripts per a la gestió de les missións.

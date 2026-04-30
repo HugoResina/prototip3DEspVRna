@@ -645,64 +645,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &126413548
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 126413551}
-  - component: {fileID: 126413550}
-  - component: {fileID: 126413549}
-  m_Layer: 0
-  m_Name: Groq
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &126413549
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 126413548}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 778a6a84a7dc8b74195a097af561c3cd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GroqUse
---- !u!114 &126413550
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 126413548}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb13b30e504690c4595390a6746b0bf9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GroqChat
-  _model: llama-3.1-8b-instant
---- !u!4 &126413551
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 126413548}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 8.141178, y: 1.64958, z: 15.05176}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &128898538
 GameObject:
   m_ObjectHideFlags: 0
@@ -14990,6 +14932,7 @@ SceneRoots:
   - {fileID: 832575519}
   - {fileID: 805418950}
   - {fileID: 155870014}
+  - {fileID: 650929506}
   - {fileID: 1656472180}
   - {fileID: 269694380}
   - {fileID: 1744186006}
@@ -15010,7 +14953,6 @@ SceneRoots:
   - {fileID: 364593857}
   - {fileID: 1608858350}
   - {fileID: 1484548928}
-  - {fileID: 126413551}
   - {fileID: 651664328}
   - {fileID: 118417947}
   - {fileID: 1549245682}
@@ -15026,4 +14968,3 @@ SceneRoots:
   - {fileID: 1925076808}
   - {fileID: 1781519331}
   - {fileID: 617812577}
-  - {fileID: 650929506}

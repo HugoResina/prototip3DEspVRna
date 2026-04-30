@@ -28,14 +28,14 @@ public class WalkieTalkie : MonoBehaviour, InputSystem_Actions.IWalkieActions
 
         InputActions.Walkie.Enable();
         InputActions.Walkie.SetCallbacks(this);
-        NewSTT.TurnOffWalkie += TurnOffRadio;
+        STT.TurnOffWalkie += TurnOffRadio;
     }
 
     private void OnDisable()
     {
         InputActions.Walkie.Disable();
         InputActions.Walkie.RemoveCallbacks(this);
-        NewSTT.TurnOffWalkie -= TurnOffRadio;
+        STT.TurnOffWalkie -= TurnOffRadio;
 
     }
 
@@ -51,7 +51,7 @@ public class WalkieTalkie : MonoBehaviour, InputSystem_Actions.IWalkieActions
             audioSource.PlayOneShot(beep);
 
             GameManager.Instance.SttEnabled = true;
-            NewSTT.Recording = true;
+            STT.Recording = true;
             //Debug.Log("recording: " + NewSTT.Recording);           
         }
     }
@@ -63,6 +63,6 @@ public class WalkieTalkie : MonoBehaviour, InputSystem_Actions.IWalkieActions
         //audioSource.PlayOneShot(); sonido apagar?
 
         GameManager.Instance.SttEnabled = false;
-        NewSTT.Recording = false;
+        STT.Recording = false;
     }
 }

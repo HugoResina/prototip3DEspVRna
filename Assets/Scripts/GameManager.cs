@@ -18,7 +18,7 @@ public class GameManager : MonoBehaviour
 
 
     private GroqChat _groqChat;
-    private NewSTT _stt;
+    private STT _stt;
     private TTS _tts;
    
 
@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
         }
 
         _groqChat = GetComponent<GroqChat>();
-        _stt = GetComponent<NewSTT>();
+        _stt = GetComponent<STT>();
         _tts = GetComponent<TTS>();
 
         SttEnabled = false;

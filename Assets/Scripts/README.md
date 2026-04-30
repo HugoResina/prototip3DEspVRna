@@ -2,9 +2,31 @@
 
 ## Scripts de gestió de veu
 
+### [STT (Speech-To-Text)](STT.cs)
+
+Captura l'àudio del micròfon i el transcriu en temps real utilitzant **Vosk** (model offline, per defecte en català).
+
+Carrega el model des de `Assets/VoskModels/vosk-model-small-ca-0.4`.
+
 ### [GroqChat](GroqChat.cs)
 
+Gestiona la comunicació amb l'API de Groq per obtenir respostes d'un LLM des del joc. S'utilitza per a passar el resultat de la veu a una IA, per a que aquesta retorni un index de resposta segons el que se li diu.
 
+Carrega la API key des de `Assets/Resources/env.txt`: *GROQ_API_KEY=la_teva_clau*
+
+``` C#
+groqChat.SendMessage("Hola!", response => Debug.Log(response));
+```
+
+### [GroqObjs](GroqObjs.cs)
+
+Defineix les estructures de dades per serialitzar/deserialitzar les peticions i respostes de l'API de Groq amb *JsonUtility*.
+
+### [TTS (Text-To-Speech)](TTS.cs)
+
+Converteix text a àudio utilitzant el model **MMS (Meta Massively Multilingual Speech)** via Unity Inference Engine (CPU).
+
+Carrega el model des de `Assets/MMS-TTS Models/mms_tts_cat.onnx`.
 
 ## Scripts de gestió de les missions
 

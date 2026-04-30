@@ -50,8 +50,6 @@ public class MissionManager : MonoBehaviour
         LoadMission(missionId);
     }
     #endregion
-
-   
    
     /// <summary>
     /// Carrega i inicia una missió

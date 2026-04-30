@@ -1,190 +1,254 @@
 using System;
-using TMPro;
+using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 using Vosk;
-using static STT;
 
 public class STT : MonoBehaviour
 {
     [Serializable]
-    class OutputObj
+    class RecognizerResult
     {
         public string text;
     }
 
-    private Model model;
-    private VoskRecognizer rec;
-    public LocalAIClient localIAClient;
-    public GroqChat groqChat;
+    public static bool Recording = false;
 
+    [Header("General Settings")]
+    [SerializeField] private int _sampleRate = 16000;
 
-    //public string modelPath = "C:/vosk-model-small-es-0.42";
+    #region Vosk Variables
+    [Header("Vosk Settings")]
+    [SerializeField] private string _relativeVoskModelPath = "./Assets/VoskModels/vosk-model-small-ca-0.4";
 
-    public string modelPath = "C:/vosk-model-small-ca-0.4";
-    public int sampleRate = 16000;
+    private Model _voskModel;
+    private VoskRecognizer _voskRecognizer;
+    private string _voskModelPath = string.Empty;
+    #endregion
 
-    public string deviceName = null;
-    public int clipLengthSec = 10;
-  
+    #region Microphone Variables
+    [Header("Microphone Settings")]
+    [SerializeField] private int _micClipLength = 10;
 
-    public TMP_InputField outputText;
-    public Text AiOuptutText;
+    private const int MAX_CHUNCK_SIZE = 4096;
 
-    private AudioClip micClip;
-    private int lastSamplePos = 0;
+    private string _micDeviceName = string.Empty;
+    private AudioClip _micClip;
+    private int _micLastSamplePos = 0;
+    private bool _isProcessing = false;
 
-    [SerializeField] private Button Erase;
-    [SerializeField] private Button Send;
+    // NUEVO: flag para evitar reentrada durante el loop de procesamiento
+    private bool _isInsideProcessingLoop = false;
+    // NUEVO: acumula si hay que invocar el evento DESPUÉS del loop
+    private bool _pendingTurnOff = false;
+    #endregion
 
-    public static event Action<int> OnSend;
+    public static event Action TurnOffWalkie;
 
-  
-
-    [System.Serializable]
-    public class responseObj
+    private void OnEnable()
     {
-        public int index;
-        public string response;
+        SetMicrophone();
+        UIManager.InterPerToggleMicrophone += ToggleMicrophone;
     }
 
-   
-    private void Start()
+    private void OnDisable()
     {
-        modelPath = System.IO.Path.GetFullPath("./Assets/VoskModels/vosk-model-small-ca-0.4");
-
-        Erase.onClick.AddListener(EraseFunc);
-        Send.onClick.AddListener(SendFunc);
-        model = new Model(modelPath);
-        rec = new VoskRecognizer(model, sampleRate);
-       
-
-        if (Microphone.devices.Length == 0)
+        // NUEVO: esperamos a que el loop termine antes de limpiar
+        if (_isInsideProcessingLoop)
         {
-            Debug.LogError("No hay micr�fonos disponibles.");
+            // Marcamos para que se limpie al salir del loop en el mismo frame
+            _pendingTurnOff = true;
             return;
         }
-
-        if (string.IsNullOrEmpty(deviceName))
-            deviceName = Microphone.devices[0];
-
-        micClip = Microphone.Start(deviceName, true, clipLengthSec, sampleRate);
-        if (micClip == null)
-        {
-            Debug.LogError("No se pudo iniciar el micr�fono.");
-            return;
-        }
-
-        Debug.Log("Grabando desde: " + deviceName);
-        if (outputText != null)
-            outputText.text = "";
+        UnsetMicrophone();
+        UIManager.InterPerToggleMicrophone -= ToggleMicrophone;
     }
 
-    public void EraseFunc()
+    private void Awake()
     {
-        outputText.text = "";
+        _voskModelPath = System.IO.Path.GetFullPath(_relativeVoskModelPath);
+        if (string.IsNullOrEmpty(_voskModelPath)) { Debug.LogError("No s'ha trobat el model de Vosk."); return; }
 
-    }
+        _voskModel = new Model(_voskModelPath);
+        _voskRecognizer = new VoskRecognizer(_voskModel, _sampleRate);
 
-    public async void SendFuncLocal()
-    {
-        localIAClient = GetComponent<LocalAIClient>();
-
-        string response = await localIAClient.CallLocalAIAsync(outputText.text);
-        //?
-        response.Replace('`', ' ');
-        var responseobj = JsonUtility.FromJson<responseObj>(response);
-        
-        //AiOuptutText.text = responseobj.response;
-        AiOuptutText.text = "aix� es far�";
-        Debug.Log("index: ----------->" + responseobj.index);
-
-        OnSend?.Invoke(responseobj.index);
-    }
-
-    public void SendFunc()
-    {
-        groqChat.SendMessage(outputText.text, (response) =>
-        {
-            var responseObj = JsonUtility.FromJson<responseObj>(response);
-
-            Debug.Log("index: ----------->" + responseObj.index);
-            //Debug.Log("text: ----------->" + responseObj.response);
-            //UIManager.Instance.InterPerResponseText = responseObj.response;
-
-            OnSend?.Invoke(responseObj.index);
-        });
+        InteractablePersonEvents.UpdateInputFieldText(string.Empty);
     }
 
     private void Update()
     {
-     
-            if (micClip == null || rec == null)
-                return;
+        if (!Recording) return;
 
-            int currentPos = Microphone.GetPosition(deviceName);
-            if (currentPos < 0 || currentPos == lastSamplePos)
-                return;
+        string result = GetRecordResult();
 
-            int samplesToRead = (currentPos > lastSamplePos)
-                ? currentPos - lastSamplePos
-                : (micClip.samples - lastSamplePos) + currentPos;
+        if (!string.IsNullOrEmpty(result))
+        {
+            InteractablePersonEvents.UpdateInputFieldText(
+                UIManager.Instance.InterPerInputFieldText + " " + result);
 
-            const int maxChunkSize = 4096;
-
-            while (samplesToRead > 0)
-            {
-                int thisChunk = Mathf.Min(samplesToRead, maxChunkSize);
-
-                float[] floatData = new float[thisChunk];
-
-                int startPos = lastSamplePos;
-                if (startPos + thisChunk > micClip.samples)
-                {
-
-                    thisChunk = micClip.samples - startPos;
-                }
-
-                micClip.GetData(floatData, startPos);
-
-
-                short[] shortData = new short[thisChunk];
-                for (int i = 0; i < thisChunk; i++)
-                {
-                    float f = Mathf.Clamp(floatData[i], -1f, 1f);
-                    shortData[i] = (short)(f * short.MaxValue);
-                }
-
-                byte[] bytes = new byte[thisChunk * 2];
-                Buffer.BlockCopy(shortData, 0, bytes, 0, bytes.Length);
-
-                if (rec.AcceptWaveform(bytes, bytes.Length))
-                {
-
-                    string json = rec.Result();
-                    OutputObj output = JsonUtility.FromJson<OutputObj>(json);
-
-                    if (output != null && !string.IsNullOrEmpty(output.text))
-                    {
-                        if (outputText != null)
-                            outputText.text += output.text + " ";
-                        Debug.Log("RESULT: " + output.text);
-                    }
-                }
-
-
-                lastSamplePos = (lastSamplePos + thisChunk) % micClip.samples;
-                samplesToRead -= thisChunk;
-            }
-        
+         
+            TurnOffWalkie?.Invoke();
+        }
     }
 
-    private void OnDestroy()
+    private void SetMicrophone()
     {
-        if (!string.IsNullOrEmpty(deviceName) && Microphone.IsRecording(deviceName))
-            Microphone.End(deviceName);
+        _isProcessing = true;
 
-        rec?.Dispose();
-        model?.Dispose();
+        if (Microphone.devices.Length == 0)
+        {
+            Debug.LogWarning("No s'han trobat micròfons ara, reintentant...");
+            StartCoroutine(RetrySetMicrophone());
+            return;
+        }
+
+        if (string.IsNullOrEmpty(_micDeviceName))
+            _micDeviceName = Microphone.devices[0];
+
+        StartMicrophone();
+    }
+
+    private IEnumerator RetrySetMicrophone(int maxRetries = 10, float waitSeconds = 0.75f)
+    {
+        int attempts = 0;
+
+        while (attempts < maxRetries)
+        {
+            yield return new WaitForSeconds(waitSeconds);
+
+            if (Microphone.devices.Length > 0)
+            {
+                Debug.Log($"Micròfon trobat després de {attempts + 1} intent(s).");
+
+                if (string.IsNullOrEmpty(_micDeviceName))
+                    _micDeviceName = Microphone.devices[0];
+
+                StartMicrophone();
+                yield break;
+            }
+
+            attempts++;
+            Debug.LogWarning($"Reintent {attempts}/{maxRetries}: encara no hi ha micròfons.");
+        }
+
+        Debug.LogError("No s'ha pogut trobar cap micròfon després de tots els intents.");
+    }
+
+    private void UnsetMicrophone()
+    {
+        _isProcessing = false;
+        EndMicrophone();
+
+    
+        if (_voskRecognizer != null)
+        {
+            _voskRecognizer.Dispose();
+            _voskRecognizer = null;
+        }
+        if (_voskModel != null)
+        {
+            _voskModel.Dispose();
+            _voskModel = null;
+        }
+    }
+
+    private void ToggleMicrophone()
+    {
+        if (!string.IsNullOrEmpty(_micDeviceName) && Microphone.IsRecording(_micDeviceName))
+        {
+            EndMicrophone();
+        }
+        else
+        {
+            StartMicrophone();
+        }
+    }
+
+    private void StartMicrophone()
+    {
+        _micClip = Microphone.Start(_micDeviceName, true, _micClipLength, _sampleRate);
+        if (_micClip == null) { Debug.LogError("No s'ha pogut iniciar el micròfon."); return; }
+
+        Recording = true;
+        Debug.Log($"Gravant des de: '{_micDeviceName}'");
+    }
+
+    private void EndMicrophone()
+    {
+        if (!string.IsNullOrEmpty(_micDeviceName) && Microphone.IsRecording(_micDeviceName))
+        {
+            Microphone.End(_micDeviceName);
+            Recording = false;
+            Debug.Log("Fi de la gravació");
+        }
+    }
+
+    private string GetRecordResult()
+    {
+        if (!_isProcessing) return "";
+        if (_micClip == null || _voskRecognizer == null) return "";
+
+        int micCurrentPos = Microphone.GetPosition(_micDeviceName);
+        if (micCurrentPos < 0 || micCurrentPos == _micLastSamplePos) return "";
+
+        int samplesToRead = (micCurrentPos > _micLastSamplePos)
+            ? micCurrentPos - _micLastSamplePos
+            : (_micClip.samples - _micLastSamplePos) + micCurrentPos;
+
+        string result = string.Empty;
+
+        _isInsideProcessingLoop = true;
+
+        while (samplesToRead > 0)
+        {
+        
+            if (!_isProcessing || _voskRecognizer == null) break;
+
+            int thisChunk = Mathf.Min(samplesToRead, MAX_CHUNCK_SIZE);
+            float[] floatData = new float[thisChunk];
+
+            int startPos = _micLastSamplePos;
+            if (startPos + thisChunk > _micClip.samples)
+                thisChunk = _micClip.samples - startPos;
+
+            _micClip.GetData(floatData, startPos);
+
+            short[] shortData = new short[thisChunk];
+            for (int i = 0; i < thisChunk; i++)
+            {
+                float f = Mathf.Clamp(floatData[i], -1f, 1f);
+                shortData[i] = (short)(f * short.MaxValue);
+            }
+
+            byte[] bytes = new byte[thisChunk * 2];
+            Buffer.BlockCopy(shortData, 0, bytes, 0, bytes.Length);
+
+            if (_voskRecognizer.AcceptWaveform(bytes, bytes.Length))
+            {
+                string json = _voskRecognizer.Result();
+                RecognizerResult recoResult = JsonUtility.FromJson<RecognizerResult>(json);
+
+                if (recoResult != null && !string.IsNullOrEmpty(recoResult.text))
+                {
+                    result += recoResult.text + " ";
+                    Debug.Log("Microphone Record Result: " + recoResult.text);
+                }
+            }
+
+            _micLastSamplePos = (_micLastSamplePos + thisChunk) % _micClip.samples;
+            samplesToRead -= thisChunk;
+        }
+
+      
+
+        _isInsideProcessingLoop = false;
+
+        if (_pendingTurnOff)
+        {
+            _pendingTurnOff = false;
+            UnsetMicrophone();
+            UIManager.InterPerToggleMicrophone -= ToggleMicrophone;
+        }
+
+        return result;
     }
 }

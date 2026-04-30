@@ -131,8 +131,8 @@ public class UIManager : MonoBehaviour
         #region Ineractable Person Microphone Button Record Color
         if (_interactablePersonMenu.activeSelf)
         {
-            _ipMicrophoneToggleButtonImage.sprite = NewSTT.Recording ? _ipMicrophoneRecordingIcon : _ipMicrophoneStoppedIcon;
-            _ipMicrophoneToggleButton.gameObject.GetComponent<Image>().color = NewSTT.Recording ? _ipMicrophoneRecordingColor : _ipMicrophoneStoppedColor;
+            _ipMicrophoneToggleButtonImage.sprite = STT.Recording ? _ipMicrophoneRecordingIcon : _ipMicrophoneStoppedIcon;
+            _ipMicrophoneToggleButton.gameObject.GetComponent<Image>().color = STT.Recording ? _ipMicrophoneRecordingColor : _ipMicrophoneStoppedColor;
         }
         #endregion
     }
